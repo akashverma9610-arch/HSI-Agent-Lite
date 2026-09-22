@@ -1,0 +1,34 @@
+{
+  "id": "prospective_validation",
+  "name": "Prospective validation boundaries",
+  "artifact_type": "governance_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {"path": "docs/OUT_OF_SAMPLE_VALIDATION.md", "symbol_or_heading": "Out-of-Sample Validation", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "CONTRACT"},
+    {"path": "docs/WALK_FORWARD_VALIDATION.md", "symbol_or_heading": "Walk-Forward Validation", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "CONTRACT"},
+    {"path": "docs/architecture/COMPOUNDER_PROSPECTIVE_SHADOW_VALIDATION_V1.md", "symbol_or_heading": "Decision and boundary", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "AUDIT"}
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": ["Research-shadow observations do not establish product qualification or activation.", "Historical success does not prove future results or complete source readiness."],
+  "conflicts": [],
+  "notes": "TEST partitions and capital remain isolated from TRAIN and VALIDATION.",
+  "deterministic_computation": false,
+  "details": {
+    "distinct_stages": ["HISTORICAL_RESEARCH", "BACKTEST", "WALK_FORWARD", "OUT_OF_SAMPLE", "RESEARCH_SHADOW", "PROSPECTIVE_OBSERVATION", "PRODUCTION_ACTIVATION"],
+    "historical_success_implies_prospective_proof": false,
+    "oos_success_implies_approval_or_activation": false,
+    "research_shadow_is_product_signal": false,
+    "production_activation_requires_separate_approval": true,
+    "runtime_consumer": "Future validation ledger and activation gate",
+    "direct_trade_authority": false
+  }
+}

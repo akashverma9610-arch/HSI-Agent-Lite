@@ -1,0 +1,36 @@
+{
+  "id": "historical_pit",
+  "name": "Historical point-in-time eligibility",
+  "artifact_type": "governance_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {"path": "app/historical/guard.py", "symbol_or_heading": "BacktestLookaheadGuard.evaluate", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "IMPLEMENTATION"},
+    {"path": "app/historical/guard.py", "symbol_or_heading": "BacktestLookaheadGuard.membership", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "IMPLEMENTATION"},
+    {"path": "docs/HISTORICAL_DATASET.md", "symbol_or_heading": "Historical Dataset", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "CONTRACT"},
+    {"path": "docs/reports/P1_PROSPECTIVE_HISTORY_RUNTIME_CLOSURE_2026-09-22.md", "symbol_or_heading": "Source audit: implemented components versus missing proof", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "AUDIT"}
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": ["Strict historical readiness for the 61 diagnostics is not established.", "P1 complete per-input dependency and owning-source known-at proof remains unavailable.", "Price adjustment compatibility is not certified by a source receipt alone."],
+  "conflicts": [{"code": "P1_DEPENDENCY_KNOWN_AT_MISSING", "description": "Stored assessment and evaluation timestamp do not reconstruct complete input availability.", "resolution_status": "UNRESOLVED"}],
+  "notes": "No current fact is backdated into a historical decision.",
+  "deterministic_computation": false,
+  "details": {
+    "required_temporal_fields": ["event_at", "publication_at", "receipt_at", "known_at", "effective_from", "effective_to"],
+    "dated_universe_membership_required_when_applicable": true,
+    "corporate_action_and_adjustment_basis_required_when_applicable": true,
+    "future_publication_eligible_at_past_cutoff": false,
+    "present_day_fact_can_substitute_for_historical_availability": false,
+    "missing_known_at_outcome": "INSUFFICIENT_METADATA",
+    "runtime_consumer": "Future historical replay and PIT eligibility guard",
+    "direct_trade_authority": false
+  }
+}

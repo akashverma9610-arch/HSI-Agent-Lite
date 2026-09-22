@@ -1,0 +1,36 @@
+{
+  "id": "macro_news",
+  "name": "Macro and news evidence governance",
+  "artifact_type": "governance_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {"path": "docs/architecture/economic_news_intelligence.md", "symbol_or_heading": "Economic and News Intelligence", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "CONTRACT"},
+    {"path": "docs/architecture/CATALYST_EVENT_INTELLIGENCE_OPERATIONAL_CLOSURE_V1.md", "symbol_or_heading": "Architecture and approved boundaries", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "AUDIT"},
+    {"path": "docs/architecture/CATALYST_EVENT_INTELLIGENCE_OPERATIONAL_CLOSURE_V1.md", "symbol_or_heading": "Inventory and readiness", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "AUDIT"}
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": ["Source coverage and cross-producer real-world event reconciliation are partial.", "Company exposure and economic transmission require separate evidence; no Event/Catalyst strategy parameters are approved.", "News freshness and direction are not universally established."],
+  "conflicts": [{"code": "SOURCE_AND_TRANSMISSION_COVERAGE_PARTIAL", "description": "A producer label, article, or broad sector association does not verify primary authority or company impact.", "resolution_status": "UNRESOLVED"}],
+  "notes": "Context only; no Macro/News score or directional action.",
+  "deterministic_computation": false,
+  "details": {
+    "role": "CONTEXTUAL_EVIDENCE",
+    "event_identity_reused_across_contexts": true,
+    "same_event_counts_as_multiple_confirmations": false,
+    "source_provenance_required": true,
+    "company_transmission_must_be_proven": true,
+    "news_directly_authorizes_trade": false,
+    "event_catalyst_strategy_parameters_included": false,
+    "runtime_consumer": "Future macro/news context assembler",
+    "direct_trade_authority": false
+  }
+}

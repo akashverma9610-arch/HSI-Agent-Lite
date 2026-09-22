@@ -1,0 +1,35 @@
+{
+  "id": "strategy_registry",
+  "name": "Strategy identity and availability registry",
+  "artifact_type": "governance_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {"path": "app/intelligence/hsi_signal_strategy_registry.py", "symbol_or_heading": "HSI_SIGNAL_STRATEGY_REGISTRY_ID", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "IMPLEMENTATION"},
+    {"path": "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md", "symbol_or_heading": "Capability-status matrix", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "CONTRACT"},
+    {"path": "docs/STRATEGY_VERSIONING_AND_ACTIVATION.md", "symbol_or_heading": "Strategy Versioning and Activation", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "CONTRACT"}
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": ["Post-V1 catalogue describes future product scope, not approved product strategies.", "Registry resolution is limited to its existing governed policy path; unavailable archetypes remain unavailable."],
+  "conflicts": [{"code": "CATALOGUE_NOT_ACTIVE_POLICY", "description": "A catalogue entry or implemented evidence component is not a selected active product policy.", "resolution_status": "UNRESOLVED"}],
+  "notes": "Preserve identity, policy version, provenance and explicit unavailable result.",
+  "deterministic_computation": false,
+  "details": {
+    "registry_purpose": ["IDENTITY", "PROVENANCE", "AVAILABILITY", "VERSION_RESOLUTION"],
+    "registered_implies_approved": false,
+    "registered_implies_active": false,
+    "implemented_evidence_implies_product_strategy": false,
+    "unavailable_resolution": "STRATEGY_UNAVAILABLE",
+    "version_identity_required": true,
+    "runtime_consumer": "Future read-only strategy-policy resolver",
+    "direct_trade_authority": false
+  }
+}

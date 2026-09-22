@@ -1,0 +1,37 @@
+{
+  "id": "data_reliability",
+  "name": "Data reliability and source handoff",
+  "artifact_type": "governance_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {"path": "docs/DATA_FRESHNESS.md", "symbol_or_heading": "Market-data quality, freshness, and provenance", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "CONTRACT"},
+    {"path": "docs/architecture/PILOT_SOURCE_CURRENT_EOD_AND_HANDOFF_V1.md", "symbol_or_heading": "Current EOD versus frozen history", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "AUDIT"},
+    {"path": "app/data_operations/source_dependency_ledger.py", "symbol_or_heading": "RetainedSourceReference", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "IMPLEMENTATION"}
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": ["Current EOD acquisition and handoff are partial; a successful receipt or ledger is not complete downstream readiness.", "No universal freshness duration is approved here."],
+  "conflicts": [{"code": "SOURCE_PUBLICATION_VS_RECEIPT", "description": "Exchange publication is not established by source observation or ingestion time.", "resolution_status": "UNRESOLVED"}],
+  "notes": "Freshness policy remains source-family-specific.",
+  "deterministic_computation": false,
+  "details": {
+    "required_temporal_distinctions": ["source_timestamp", "publication_or_effective_time", "receipt_timestamp", "ingestion_completion_time"],
+    "quality_states": ["VALID", "DEGRADED", "STALE", "UNKNOWN", "UNAVAILABLE"],
+    "family_specific_freshness_required": true,
+    "universal_freshness_duration": null,
+    "missing_source_behavior": "UNAVAILABLE_WITH_WARNING",
+    "fabricated_fallback_allowed": false,
+    "fallback_requires_separate_authority": true,
+    "operations_receipt_proves_consumer_readiness": false,
+    "runtime_consumer": "Future source-family quality and freshness evaluator",
+    "direct_trade_authority": false
+  }
+}

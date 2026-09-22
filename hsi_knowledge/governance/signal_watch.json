@@ -1,0 +1,35 @@
+{
+  "id": "signal_watch",
+  "name": "P1 signal Watch-only boundary",
+  "artifact_type": "governance_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {"path": "docs/architecture/POST_V1_HSI_SIGNAL_P1_ACTIVATION_PROPOSAL.md", "symbol_or_heading": "Status", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "CONTRACT"},
+    {"path": "docs/architecture/SIGNAL_LIFECYCLE_P1_RUNTIME_BINDING_V1.md", "symbol_or_heading": "Strict source trust boundary and live limitation", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "AUDIT"},
+    {"path": "docs/reports/P1_PROSPECTIVE_HISTORY_RUNTIME_CLOSURE_2026-09-22.md", "symbol_or_heading": "Source audit: implemented components versus missing proof", "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS", "source_role": "AUDIT"}
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": ["Lifecycle mechanics are isolated and not production-wired.", "Complete owning-source dependency and known-at proof remains unavailable.", "Internal/on-demand projection is not consumer activation."],
+  "conflicts": [{"code": "P1_SOURCE_KNOWN_AT_CLOSURE_MISSING", "description": "No production owning-store adapter proves full assessment dependency timing.", "resolution_status": "UNRESOLVED"}],
+  "notes": "No P1 expiry, product API or consumer behavior is introduced.",
+  "deterministic_computation": false,
+  "details": {
+    "actionability": "WATCH_ONLY",
+    "execution_status": "NON_EXECUTABLE",
+    "projection_scope": "INTERNAL_ON_DEMAND",
+    "consumer_active": false,
+    "signal_existence_implies_order_authority": false,
+    "unproven_source_known_at_is_eligible": false,
+    "runtime_consumer": "Future governed Watch lifecycle reader",
+    "direct_trade_authority": false
+  }
+}

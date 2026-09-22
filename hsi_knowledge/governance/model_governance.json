@@ -1,0 +1,34 @@
+{
+  "id": "model_governance",
+  "name": "Model change and activation governance",
+  "artifact_type": "governance_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {"path": "docs/architecture/model_governance.md", "symbol_or_heading": "Model Governance and Drift", "authority": "AUTHORITATIVE_ACCEPTED", "source_role": "CONTRACT"},
+    {"path": "docs/STRATEGY_GOVERNANCE.md", "symbol_or_heading": "Lifecycle and approval", "authority": "AUTHORITATIVE_ACCEPTED", "source_role": "CONTRACT"}
+  ],
+  "authority_status": "AUTHORITATIVE_ACCEPTED",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": ["This artifact does not attest that a particular candidate has completed OOS validation or activation."],
+  "conflicts": [],
+  "notes": "Approved version and prospective activation are separate decisions.",
+  "deterministic_computation": false,
+  "details": {
+    "promotion_sequence": ["PROPOSAL", "RESEARCH_AND_OOS", "ELIGIBILITY", "HUMAN_REVIEW", "APPROVED_VERSION", "SEPARATE_ACTIVATION"],
+    "human_review_required_before_activation": true,
+    "approved_version_immutable": true,
+    "drift_observation_can_auto_deploy": false,
+    "self_modifying_live_policy_allowed": false,
+    "rollback_requires_governed_approved_version": true,
+    "runtime_consumer": "Future policy version registry and activation reviewer",
+    "direct_trade_authority": false
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "source_hierarchy",
+  "name": "Source hierarchy and claim provenance",
+  "artifact_type": "governance_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {"path": "docs/SOURCE_RELIABILITY.md", "symbol_or_heading": "Source reliability", "authority": "AUTHORITATIVE_ACCEPTED", "source_role": "CONTRACT"},
+    {"path": "docs/CLAIM_MODEL.md", "symbol_or_heading": "Claim model", "authority": "AUTHORITATIVE_ACCEPTED", "source_role": "CONTRACT"},
+    {"path": "docs/architecture/brain_contract.md", "symbol_or_heading": "Brain Contract", "authority": "AUTHORITATIVE_ACCEPTED", "source_role": "CONTRACT"}
+  ],
+  "authority_status": "AUTHORITATIVE_ACCEPTED",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": ["A producer's official-source label is not independent authentication of the underlying document."],
+  "conflicts": [],
+  "notes": "Company commentary is distinct from audited primary material.",
+  "deterministic_computation": false,
+  "details": {
+    "source_tiers": [
+      {"tier": 1, "family": "exchange_regulator_audited_primary"},
+      {"tier": 2, "family": "company_commentary_and_presentations"},
+      {"tier": 3, "family": "reputable_secondary_research"},
+      {"tier": 4, "family": "general_secondary_material"},
+      {"tier": 5, "family": "social_and_crowd_sentiment"}
+    ],
+    "distinguished_source_families": ["exchange_regulator_company_statutory_disclosure", "audited_or_reported_financial_statements", "official_provider_data", "reputable_secondary_reporting", "social_and_crowd_evidence"],
+    "official_provider_data_requires_source_authentication": true,
+    "audited_or_reported_financials_require_basis_and_period_provenance": true,
+    "secondary_can_override_contradictory_primary_because_newer": false,
+    "repeated_articles_are_independent_confirmations": false,
+    "social_sentiment_is_business_fact": false,
+    "runtime_consumer": "Future source resolver and claim deduplicator",
+    "direct_trade_authority": false
+  }
+}
