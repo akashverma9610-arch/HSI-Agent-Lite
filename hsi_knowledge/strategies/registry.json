@@ -1,0 +1,490 @@
+{
+  "version": "1.0.0",
+  "kind": "MODULAR_STRATEGY_KNOWLEDGE_REGISTRY",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "registry_presence_is_approval": false,
+  "approval_is_runtime_activation": false,
+  "unknown_strategy_result": "STRATEGY_UNAVAILABLE",
+  "proposed_strategy_active_use_result": "STRATEGY_UNAVAILABLE",
+  "unapproved_version_result": "STRATEGY_UNAVAILABLE",
+  "default_runtime_status": "NOT_IMPLEMENTED_IN_LITE",
+  "entries": [
+    {
+      "strategy_id": "PRE_BREAKOUT",
+      "strategy_family": "PRE_BREAKOUT",
+      "strategy_version": "1.0.0",
+      "filename": "catalog/PRE_BREAKOUT_v1.json",
+      "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "lite_lifecycle": "REVIEW_REQUIRED",
+      "legacy_lifecycle_status": "POLICY_AVAILABLE_P1_WATCH_ONLY_NON_EXECUTABLE",
+      "purpose": "Observe positional compression/base structure before a confirmed breakout through selected governed Pre-Breakout policy.",
+      "horizon_status": "INTENDED_HORIZON_ONLY",
+      "required_diagnostics": [],
+      "optional_diagnostics": [],
+      "context_diagnostics": [
+        "D02",
+        "D03",
+        "D11",
+        "D37",
+        "D39",
+        "D45"
+      ],
+      "quarantined_diagnostics": [],
+      "required_evidence_families": [
+        "sector_rotation",
+        "base_pattern",
+        "rvol",
+        "atr",
+        "rsi",
+        "risk_reward"
+      ],
+      "required_gates": [
+        "GATE_1_ROTATION",
+        "GATE_2_VELOCITY",
+        "GATE_3_SURVEILLANCE",
+        "GATE_4_TRADE_PLAN",
+        "GATE_5_HEAT",
+        "GATE_6_EARNINGS"
+      ],
+      "gate_applicability": [
+        {
+          "gate_id": "GATE_1_ROTATION",
+          "status": "CONTEXT_DEPENDENT",
+          "reason": "V1 action-context applicability is decided by the independent gate, not bypassed by strategy."
+        },
+        {
+          "gate_id": "GATE_2_VELOCITY",
+          "status": "CONTEXT_DEPENDENT",
+          "reason": "V1 action-context applicability is decided by the independent gate, not bypassed by strategy."
+        },
+        {
+          "gate_id": "GATE_3_SURVEILLANCE",
+          "status": "REQUIRED",
+          "reason": "Required if a future candidate reaches independent V1 gate evaluation; P1 Watch-only does not run gates."
+        },
+        {
+          "gate_id": "GATE_4_TRADE_PLAN",
+          "status": "REQUIRED",
+          "reason": "Required if a future candidate reaches independent V1 gate evaluation; P1 Watch-only does not run gates."
+        },
+        {
+          "gate_id": "GATE_5_HEAT",
+          "status": "REQUIRED",
+          "reason": "Required if a future candidate reaches independent V1 gate evaluation; P1 Watch-only does not run gates."
+        },
+        {
+          "gate_id": "GATE_6_EARNINGS",
+          "status": "CONTEXT_DEPENDENT",
+          "reason": "V1 action-context applicability is decided by the independent gate, not bypassed by strategy."
+        }
+      ],
+      "entry_policy_status": "POLICY_AVAILABLE_SELECTION_REQUIRED",
+      "invalidation_policy_status": "POLICY_AVAILABLE_SELECTION_REQUIRED",
+      "target_policy_status": "POLICY_AVAILABLE_SELECTION_REQUIRED",
+      "portfolio_use_status": "WATCH_CONTEXT_ONLY_NON_EXECUTABLE",
+      "blockers": [
+        "P1 source known-at closure and owning-store production adapter absent.",
+        "Policy approval and effective selection must be reconstructed at as-of; successor drafts are not selected by recency.",
+        "P1 consumer remains WATCH_ONLY / NON_EXECUTABLE; no Lite activation."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "strategy_id": "TACTICAL",
+      "strategy_family": "TACTICAL",
+      "strategy_version": "1.0.0",
+      "filename": "catalog/TACTICAL_v1.json",
+      "authority_status": "PROPOSED_NOT_ACTIVE",
+      "lite_lifecycle": "EXTRACTED_DRAFT",
+      "legacy_lifecycle_status": "STRATEGY_UNAVAILABLE_NOT_ACTIVE",
+      "purpose": "Research short-to-medium breakout or pullback contexts without a product trade policy.",
+      "horizon_status": "INTENDED_HORIZON_ONLY",
+      "required_diagnostics": [],
+      "optional_diagnostics": [],
+      "context_diagnostics": [
+        "D01",
+        "D02",
+        "D04",
+        "D06",
+        "D08",
+        "D11",
+        "D37",
+        "D38",
+        "D39"
+      ],
+      "quarantined_diagnostics": [
+        "D35"
+      ],
+      "required_evidence_families": [
+        "market_regime",
+        "sector_health",
+        "relative_strength",
+        "base_pattern",
+        "pullback",
+        "rvol",
+        "liquidity_pools"
+      ],
+      "required_gates": [
+        "GATE_1_ROTATION",
+        "GATE_2_VELOCITY",
+        "GATE_3_SURVEILLANCE",
+        "GATE_4_TRADE_PLAN",
+        "GATE_5_HEAT",
+        "GATE_6_EARNINGS"
+      ],
+      "gate_applicability": [
+        {
+          "gate_id": "GATE_1_ROTATION",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_2_VELOCITY",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_3_SURVEILLANCE",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_4_TRADE_PLAN",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_5_HEAT",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_6_EARNINGS",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        }
+      ],
+      "entry_policy_status": "UNAVAILABLE",
+      "invalidation_policy_status": "UNAVAILABLE",
+      "target_policy_status": "UNAVAILABLE",
+      "portfolio_use_status": "RESEARCH_ONLY_NO_ACTIVE_CONSUMER",
+      "blockers": [
+        "No complete approved Tactical product policy or calibrated horizon.",
+        "No independent geometry, exitability, setup, or activation authority."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "strategy_id": "POSITIONAL",
+      "strategy_family": "POSITIONAL",
+      "strategy_version": "1.0.0",
+      "filename": "catalog/POSITIONAL_v1.json",
+      "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "lite_lifecycle": "REVIEW_REQUIRED",
+      "legacy_lifecycle_status": "PRE_BREAKOUT_INSTANCE_AVAILABLE_GENERIC_POSITIONAL_UNAVAILABLE",
+      "purpose": "Organize multi-session structural opportunities; Pre-Breakout is one governed instance, not the generic family.",
+      "horizon_status": "INTENDED_HORIZON_ONLY",
+      "required_diagnostics": [],
+      "optional_diagnostics": [],
+      "context_diagnostics": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D10",
+        "D37",
+        "D45"
+      ],
+      "quarantined_diagnostics": [],
+      "required_evidence_families": [
+        "market_regime",
+        "sector_health",
+        "market_structure",
+        "base_pattern",
+        "risk_reward"
+      ],
+      "required_gates": [
+        "GATE_1_ROTATION",
+        "GATE_2_VELOCITY",
+        "GATE_3_SURVEILLANCE",
+        "GATE_4_TRADE_PLAN",
+        "GATE_5_HEAT",
+        "GATE_6_EARNINGS"
+      ],
+      "gate_applicability": [
+        {
+          "gate_id": "GATE_1_ROTATION",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_2_VELOCITY",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_3_SURVEILLANCE",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_4_TRADE_PLAN",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_5_HEAT",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_6_EARNINGS",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        }
+      ],
+      "entry_policy_status": "UNAVAILABLE",
+      "invalidation_policy_status": "UNAVAILABLE",
+      "target_policy_status": "UNAVAILABLE",
+      "portfolio_use_status": "RESEARCH_ONLY_NO_ACTIVE_CONSUMER",
+      "blockers": [
+        "Only Pre-Breakout has a governed policy path.",
+        "Generic positional setup sufficiency, horizon and portfolio bucket are unapproved."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "strategy_id": "LONG_TERM",
+      "strategy_family": "LONG_TERM",
+      "strategy_version": "1.0.0",
+      "filename": "catalog/LONG_TERM_v1.json",
+      "authority_status": "PROPOSED_NOT_ACTIVE",
+      "lite_lifecycle": "EXTRACTED_DRAFT",
+      "legacy_lifecycle_status": "RESEARCH_SHADOW_ONLY_STRATEGY_UNAVAILABLE",
+      "purpose": "Research quality/fair-value, compounder, inflection, policy-transmission and asymmetric opportunities as separate conceptual subfamilies.",
+      "horizon_status": "INTENDED_HORIZON_ONLY",
+      "required_diagnostics": [],
+      "optional_diagnostics": [],
+      "context_diagnostics": [
+        "D15",
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D23",
+        "D24",
+        "D29",
+        "D33"
+      ],
+      "quarantined_diagnostics": [],
+      "required_evidence_families": [
+        "financial_growth_series",
+        "financial_comparability",
+        "return_ratios",
+        "cash_flow_quality",
+        "leverage",
+        "working_capital",
+        "governance_claims",
+        "valuation"
+      ],
+      "required_gates": [
+        "GATE_1_ROTATION",
+        "GATE_2_VELOCITY",
+        "GATE_3_SURVEILLANCE",
+        "GATE_4_TRADE_PLAN",
+        "GATE_5_HEAT",
+        "GATE_6_EARNINGS"
+      ],
+      "gate_applicability": [
+        {
+          "gate_id": "GATE_1_ROTATION",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_2_VELOCITY",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_3_SURVEILLANCE",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_4_TRADE_PLAN",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_5_HEAT",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_6_EARNINGS",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        }
+      ],
+      "entry_policy_status": "UNAVAILABLE",
+      "invalidation_policy_status": "UNAVAILABLE",
+      "target_policy_status": "UNAVAILABLE",
+      "portfolio_use_status": "RESEARCH_ONLY_NO_ACTIVE_CONSUMER",
+      "blockers": [
+        "Long-term family pack is proposed; research shadows are Watch-only.",
+        "Comparable valuation, quality criteria, cadence, liquidity and portfolio bucket unresolved."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "strategy_id": "EVENT_CATALYST",
+      "strategy_family": "EVENT_CATALYST",
+      "strategy_version": "1.0.0",
+      "filename": "catalog/EVENT_CATALYST_v1.json",
+      "authority_status": "PROPOSED_NOT_ACTIVE",
+      "lite_lifecycle": "EXTRACTED_DRAFT",
+      "legacy_lifecycle_status": "EVIDENCE_BOUNDARIES_APPROVED_STRATEGY_UNAVAILABLE_NOT_ACTIVE",
+      "purpose": "Research exact novel PIT-visible company or policy events and verified transmission, without direction or trade inference.",
+      "horizon_status": "INTENDED_HORIZON_ONLY",
+      "required_diagnostics": [],
+      "optional_diagnostics": [],
+      "context_diagnostics": [
+        "D23",
+        "D30"
+      ],
+      "quarantined_diagnostics": [
+        "D57"
+      ],
+      "required_evidence_families": [
+        "catalysts",
+        "governance_claims"
+      ],
+      "required_gates": [
+        "GATE_1_ROTATION",
+        "GATE_2_VELOCITY",
+        "GATE_3_SURVEILLANCE",
+        "GATE_4_TRADE_PLAN",
+        "GATE_5_HEAT",
+        "GATE_6_EARNINGS"
+      ],
+      "gate_applicability": [
+        {
+          "gate_id": "GATE_1_ROTATION",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_2_VELOCITY",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_3_SURVEILLANCE",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_4_TRADE_PLAN",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_5_HEAT",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_6_EARNINGS",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        }
+      ],
+      "entry_policy_status": "UNAVAILABLE",
+      "invalidation_policy_status": "UNAVAILABLE",
+      "target_policy_status": "UNAVAILABLE",
+      "portfolio_use_status": "RESEARCH_ONLY_NO_ACTIVE_CONSUMER",
+      "blockers": [
+        "EC-1–EC-7 boundaries approved but operational parameters/calibration insufficient.",
+        "No product strategy, setup, six-gate result or activation."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "strategy_id": "MARKET_RED_RESILIENCE",
+      "strategy_family": "MARKET_RED_RESILIENCE",
+      "strategy_version": "1.0.0",
+      "filename": "catalog/MARKET_RED_RESILIENCE_v1.json",
+      "authority_status": "PROPOSED_NOT_ACTIVE",
+      "lite_lifecycle": "EXTRACTED_DRAFT",
+      "legacy_lifecycle_status": "EVIDENCE_BOUNDARIES_APPROVED_STRATEGY_UNAVAILABLE_NOT_ACTIVE",
+      "purpose": "Research relative resilience during separately defined broad-market weakness.",
+      "horizon_status": "INTENDED_HORIZON_ONLY",
+      "required_diagnostics": [],
+      "optional_diagnostics": [],
+      "context_diagnostics": [
+        "D01",
+        "D02",
+        "D06",
+        "D11"
+      ],
+      "quarantined_diagnostics": [],
+      "required_evidence_families": [
+        "market_regime",
+        "relative_strength",
+        "sector_health",
+        "rvol"
+      ],
+      "required_gates": [
+        "GATE_1_ROTATION",
+        "GATE_2_VELOCITY",
+        "GATE_3_SURVEILLANCE",
+        "GATE_4_TRADE_PLAN",
+        "GATE_5_HEAT",
+        "GATE_6_EARNINGS"
+      ],
+      "gate_applicability": [
+        {
+          "gate_id": "GATE_1_ROTATION",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_2_VELOCITY",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_3_SURVEILLANCE",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_4_TRADE_PLAN",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_5_HEAT",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        },
+        {
+          "gate_id": "GATE_6_EARNINGS",
+          "status": "UNRESOLVED",
+          "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+        }
+      ],
+      "entry_policy_status": "UNAVAILABLE",
+      "invalidation_policy_status": "UNAVAILABLE",
+      "target_policy_status": "UNAVAILABLE",
+      "portfolio_use_status": "RESEARCH_ONLY_NO_ACTIVE_CONSUMER",
+      "blockers": [
+        "MR-1–MR-8 boundaries approved but calibration data insufficient.",
+        "No active product strategy, setup or gate result."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "id": "MARKET_RED_RESILIENCE",
+  "name": "Market-Red Relative Resilience",
+  "artifact_type": "strategy",
+  "version": "1.0.0",
+  "status": "EXTRACTED_DRAFT",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/architecture/POST_V1_BATCH_1_EVENT_CATALYST_AND_RESILIENCE_POLICY_PROPOSAL.md",
+      "symbol_or_heading": "MARKET_RED_RELATIVE_RESILIENCE",
+      "source_role": "CONTRACT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    },
+    {
+      "path": "docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md",
+      "symbol_or_heading": "Market-Red calibration result",
+      "source_role": "AUDIT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    },
+    {
+      "path": "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md",
+      "symbol_or_heading": "MARKET_RED_RELATIVE_RESILIENCE",
+      "source_role": "CONTRACT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    }
+  ],
+  "authority_status": "PROPOSED_NOT_ACTIVE",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "market_regime",
+    "relative_strength",
+    "sector_health",
+    "rvol"
+  ],
+  "known_limitations": [
+    "MR-1–MR-8 boundaries approved but calibration data insufficient.",
+    "No active product strategy, setup or gate result."
+  ],
+  "conflicts": [],
+  "notes": "Task #007 version is a Lite knowledge extraction version, not approval or activation of a product strategy. Strategy consumes upstream evidence/diagnostics and never recalculates them.",
+  "deterministic_computation": false,
+  "details": {
+    "strategy_id": "MARKET_RED_RESILIENCE",
+    "name": "Market-Red Relative Resilience",
+    "version": "1.0.0",
+    "authority": "PROPOSED_NOT_ACTIVE",
+    "lifecycle": "EXTRACTED_DRAFT",
+    "legacy_lifecycle": "EVIDENCE_BOUNDARIES_APPROVED_STRATEGY_UNAVAILABLE_NOT_ACTIVE",
+    "purpose": "Research relative resilience during separately defined broad-market weakness.",
+    "horizon": "Intended market-weakness/persistence window; no calibrated length or expiry.",
+    "horizon_status": "INTENDED_HORIZON_ONLY",
+    "research_subfamilies": [],
+    "required_evidence": [
+      "market_regime",
+      "relative_strength",
+      "sector_health",
+      "rvol"
+    ],
+    "required_diagnostics": [],
+    "optional_diagnostics": [],
+    "context_diagnostics": [
+      "D01",
+      "D02",
+      "D06",
+      "D11"
+    ],
+    "quarantined_diagnostics": [],
+    "unavailable_dependencies": [
+      "Calibrated weak-market return/breadth definition and historical breadth",
+      "Aligned historical stock/benchmark/sector windows and liquidity/delivery filter",
+      "Persistence, expiry and invalidation parameters"
+    ],
+    "deterministic_eligibility": [],
+    "interpretive_guidance": [
+      "Relative resilience does NOT prove institutional sponsorship or future downside protection.",
+      "Current sector rank/breadth cannot be backdated into historical resilience."
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_2_VELOCITY",
+      "GATE_3_SURVEILLANCE",
+      "GATE_4_TRADE_PLAN",
+      "GATE_5_HEAT",
+      "GATE_6_EARNINGS"
+    ],
+    "gate_applicability": [
+      {
+        "gate_id": "GATE_1_ROTATION",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_2_VELOCITY",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_3_SURVEILLANCE",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_4_TRADE_PLAN",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_5_HEAT",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_6_EARNINGS",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      }
+    ],
+    "gate_fail_override_allowed": false,
+    "score_relationship": {
+      "role": "NOT_AUTHORITATIVE",
+      "minimum_score": null,
+      "description": "No resilience score threshold or score-based product eligibility approved."
+    },
+    "score_substitutes_for_eligibility": false,
+    "entry_policy_reference": null,
+    "invalidation_policy_reference": null,
+    "target_policy_reference": null,
+    "liquidity_policy_reference": null,
+    "geometry_authority": "UNAVAILABLE",
+    "portfolio_implications": [
+      "No strategy artifact authorizes rotation, trim, allocation or order.",
+      "Portfolio use requires separate governed portfolio policy; Watch context is not capital action."
+    ],
+    "portfolio_permissions": {
+      "may_inform_watch": false,
+      "may_inform_candidate_ranking": false,
+      "may_inform_portfolio_review": false,
+      "may_authorize_rotation": false,
+      "may_authorize_trim": false,
+      "may_authorize_broker_order": false
+    },
+    "broker_order_authority": false,
+    "recalculates_evidence_metrics": false,
+    "known_blockers": [
+      "MR-1–MR-8 boundaries approved but calibration data insufficient.",
+      "No active product strategy, setup or gate result."
+    ],
+    "validation_evidence": [
+      "docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md#Market-Red calibration result"
+    ],
+    "provenance": [
+      "docs/architecture/POST_V1_BATCH_1_EVENT_CATALYST_AND_RESILIENCE_POLICY_PROPOSAL.md#MARKET_RED_RELATIVE_RESILIENCE",
+      "docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md#Market-Red calibration result",
+      "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#MARKET_RED_RELATIVE_RESILIENCE"
+    ]
+  }
+}

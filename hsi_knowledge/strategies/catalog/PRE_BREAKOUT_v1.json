@@ -1,0 +1,197 @@
+{
+  "id": "PRE_BREAKOUT",
+  "name": "Pre-Breakout Compression",
+  "artifact_type": "strategy",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/strategies/pre_breakout/policy.py",
+      "symbol_or_heading": "PreBreakoutApprovedPolicy",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/strategies/pre_breakout/governance.py",
+      "symbol_or_heading": "PreBreakoutPolicyGovernanceService",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/strategies/pre_breakout/setup_assessment.py",
+      "symbol_or_heading": "GovernedPreBreakoutSetupAssessmentService",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md",
+      "symbol_or_heading": "PRE_BREAKOUT_COMPRESSION",
+      "source_role": "CONTRACT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "docs/reports/P1_PROSPECTIVE_HISTORY_RUNTIME_CLOSURE_2026-09-22.md",
+      "symbol_or_heading": "Source audit",
+      "source_role": "AUDIT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "sector_rotation",
+    "base_pattern",
+    "rvol",
+    "atr",
+    "rsi",
+    "risk_reward"
+  ],
+  "known_limitations": [
+    "P1 source known-at closure and owning-store production adapter absent.",
+    "Policy approval and effective selection must be reconstructed at as-of; successor drafts are not selected by recency.",
+    "P1 consumer remains WATCH_ONLY / NON_EXECUTABLE; no Lite activation."
+  ],
+  "conflicts": [],
+  "notes": "Task #007 version is a Lite knowledge extraction version, not approval or activation of a product strategy. Strategy consumes upstream evidence/diagnostics and never recalculates them.",
+  "deterministic_computation": false,
+  "details": {
+    "strategy_id": "PRE_BREAKOUT",
+    "name": "Pre-Breakout Compression",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "legacy_lifecycle": "POLICY_AVAILABLE_P1_WATCH_ONLY_NON_EXECUTABLE",
+    "purpose": "Observe positional compression/base structure before a confirmed breakout through selected governed Pre-Breakout policy.",
+    "horizon": "Intended positional compression; base-window lookback is not an approved holding horizon.",
+    "horizon_status": "INTENDED_HORIZON_ONLY",
+    "research_subfamilies": [],
+    "prebreakout_evidence_contract": {
+      "policy_selection": "Reconstruct fingerprinted human approval and effective selection at decision as-of; draft recency alone has no authority.",
+      "technical_checks": ["BBW percentile/compression", "ATR contraction", "governed volume dry-up statistic", "official delivery", "distance from 252-session high", "RSI14"],
+      "structural_checks": ["valid selected base window and confirmed pivots", "base top/resistance and structural support", "PIT-authoritative tick size where selected policy requires it", "entry reference and maximum acceptable/executable entry only under an explicitly approved and selected policy version", "selected-policy structural stop, target and gross structural risk/reward"],
+      "sector_check": "Governed sector rotation and Top-3 membership at the same decision cutoff; unavailable or conflicting sector evidence blocks setup.",
+      "missing_behavior": "Missing policy, source, technical, structural, sector or entry-economics evidence yields an explicit blocked assessment, not a candidate or trade.",
+      "source_readiness": "P1 complete per-input dependency/known-at receipt and production owning-store verification adapter remain unavailable; Watch-only non-executable."
+    },
+    "required_evidence": [
+      "sector_rotation",
+      "base_pattern",
+      "rvol",
+      "atr",
+      "rsi",
+      "risk_reward"
+    ],
+    "required_diagnostics": [],
+    "optional_diagnostics": [],
+    "context_diagnostics": [
+      "D02",
+      "D03",
+      "D11",
+      "D37",
+      "D39",
+      "D45"
+    ],
+    "quarantined_diagnostics": [],
+    "unavailable_dependencies": [
+      "Complete owning-source per-input known-at receipt and production verification adapter in Lite",
+      "Canonical BBW/official delivery/tick-size dependencies are not separately normalized in Task #005 evidence catalog"
+    ],
+    "deterministic_eligibility": [
+      "app/strategies/pre_breakout/policy.py#PreBreakoutApprovedPolicy",
+      "app/strategies/pre_breakout/setup_assessment.py#GovernedPreBreakoutSetupAssessmentService"
+    ],
+    "interpretive_guidance": [
+      "Compression is neither breakout nor institutional demand.",
+      "Selected policy, PIT evidence and technical/structural/sector blockers determine setup formation; P1 output remains Watch-only.",
+      "Task #005 normalized family pointers are not substitutes for exact selected-policy OHLCV, delivery, tick, BBW and known-at receipts."
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_2_VELOCITY",
+      "GATE_3_SURVEILLANCE",
+      "GATE_4_TRADE_PLAN",
+      "GATE_5_HEAT",
+      "GATE_6_EARNINGS"
+    ],
+    "gate_applicability": [
+      {
+        "gate_id": "GATE_1_ROTATION",
+        "status": "CONTEXT_DEPENDENT",
+        "reason": "V1 action-context applicability is decided by the independent gate, not bypassed by strategy."
+      },
+      {
+        "gate_id": "GATE_2_VELOCITY",
+        "status": "CONTEXT_DEPENDENT",
+        "reason": "V1 action-context applicability is decided by the independent gate, not bypassed by strategy."
+      },
+      {
+        "gate_id": "GATE_3_SURVEILLANCE",
+        "status": "REQUIRED",
+        "reason": "Required if a future candidate reaches independent V1 gate evaluation; P1 Watch-only does not run gates."
+      },
+      {
+        "gate_id": "GATE_4_TRADE_PLAN",
+        "status": "REQUIRED",
+        "reason": "Required if a future candidate reaches independent V1 gate evaluation; P1 Watch-only does not run gates."
+      },
+      {
+        "gate_id": "GATE_5_HEAT",
+        "status": "REQUIRED",
+        "reason": "Required if a future candidate reaches independent V1 gate evaluation; P1 Watch-only does not run gates."
+      },
+      {
+        "gate_id": "GATE_6_EARNINGS",
+        "status": "CONTEXT_DEPENDENT",
+        "reason": "V1 action-context applicability is decided by the independent gate, not bypassed by strategy."
+      }
+    ],
+    "gate_fail_override_allowed": false,
+    "score_relationship": {
+      "role": "NOT_AUTHORITATIVE",
+      "minimum_score": null,
+      "description": "Score may accompany later governed synthesis, never substitute for selected-policy setup eligibility."
+    },
+    "score_substitutes_for_eligibility": false,
+    "entry_policy_reference": "app/strategies/pre_breakout/policy.py#PreBreakoutApprovedPolicy; exact selected version required",
+    "invalidation_policy_reference": "app/strategies/pre_breakout/policy.py#PreBreakoutApprovedPolicy; exact selected version required",
+    "target_policy_reference": "app/strategies/pre_breakout/policy.py#PreBreakoutApprovedPolicy; exact selected version required",
+    "liquidity_policy_reference": null,
+    "geometry_authority": "PRE_BREAKOUT_GOVERNED_POLICY_SELECTION",
+    "portfolio_implications": [
+      "No strategy artifact authorizes rotation, trim, allocation or order.",
+      "Portfolio use requires separate governed portfolio policy; Watch context is not capital action."
+    ],
+    "portfolio_permissions": {
+      "may_inform_watch": true,
+      "may_inform_candidate_ranking": false,
+      "may_inform_portfolio_review": false,
+      "may_authorize_rotation": false,
+      "may_authorize_trim": false,
+      "may_authorize_broker_order": false
+    },
+    "broker_order_authority": false,
+    "recalculates_evidence_metrics": false,
+    "known_blockers": [
+      "P1 source known-at closure and owning-store production adapter absent.",
+      "Policy approval and effective selection must be reconstructed at as-of; successor drafts are not selected by recency.",
+      "P1 consumer remains WATCH_ONLY / NON_EXECUTABLE; no Lite activation."
+    ],
+    "validation_evidence": [
+      "app/strategies/pre_breakout/setup_assessment.py#blocker taxonomy",
+      "docs/reports/P1_PROSPECTIVE_HISTORY_RUNTIME_CLOSURE_2026-09-22.md#Source audit"
+    ],
+    "provenance": [
+      "app/strategies/pre_breakout/policy.py#PreBreakoutApprovedPolicy",
+      "app/strategies/pre_breakout/governance.py#PreBreakoutPolicyGovernanceService",
+      "app/strategies/pre_breakout/setup_assessment.py#GovernedPreBreakoutSetupAssessmentService",
+      "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#PRE_BREAKOUT_COMPRESSION",
+      "docs/reports/P1_PROSPECTIVE_HISTORY_RUNTIME_CLOSURE_2026-09-22.md#Source audit"
+    ]
+  }
+}

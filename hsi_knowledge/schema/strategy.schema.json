@@ -4,33 +4,54 @@
   "title": "Strategy details profile; validate with knowledge envelope",
   "type": "object",
   "additionalProperties": false,
-  "required": ["strategy_id", "name", "version", "authority", "lifecycle", "purpose", "horizon", "required_evidence", "deterministic_eligibility", "interpretive_guidance", "gate_dependencies", "entry_policy_reference", "invalidation_policy_reference", "target_policy_reference", "liquidity_policy_reference", "portfolio_implications", "known_blockers", "provenance"],
+  "required": ["strategy_id", "name", "version", "authority", "lifecycle", "legacy_lifecycle", "purpose", "horizon", "horizon_status", "research_subfamilies", "required_evidence", "required_diagnostics", "optional_diagnostics", "context_diagnostics", "quarantined_diagnostics", "unavailable_dependencies", "deterministic_eligibility", "interpretive_guidance", "gate_dependencies", "gate_applicability", "gate_fail_override_allowed", "score_relationship", "score_substitutes_for_eligibility", "entry_policy_reference", "invalidation_policy_reference", "target_policy_reference", "liquidity_policy_reference", "geometry_authority", "portfolio_implications", "portfolio_permissions", "broker_order_authority", "recalculates_evidence_metrics", "known_blockers", "validation_evidence", "provenance"],
   "properties": {
     "strategy_id": {"type": "string", "minLength": 1},
     "name": {"type": "string", "minLength": 1},
     "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
     "authority": {"enum": ["AUTHORITATIVE_ACCEPTED", "LATEST_ACCEPTED_WITH_LIMITATIONS", "PROPOSED_NOT_ACTIVE", "HISTORICAL_ONLY", "OBSOLETE_OR_SUPERSEDED", "CONFLICT_REVIEW_REQUIRED", "NOT_FOUND"]},
     "lifecycle": {"enum": ["INVENTORIED", "EXTRACTED_DRAFT", "REVIEW_REQUIRED", "APPROVED_FOR_LITE", "ACTIVE", "INACTIVE", "QUARANTINED", "SUPERSEDED"]},
+    "legacy_lifecycle": {"type": "string", "minLength": 1},
     "purpose": {"type": "string", "minLength": 1},
     "horizon": {"type": "string", "minLength": 1},
+    "horizon_status": {"enum": ["INTENDED_HORIZON_ONLY", "VALIDATED_HORIZON"]},
+    "research_subfamilies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "prebreakout_evidence_contract": {"type": "object", "additionalProperties": false, "required": ["policy_selection", "technical_checks", "structural_checks", "sector_check", "missing_behavior", "source_readiness"], "properties": {"policy_selection": {"type": "string", "minLength": 1}, "technical_checks": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}, "structural_checks": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}, "sector_check": {"type": "string", "minLength": 1}, "missing_behavior": {"type": "string", "minLength": 1}, "source_readiness": {"type": "string", "minLength": 1}}},
     "required_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "required_diagnostics": {"$ref": "#/$defs/diagnostics"},
+    "optional_diagnostics": {"$ref": "#/$defs/diagnostics"},
+    "context_diagnostics": {"$ref": "#/$defs/diagnostics"},
+    "quarantined_diagnostics": {"$ref": "#/$defs/diagnostics"},
+    "unavailable_dependencies": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "deterministic_eligibility": {"type": "array", "items": {"$ref": "#/$defs/policy_reference"}},
     "interpretive_guidance": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "gate_dependencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "gate_applicability": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"type": "object", "additionalProperties": false, "required": ["gate_id", "status", "reason"], "properties": {"gate_id": {"type": "string", "minLength": 1}, "status": {"enum": ["REQUIRED", "CONTEXT_DEPENDENT", "UNRESOLVED"]}, "reason": {"type": "string", "minLength": 1}}}},
+    "gate_fail_override_allowed": {"const": false},
+    "score_relationship": {"type": "object", "additionalProperties": false, "required": ["role", "minimum_score", "description"], "properties": {"role": {"enum": ["REQUIRED_CONTEXT", "ELIGIBILITY_INPUT", "RANKING_INPUT", "NOT_AUTHORITATIVE"]}, "minimum_score": {"type": "null"}, "description": {"type": "string", "minLength": 1}}},
+    "score_substitutes_for_eligibility": {"const": false},
     "entry_policy_reference": {"$ref": "#/$defs/nullable_reference"},
     "invalidation_policy_reference": {"$ref": "#/$defs/nullable_reference"},
     "target_policy_reference": {"$ref": "#/$defs/nullable_reference"},
     "liquidity_policy_reference": {"$ref": "#/$defs/nullable_reference"},
+    "geometry_authority": {"type": "string", "minLength": 1},
     "portfolio_implications": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "portfolio_permissions": {"type": "object", "additionalProperties": false, "required": ["may_inform_watch", "may_inform_candidate_ranking", "may_inform_portfolio_review", "may_authorize_rotation", "may_authorize_trim", "may_authorize_broker_order"], "properties": {"may_inform_watch": {"type": "boolean"}, "may_inform_candidate_ranking": {"type": "boolean"}, "may_inform_portfolio_review": {"type": "boolean"}, "may_authorize_rotation": {"const": false}, "may_authorize_trim": {"const": false}, "may_authorize_broker_order": {"const": false}}},
+    "broker_order_authority": {"const": false},
+    "recalculates_evidence_metrics": {"const": false},
     "known_blockers": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "validation_evidence": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "provenance": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
   },
   "$defs": {
     "policy_reference": {"type": "string", "minLength": 1},
-    "nullable_reference": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/policy_reference"}]}
+    "nullable_reference": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/policy_reference"}]},
+    "diagnostics": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^D(0[1-9]|[1-5][0-9]|6[01])$"}}
   },
   "allOf": [
+    {"if": {"properties": {"strategy_id": {"const": "PRE_BREAKOUT"}}, "required": ["strategy_id"]}, "then": {"required": ["prebreakout_evidence_contract"]}},
     {"if": {"properties": {"lifecycle": {"enum": ["APPROVED_FOR_LITE", "ACTIVE"]}}}, "then": {"properties": {"authority": {"enum": ["AUTHORITATIVE_ACCEPTED", "LATEST_ACCEPTED_WITH_LIMITATIONS"]}}}},
-    {"if": {"properties": {"lifecycle": {"const": "ACTIVE"}}}, "then": {"properties": {"known_blockers": {"maxItems": 0}, "entry_policy_reference": {"type": "string"}, "invalidation_policy_reference": {"type": "string"}, "target_policy_reference": {"type": "string"}, "liquidity_policy_reference": {"type": "string"}}}}
+    {"if": {"properties": {"lifecycle": {"const": "ACTIVE"}}}, "then": {"properties": {"known_blockers": {"maxItems": 0}, "entry_policy_reference": {"type": "string"}, "invalidation_policy_reference": {"type": "string"}, "target_policy_reference": {"type": "string"}, "liquidity_policy_reference": {"type": "string"}}}},
+    {"if": {"properties": {"authority": {"const": "PROPOSED_NOT_ACTIVE"}}}, "then": {"properties": {"lifecycle": {"not": {"enum": ["APPROVED_FOR_LITE", "ACTIVE"]}}}}}
   ]
 }

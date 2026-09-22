@@ -1,0 +1,98 @@
+{
+  "version": "1.0.0",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "distinction": "INTENDED_HORIZON is product/research description; VALIDATED_HORIZON requires separately calibrated, approved and selected policy with PIT/OOS/prospective evidence.",
+  "strategies": [
+    {
+      "strategy_id": "PRE_BREAKOUT",
+      "intended_horizon": "Intended positional compression; base-window lookback is not an approved holding horizon.",
+      "intended_horizon_status": "INTENDED_HORIZON",
+      "validated_horizon": null,
+      "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "calibrated": false,
+      "production_approved": false,
+      "blocker": "Governed 20–60 canonical-session base lookback is setup geometry, not validated holding horizon; P1 Watch-only source known-at closure remains blocked.",
+      "provenance": [
+        "app/strategies/pre_breakout/policy.py#PreBreakoutApprovedPolicy",
+        "app/strategies/pre_breakout/governance.py#PreBreakoutPolicyGovernanceService",
+        "app/strategies/pre_breakout/setup_assessment.py#GovernedPreBreakoutSetupAssessmentService",
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#PRE_BREAKOUT_COMPRESSION",
+        "docs/reports/P1_PROSPECTIVE_HISTORY_RUNTIME_CLOSURE_2026-09-22.md#Source audit"
+      ]
+    },
+    {
+      "strategy_id": "TACTICAL",
+      "intended_horizon": "Intended short-to-medium research window; no approved duration.",
+      "intended_horizon_status": "INTENDED_HORIZON",
+      "validated_horizon": null,
+      "authority_status": "PROPOSED_NOT_ACTIVE",
+      "calibrated": false,
+      "production_approved": false,
+      "blocker": "No complete approved Tactical product policy or calibrated horizon.",
+      "provenance": [
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#TACTICAL_BREAKOUT_PULLBACK",
+        "app/analysis/valuation_trade.py#base_pattern,pullback"
+      ]
+    },
+    {
+      "strategy_id": "POSITIONAL",
+      "intended_horizon": "Intended multi-session positional context; no universal holding duration.",
+      "intended_horizon_status": "INTENDED_HORIZON",
+      "validated_horizon": null,
+      "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "calibrated": false,
+      "production_approved": false,
+      "blocker": "Only Pre-Breakout has a governed policy path.",
+      "provenance": [
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#POSITIONAL_SETUP",
+        "app/strategies/pre_breakout/setup_assessment.py#GovernedPreBreakoutSetupAssessment"
+      ]
+    },
+    {
+      "strategy_id": "LONG_TERM",
+      "intended_horizon": "Intended longer-horizon thesis review; no validated holding horizon or review cadence.",
+      "intended_horizon_status": "INTENDED_HORIZON",
+      "validated_horizon": null,
+      "authority_status": "PROPOSED_NOT_ACTIVE",
+      "calibrated": false,
+      "production_approved": false,
+      "blocker": "Long-term family pack is proposed; research shadows are Watch-only.",
+      "provenance": [
+        "docs/architecture/POST_V1_LONG_TERM_THESIS_FAMILY_POLICY_PROPOSAL.md#Separate policy families",
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#LONG_TERM_QUALITY_AT_FAIR_VALUE",
+        "docs/architecture/POST_V1_LONG_TERM_EVIDENCE_DOSSIER_REUSE_AND_READINESS.md#Status"
+      ]
+    },
+    {
+      "strategy_id": "EVENT_CATALYST",
+      "intended_horizon": "Intended event-family time-bounded research; expiry and reaction windows unapproved.",
+      "intended_horizon_status": "INTENDED_HORIZON",
+      "validated_horizon": null,
+      "authority_status": "PROPOSED_NOT_ACTIVE",
+      "calibrated": false,
+      "production_approved": false,
+      "blocker": "EC-1–EC-7 boundaries approved but operational parameters/calibration insufficient.",
+      "provenance": [
+        "docs/architecture/POST_V1_BATCH_1_EVENT_CATALYST_AND_RESILIENCE_POLICY_PROPOSAL.md#EVENT_CATALYST_INTELLIGENCE",
+        "docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md#Event/Catalyst calibration result",
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#EVENT_CATALYST_INTELLIGENCE",
+        "docs/architecture/CATALYST_EVENT_INTELLIGENCE_OPERATIONAL_CLOSURE_V1.md#Inventory and readiness"
+      ]
+    },
+    {
+      "strategy_id": "MARKET_RED_RESILIENCE",
+      "intended_horizon": "Intended market-weakness/persistence window; no calibrated length or expiry.",
+      "intended_horizon_status": "INTENDED_HORIZON",
+      "validated_horizon": null,
+      "authority_status": "PROPOSED_NOT_ACTIVE",
+      "calibrated": false,
+      "production_approved": false,
+      "blocker": "MR-1–MR-8 boundaries approved but calibration data insufficient.",
+      "provenance": [
+        "docs/architecture/POST_V1_BATCH_1_EVENT_CATALYST_AND_RESILIENCE_POLICY_PROPOSAL.md#MARKET_RED_RELATIVE_RESILIENCE",
+        "docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md#Market-Red calibration result",
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#MARKET_RED_RELATIVE_RESILIENCE"
+      ]
+    }
+  ]
+}

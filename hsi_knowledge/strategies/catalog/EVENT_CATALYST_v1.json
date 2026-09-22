@@ -1,0 +1,167 @@
+{
+  "id": "EVENT_CATALYST",
+  "name": "Event/Catalyst Intelligence",
+  "artifact_type": "strategy",
+  "version": "1.0.0",
+  "status": "EXTRACTED_DRAFT",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/architecture/POST_V1_BATCH_1_EVENT_CATALYST_AND_RESILIENCE_POLICY_PROPOSAL.md",
+      "symbol_or_heading": "EVENT_CATALYST_INTELLIGENCE",
+      "source_role": "CONTRACT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    },
+    {
+      "path": "docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md",
+      "symbol_or_heading": "Event/Catalyst calibration result",
+      "source_role": "AUDIT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    },
+    {
+      "path": "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md",
+      "symbol_or_heading": "EVENT_CATALYST_INTELLIGENCE",
+      "source_role": "CONTRACT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    },
+    {
+      "path": "docs/architecture/CATALYST_EVENT_INTELLIGENCE_OPERATIONAL_CLOSURE_V1.md",
+      "symbol_or_heading": "Inventory and readiness",
+      "source_role": "AUDIT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    }
+  ],
+  "authority_status": "PROPOSED_NOT_ACTIVE",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "catalysts",
+    "governance_claims"
+  ],
+  "known_limitations": [
+    "EC-1–EC-7 boundaries approved but operational parameters/calibration insufficient.",
+    "No product strategy, setup, six-gate result or activation."
+  ],
+  "conflicts": [],
+  "notes": "Task #007 version is a Lite knowledge extraction version, not approval or activation of a product strategy. Strategy consumes upstream evidence/diagnostics and never recalculates them.",
+  "deterministic_computation": false,
+  "details": {
+    "strategy_id": "EVENT_CATALYST",
+    "name": "Event/Catalyst Intelligence",
+    "version": "1.0.0",
+    "authority": "PROPOSED_NOT_ACTIVE",
+    "lifecycle": "EXTRACTED_DRAFT",
+    "legacy_lifecycle": "EVIDENCE_BOUNDARIES_APPROVED_STRATEGY_UNAVAILABLE_NOT_ACTIVE",
+    "purpose": "Research exact novel PIT-visible company or policy events and verified transmission, without direction or trade inference.",
+    "horizon": "Intended event-family time-bounded research; expiry and reaction windows unapproved.",
+    "horizon_status": "INTENDED_HORIZON_ONLY",
+    "research_subfamilies": [],
+    "required_evidence": [
+      "catalysts",
+      "governance_claims"
+    ],
+    "required_diagnostics": [],
+    "optional_diagnostics": [],
+    "context_diagnostics": [
+      "D23",
+      "D30"
+    ],
+    "quarantined_diagnostics": [
+      "D57"
+    ],
+    "unavailable_dependencies": [
+      "Exact source event identity, novelty/materiality, exposure and transmission require separate source contracts beyond Task #005 catalog",
+      "No calibrated materiality, expiry, reaction or company-benefit parameters",
+      "D57 post-news reaction remains quarantined and cannot establish priced-in/direction"
+    ],
+    "deterministic_eligibility": [],
+    "interpretive_guidance": [
+      "Announcement does not prove company revenue, earnings or price benefit.",
+      "Price reaction and priced-in state remain NOT_ASSESSED without approved PIT method.",
+      "D57 cannot become valid event-reaction evidence while quarantined."
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_2_VELOCITY",
+      "GATE_3_SURVEILLANCE",
+      "GATE_4_TRADE_PLAN",
+      "GATE_5_HEAT",
+      "GATE_6_EARNINGS"
+    ],
+    "gate_applicability": [
+      {
+        "gate_id": "GATE_1_ROTATION",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_2_VELOCITY",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_3_SURVEILLANCE",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_4_TRADE_PLAN",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_5_HEAT",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_6_EARNINGS",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      }
+    ],
+    "gate_fail_override_allowed": false,
+    "score_relationship": {
+      "role": "NOT_AUTHORITATIVE",
+      "minimum_score": null,
+      "description": "No directional score or score-based event eligibility approved."
+    },
+    "score_substitutes_for_eligibility": false,
+    "entry_policy_reference": null,
+    "invalidation_policy_reference": null,
+    "target_policy_reference": null,
+    "liquidity_policy_reference": null,
+    "geometry_authority": "UNAVAILABLE",
+    "portfolio_implications": [
+      "No strategy artifact authorizes rotation, trim, allocation or order.",
+      "Portfolio use requires separate governed portfolio policy; Watch context is not capital action."
+    ],
+    "portfolio_permissions": {
+      "may_inform_watch": false,
+      "may_inform_candidate_ranking": false,
+      "may_inform_portfolio_review": false,
+      "may_authorize_rotation": false,
+      "may_authorize_trim": false,
+      "may_authorize_broker_order": false
+    },
+    "broker_order_authority": false,
+    "recalculates_evidence_metrics": false,
+    "known_blockers": [
+      "EC-1–EC-7 boundaries approved but operational parameters/calibration insufficient.",
+      "No product strategy, setup, six-gate result or activation."
+    ],
+    "validation_evidence": [
+      "docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md#Event/Catalyst calibration result"
+    ],
+    "provenance": [
+      "docs/architecture/POST_V1_BATCH_1_EVENT_CATALYST_AND_RESILIENCE_POLICY_PROPOSAL.md#EVENT_CATALYST_INTELLIGENCE",
+      "docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md#Event/Catalyst calibration result",
+      "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#EVENT_CATALYST_INTELLIGENCE",
+      "docs/architecture/CATALYST_EVENT_INTELLIGENCE_OPERATIONAL_CLOSURE_V1.md#Inventory and readiness"
+    ]
+  }
+}

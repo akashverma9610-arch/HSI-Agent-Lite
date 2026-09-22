@@ -1,0 +1,160 @@
+{
+  "id": "POSITIONAL",
+  "name": "Positional Strategy Family",
+  "artifact_type": "strategy",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md",
+      "symbol_or_heading": "POSITIONAL_SETUP",
+      "source_role": "CONTRACT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/strategies/pre_breakout/setup_assessment.py",
+      "symbol_or_heading": "GovernedPreBreakoutSetupAssessment",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "market_regime",
+    "sector_health",
+    "market_structure",
+    "base_pattern",
+    "risk_reward"
+  ],
+  "known_limitations": [
+    "Only Pre-Breakout has a governed policy path.",
+    "Generic positional setup sufficiency, horizon and portfolio bucket are unapproved."
+  ],
+  "conflicts": [],
+  "notes": "Task #007 version is a Lite knowledge extraction version, not approval or activation of a product strategy. Strategy consumes upstream evidence/diagnostics and never recalculates them.",
+  "deterministic_computation": false,
+  "details": {
+    "strategy_id": "POSITIONAL",
+    "name": "Positional Strategy Family",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "legacy_lifecycle": "PRE_BREAKOUT_INSTANCE_AVAILABLE_GENERIC_POSITIONAL_UNAVAILABLE",
+    "purpose": "Organize multi-session structural opportunities; Pre-Breakout is one governed instance, not the generic family.",
+    "horizon": "Intended multi-session positional context; no universal holding duration.",
+    "horizon_status": "INTENDED_HORIZON_ONLY",
+    "research_subfamilies": [],
+    "required_evidence": [
+      "market_regime",
+      "sector_health",
+      "market_structure",
+      "base_pattern",
+      "risk_reward"
+    ],
+    "required_diagnostics": [],
+    "optional_diagnostics": [],
+    "context_diagnostics": [
+      "D01",
+      "D02",
+      "D03",
+      "D04",
+      "D10",
+      "D37",
+      "D45"
+    ],
+    "quarantined_diagnostics": [],
+    "unavailable_dependencies": [
+      "Generic positional eligibility, horizon and geometry policy",
+      "Other positional implementations beyond Pre-Breakout"
+    ],
+    "deterministic_eligibility": [],
+    "interpretive_guidance": [
+      "An archetype, score, or Pre-Breakout match does not grant generic positional admission.",
+      "Each positional implementation needs its own versioned policy."
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_2_VELOCITY",
+      "GATE_3_SURVEILLANCE",
+      "GATE_4_TRADE_PLAN",
+      "GATE_5_HEAT",
+      "GATE_6_EARNINGS"
+    ],
+    "gate_applicability": [
+      {
+        "gate_id": "GATE_1_ROTATION",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_2_VELOCITY",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_3_SURVEILLANCE",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_4_TRADE_PLAN",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_5_HEAT",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_6_EARNINGS",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      }
+    ],
+    "gate_fail_override_allowed": false,
+    "score_relationship": {
+      "role": "NOT_AUTHORITATIVE",
+      "minimum_score": null,
+      "description": "No universal positional score threshold; score is context only if a specific strategy permits it."
+    },
+    "score_substitutes_for_eligibility": false,
+    "entry_policy_reference": null,
+    "invalidation_policy_reference": null,
+    "target_policy_reference": null,
+    "liquidity_policy_reference": null,
+    "geometry_authority": "UNAVAILABLE_GENERIC; PRE_BREAKOUT_ONLY_BY_EXPLICIT_SEPARATE_SELECTION",
+    "portfolio_implications": [
+      "No strategy artifact authorizes rotation, trim, allocation or order.",
+      "Portfolio use requires separate governed portfolio policy; Watch context is not capital action."
+    ],
+    "portfolio_permissions": {
+      "may_inform_watch": false,
+      "may_inform_candidate_ranking": false,
+      "may_inform_portfolio_review": false,
+      "may_authorize_rotation": false,
+      "may_authorize_trim": false,
+      "may_authorize_broker_order": false
+    },
+    "broker_order_authority": false,
+    "recalculates_evidence_metrics": false,
+    "known_blockers": [
+      "Only Pre-Breakout has a governed policy path.",
+      "Generic positional setup sufficiency, horizon and portfolio bucket are unapproved."
+    ],
+    "validation_evidence": [
+      "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#POSITIONAL_SETUP"
+    ],
+    "provenance": [
+      "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#POSITIONAL_SETUP",
+      "app/strategies/pre_breakout/setup_assessment.py#GovernedPreBreakoutSetupAssessment"
+    ]
+  }
+}

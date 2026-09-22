@@ -1,0 +1,183 @@
+{
+  "id": "LONG_TERM",
+  "name": "Long-Term Thesis Families",
+  "artifact_type": "strategy",
+  "version": "1.0.0",
+  "status": "EXTRACTED_DRAFT",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/architecture/POST_V1_LONG_TERM_THESIS_FAMILY_POLICY_PROPOSAL.md",
+      "symbol_or_heading": "Separate policy families",
+      "source_role": "PROPOSAL",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    },
+    {
+      "path": "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md",
+      "symbol_or_heading": "LONG_TERM_QUALITY_AT_FAIR_VALUE",
+      "source_role": "CONTRACT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    },
+    {
+      "path": "docs/architecture/POST_V1_LONG_TERM_EVIDENCE_DOSSIER_REUSE_AND_READINESS.md",
+      "symbol_or_heading": "Status",
+      "source_role": "AUDIT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    }
+  ],
+  "authority_status": "PROPOSED_NOT_ACTIVE",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "financial_growth_series",
+    "financial_comparability",
+    "return_ratios",
+    "cash_flow_quality",
+    "leverage",
+    "working_capital",
+    "governance_claims",
+    "valuation"
+  ],
+  "known_limitations": [
+    "Long-term family pack is proposed; research shadows are Watch-only.",
+    "Comparable valuation, quality criteria, cadence, liquidity and portfolio bucket unresolved."
+  ],
+  "conflicts": [],
+  "notes": "Task #007 version is a Lite knowledge extraction version, not approval or activation of a product strategy. Strategy consumes upstream evidence/diagnostics and never recalculates them.",
+  "deterministic_computation": false,
+  "details": {
+    "strategy_id": "LONG_TERM",
+    "name": "Long-Term Thesis Families",
+    "version": "1.0.0",
+    "authority": "PROPOSED_NOT_ACTIVE",
+    "lifecycle": "EXTRACTED_DRAFT",
+    "legacy_lifecycle": "RESEARCH_SHADOW_ONLY_STRATEGY_UNAVAILABLE",
+    "purpose": "Research quality/fair-value, compounder, inflection, policy-transmission and asymmetric opportunities as separate conceptual subfamilies.",
+    "horizon": "Intended longer-horizon thesis review; no validated holding horizon or review cadence.",
+    "horizon_status": "INTENDED_HORIZON_ONLY",
+    "research_subfamilies": [
+      "LONG_TERM_QUALITY_FAIR_VALUE",
+      "LONG_TERM_FUNDAMENTAL_COMPOUNDER",
+      "LONG_TERM_FUNDAMENTAL_INFLECTION",
+      "LONG_TERM_POLICY_TRANSMISSION",
+      "LONG_TERM_ASYMMETRIC_EMERGING_COMPOUNDER"
+    ],
+    "required_evidence": [
+      "financial_growth_series",
+      "financial_comparability",
+      "return_ratios",
+      "cash_flow_quality",
+      "leverage",
+      "working_capital",
+      "governance_claims",
+      "valuation"
+    ],
+    "required_diagnostics": [],
+    "optional_diagnostics": [],
+    "context_diagnostics": [
+      "D15",
+      "D16",
+      "D17",
+      "D18",
+      "D19",
+      "D20",
+      "D23",
+      "D24",
+      "D29",
+      "D33"
+    ],
+    "quarantined_diagnostics": [],
+    "unavailable_dependencies": [
+      "Comparable valuation method and quality thresholds",
+      "Family-specific milestones, horizon/review cadence and portfolio bucket",
+      "Approved product strategy and non-price thesis invalidation"
+    ],
+    "deterministic_eligibility": [],
+    "interpretive_guidance": [
+      "Rule D33 investment thesis is analytical context, not a product strategy.",
+      "A fair-value or compounding claim needs separate method and evidence; no trading stop/target is inferred."
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_2_VELOCITY",
+      "GATE_3_SURVEILLANCE",
+      "GATE_4_TRADE_PLAN",
+      "GATE_5_HEAT",
+      "GATE_6_EARNINGS"
+    ],
+    "gate_applicability": [
+      {
+        "gate_id": "GATE_1_ROTATION",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_2_VELOCITY",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_3_SURVEILLANCE",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_4_TRADE_PLAN",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_5_HEAT",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_6_EARNINGS",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      }
+    ],
+    "gate_fail_override_allowed": false,
+    "score_relationship": {
+      "role": "NOT_AUTHORITATIVE",
+      "minimum_score": null,
+      "description": "No universal long-term score or minimum is approved."
+    },
+    "score_substitutes_for_eligibility": false,
+    "entry_policy_reference": null,
+    "invalidation_policy_reference": null,
+    "target_policy_reference": null,
+    "liquidity_policy_reference": null,
+    "geometry_authority": "UNAVAILABLE",
+    "portfolio_implications": [
+      "No strategy artifact authorizes rotation, trim, allocation or order.",
+      "Portfolio use requires separate governed portfolio policy; Watch context is not capital action."
+    ],
+    "portfolio_permissions": {
+      "may_inform_watch": false,
+      "may_inform_candidate_ranking": false,
+      "may_inform_portfolio_review": false,
+      "may_authorize_rotation": false,
+      "may_authorize_trim": false,
+      "may_authorize_broker_order": false
+    },
+    "broker_order_authority": false,
+    "recalculates_evidence_metrics": false,
+    "known_blockers": [
+      "Long-term family pack is proposed; research shadows are Watch-only.",
+      "Comparable valuation, quality criteria, cadence, liquidity and portfolio bucket unresolved."
+    ],
+    "validation_evidence": [
+      "docs/architecture/POST_V1_LONG_TERM_EVIDENCE_DOSSIER_REUSE_AND_READINESS.md#Status"
+    ],
+    "provenance": [
+      "docs/architecture/POST_V1_LONG_TERM_THESIS_FAMILY_POLICY_PROPOSAL.md#Separate policy families",
+      "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#LONG_TERM_QUALITY_AT_FAIR_VALUE",
+      "docs/architecture/POST_V1_LONG_TERM_EVIDENCE_DOSSIER_REUSE_AND_READINESS.md#Status"
+    ]
+  }
+}

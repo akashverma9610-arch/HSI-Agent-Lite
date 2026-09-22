@@ -1,0 +1,168 @@
+{
+  "id": "TACTICAL",
+  "name": "Tactical Breakout/Pullback",
+  "artifact_type": "strategy",
+  "version": "1.0.0",
+  "status": "EXTRACTED_DRAFT",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md",
+      "symbol_or_heading": "TACTICAL_BREAKOUT_PULLBACK",
+      "source_role": "CONTRACT",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    },
+    {
+      "path": "app/analysis/valuation_trade.py",
+      "symbol_or_heading": "base_pattern,pullback",
+      "source_role": "IMPLEMENTATION",
+      "authority": "PROPOSED_NOT_ACTIVE"
+    }
+  ],
+  "authority_status": "PROPOSED_NOT_ACTIVE",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "market_regime",
+    "sector_health",
+    "relative_strength",
+    "base_pattern",
+    "pullback",
+    "rvol",
+    "liquidity_pools"
+  ],
+  "known_limitations": [
+    "No complete approved Tactical product policy or calibrated horizon.",
+    "No independent geometry, exitability, setup, or activation authority."
+  ],
+  "conflicts": [],
+  "notes": "Task #007 version is a Lite knowledge extraction version, not approval or activation of a product strategy. Strategy consumes upstream evidence/diagnostics and never recalculates them.",
+  "deterministic_computation": false,
+  "details": {
+    "strategy_id": "TACTICAL",
+    "name": "Tactical Breakout/Pullback",
+    "version": "1.0.0",
+    "authority": "PROPOSED_NOT_ACTIVE",
+    "lifecycle": "EXTRACTED_DRAFT",
+    "legacy_lifecycle": "STRATEGY_UNAVAILABLE_NOT_ACTIVE",
+    "purpose": "Research short-to-medium breakout or pullback contexts without a product trade policy.",
+    "horizon": "Intended short-to-medium research window; no approved duration.",
+    "horizon_status": "INTENDED_HORIZON_ONLY",
+    "research_subfamilies": [],
+    "required_evidence": [
+      "market_regime",
+      "sector_health",
+      "relative_strength",
+      "base_pattern",
+      "pullback",
+      "rvol",
+      "liquidity_pools"
+    ],
+    "required_diagnostics": [],
+    "optional_diagnostics": [],
+    "context_diagnostics": [
+      "D01",
+      "D02",
+      "D04",
+      "D06",
+      "D08",
+      "D11",
+      "D37",
+      "D38",
+      "D39"
+    ],
+    "quarantined_diagnostics": [
+      "D35"
+    ],
+    "unavailable_dependencies": [
+      "Approved tactical horizon, entry, invalidation, target and liquidity/exitability policy",
+      "D35 named VWAP/value-area semantics quarantined; not an eligible tactical input"
+    ],
+    "deterministic_eligibility": [],
+    "interpretive_guidance": [
+      "Momentum or relative strength does not establish an entry.",
+      "Pre-Breakout geometry is not inherited by Tactical."
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_2_VELOCITY",
+      "GATE_3_SURVEILLANCE",
+      "GATE_4_TRADE_PLAN",
+      "GATE_5_HEAT",
+      "GATE_6_EARNINGS"
+    ],
+    "gate_applicability": [
+      {
+        "gate_id": "GATE_1_ROTATION",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_2_VELOCITY",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_3_SURVEILLANCE",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_4_TRADE_PLAN",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_5_HEAT",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      },
+      {
+        "gate_id": "GATE_6_EARNINGS",
+        "status": "UNRESOLVED",
+        "reason": "Product strategy/setup is unavailable; gate applicability cannot be promoted from catalogue context."
+      }
+    ],
+    "gate_fail_override_allowed": false,
+    "score_relationship": {
+      "role": "NOT_AUTHORITATIVE",
+      "minimum_score": null,
+      "description": "No tactical score cutoff or score-based eligibility is approved."
+    },
+    "score_substitutes_for_eligibility": false,
+    "entry_policy_reference": null,
+    "invalidation_policy_reference": null,
+    "target_policy_reference": null,
+    "liquidity_policy_reference": null,
+    "geometry_authority": "UNAVAILABLE",
+    "portfolio_implications": [
+      "No strategy artifact authorizes rotation, trim, allocation or order.",
+      "Portfolio use requires separate governed portfolio policy; Watch context is not capital action."
+    ],
+    "portfolio_permissions": {
+      "may_inform_watch": false,
+      "may_inform_candidate_ranking": false,
+      "may_inform_portfolio_review": false,
+      "may_authorize_rotation": false,
+      "may_authorize_trim": false,
+      "may_authorize_broker_order": false
+    },
+    "broker_order_authority": false,
+    "recalculates_evidence_metrics": false,
+    "known_blockers": [
+      "No complete approved Tactical product policy or calibrated horizon.",
+      "No independent geometry, exitability, setup, or activation authority."
+    ],
+    "validation_evidence": [
+      "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#TACTICAL_BREAKOUT_PULLBACK"
+    ],
+    "provenance": [
+      "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#TACTICAL_BREAKOUT_PULLBACK",
+      "app/analysis/valuation_trade.py#base_pattern,pullback"
+    ]
+  }
+}

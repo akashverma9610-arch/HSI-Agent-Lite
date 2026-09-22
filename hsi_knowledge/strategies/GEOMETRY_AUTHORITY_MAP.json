@@ -1,0 +1,100 @@
+{
+  "version": "1.0.0",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "universal_geometry_authority": null,
+  "generic_diagnostic_geometry": {
+    "authority": "CONFLICT_REVIEW_REQUIRED",
+    "diagnostic_ids": [
+      "D37",
+      "D38",
+      "D39",
+      "D40",
+      "D41",
+      "D42",
+      "D43",
+      "D44",
+      "D45",
+      "D46"
+    ],
+    "scope": "Generic valuation_trade diagnostic geometry only; not automatically a strategy's entry, stop or target.",
+    "provenance": [
+      "app/analysis/valuation_trade.py#aggressive_entry,confirmation_entry,retest_entry,structural_stop,targets,invalidation",
+      "docs/LEGACY_HSI_AUTHORITY_MAP.md#entry,stop_invalidation,targets"
+    ]
+  },
+  "strategies": [
+    {
+      "strategy_id": "PRE_BREAKOUT",
+      "geometry_authority": "PRE_BREAKOUT_GOVERNED_POLICY_SELECTION",
+      "entry_status": "STRATEGY_SPECIFIC_POLICY_SELECTION_REQUIRED",
+      "invalidation_status": "STRATEGY_SPECIFIC_POLICY_SELECTION_REQUIRED",
+      "target_status": "STRATEGY_SPECIFIC_POLICY_SELECTION_REQUIRED",
+      "trading_geometry_approved_for_lite": false,
+      "provenance": [
+        "app/strategies/pre_breakout/policy.py#PreBreakoutApprovedPolicy",
+        "app/strategies/pre_breakout/governance.py#PreBreakoutPolicyGovernanceService"
+      ]
+    },
+    {
+      "strategy_id": "TACTICAL",
+      "geometry_authority": "UNAVAILABLE",
+      "entry_status": "UNAVAILABLE",
+      "invalidation_status": "UNAVAILABLE",
+      "target_status": "UNAVAILABLE",
+      "trading_geometry_approved_for_lite": false,
+      "provenance": [
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#TACTICAL"
+      ]
+    },
+    {
+      "strategy_id": "POSITIONAL",
+      "geometry_authority": "UNAVAILABLE_GENERIC; PRE_BREAKOUT_ONLY_BY_EXPLICIT_SEPARATE_SELECTION",
+      "entry_status": "UNAVAILABLE",
+      "invalidation_status": "UNAVAILABLE",
+      "target_status": "UNAVAILABLE",
+      "trading_geometry_approved_for_lite": false,
+      "provenance": [
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#POSITIONAL"
+      ]
+    },
+    {
+      "strategy_id": "LONG_TERM",
+      "geometry_authority": "UNAVAILABLE",
+      "entry_status": "UNAVAILABLE",
+      "invalidation_status": "UNAVAILABLE",
+      "target_status": "UNAVAILABLE",
+      "trading_geometry_approved_for_lite": false,
+      "provenance": [
+        "docs/architecture/POST_V1_LONG_TERM_THESIS_FAMILY_POLICY_PROPOSAL.md#Risks and invalidation"
+      ]
+    },
+    {
+      "strategy_id": "EVENT_CATALYST",
+      "geometry_authority": "UNAVAILABLE",
+      "entry_status": "UNAVAILABLE",
+      "invalidation_status": "UNAVAILABLE",
+      "target_status": "UNAVAILABLE",
+      "trading_geometry_approved_for_lite": false,
+      "provenance": [
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#EVENT_CATALYST"
+      ]
+    },
+    {
+      "strategy_id": "MARKET_RED_RESILIENCE",
+      "geometry_authority": "UNAVAILABLE",
+      "entry_status": "UNAVAILABLE",
+      "invalidation_status": "UNAVAILABLE",
+      "target_status": "UNAVAILABLE",
+      "trading_geometry_approved_for_lite": false,
+      "provenance": [
+        "docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md#MARKET_RED_RESILIENCE"
+      ]
+    }
+  ],
+  "notes": [
+    "Pre-Breakout governed geometry is a selected strategy-specific policy, not Tactical or generic Positional geometry.",
+    "Long-Term thesis invalidation is not automatically a price stop or target.",
+    "Event and Market-Red entry/stop/target policies are unavailable.",
+    "Gate 4 tranche compatibility is not a universal strategy geometry owner."
+  ]
+}
