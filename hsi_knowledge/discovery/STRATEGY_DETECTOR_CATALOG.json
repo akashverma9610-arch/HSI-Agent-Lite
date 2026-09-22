@@ -1,0 +1,1410 @@
+{
+  "contract_id": "STRATEGY_DETECTOR_CATALOG",
+  "version": "0.1.0",
+  "kind": "ARCHETYPE_CHEAP_DETECTORS",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C2_MODERATE_DETERMINISTIC",
+  "taxonomy_root": "hsi_knowledge/strategies/taxonomy",
+  "primitive_catalog": "hsi_knowledge/discovery/DETECTOR_PRIMITIVE_CATALOG.json",
+  "detector_count": 35,
+  "shared_primitive_rule": "Detector results reference canonical primitive/evidence IDs; no per-archetype recalculation or cloned source evidence.",
+  "default_ai_required": false,
+  "detectors": [
+    {
+      "detector_id": "DET_ASSET_MONETISATION",
+      "archetype_id": "ASSET_MONETISATION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/ASSET_MONETISATION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "filing_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "catalyst_presence",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "valuation_deviation",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "cfo_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D18",
+        "D29",
+        "D30"
+      ],
+      "preliminary_trigger_semantics": "Public monetisation event flag with preliminary asset-value deviation; realization and balance-sheet effect require deep validation.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_BREAKOUT_RETEST",
+      "archetype_id": "BREAKOUT_RETEST",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/BREAKOUT_RETEST.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "base_presence",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "price_breakout",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "price_retest",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D06",
+        "D10",
+        "D37",
+        "D38"
+      ],
+      "preliminary_trigger_semantics": "Recorded base break followed by plausible retest and relative-strength support; no entry authority.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_CAPACITY_EXPANSION",
+      "archetype_id": "CAPACITY_EXPANSION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/CAPACITY_EXPANSION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "capacity_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "filing_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "order_book_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D24",
+        "D25",
+        "D27"
+      ],
+      "preliminary_trigger_semantics": "Public capacity event plus early demand/order or revenue evidence; utilization remains unproved.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_CASH_FLOW_INFLECTION",
+      "archetype_id": "CASH_FLOW_INFLECTION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/CASH_FLOW_INFLECTION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "cfo_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "cash_conversion",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "earnings_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D18",
+        "D24",
+        "D25"
+      ],
+      "preliminary_trigger_semantics": "Improving operating cash-flow trajectory with earnings context, subject to comparability.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_COMMODITY_UPCYCLE",
+      "archetype_id": "COMMODITY_UPCYCLE",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/COMMODITY_UPCYCLE.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "commodity_cycle_proxy",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "sector_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "earnings_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D02",
+        "D03",
+        "D24",
+        "D25"
+      ],
+      "preliminary_trigger_semantics": "Commodity/sector cycle proxy and early earnings participation, without assuming company benefit.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "SECONDARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_CONFIRMED_BREAKOUT",
+      "archetype_id": "CONFIRMED_BREAKOUT",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/CONFIRMED_BREAKOUT.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "base_presence",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "price_breakout",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "rvol",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D06",
+        "D10",
+        "D11",
+        "D37"
+      ],
+      "preliminary_trigger_semantics": "Price structure break with volume and relative-strength support; confirmation is preliminary.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_CYCLICAL_RECOVERY",
+      "archetype_id": "CYCLICAL_RECOVERY",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/CYCLICAL_RECOVERY.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "commodity_cycle_proxy",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "margin_trajectory",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "earnings_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "sector_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D02",
+        "D03",
+        "D24",
+        "D25",
+        "D26"
+      ],
+      "preliminary_trigger_semantics": "Early cycle and margin/earnings recovery alignment; base effects require later review.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "SECONDARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_DEEP_VALUE_MEAN_REVERSION",
+      "archetype_id": "DEEP_VALUE_MEAN_REVERSION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/DEEP_VALUE_MEAN_REVERSION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "valuation_deviation",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "cfo_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "leverage_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D06",
+        "D18",
+        "D19",
+        "D29"
+      ],
+      "preliminary_trigger_semantics": "Historical/peer valuation deviation with preliminary survivability evidence; cheap alone is not value.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "OPTIONAL",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_DELEVERAGING",
+      "archetype_id": "DELEVERAGING",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/DELEVERAGING.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "leverage_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "cfo_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "margin_trajectory",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D18",
+        "D19",
+        "D26"
+      ],
+      "preliminary_trigger_semantics": "Reported debt reduction with cash-flow or operating improvement, not debt optics alone.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_DEMERGER_VALUE_UNLOCK",
+      "archetype_id": "DEMERGER_VALUE_UNLOCK",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/DEMERGER_VALUE_UNLOCK.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "filing_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "catalyst_presence",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "valuation_deviation",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D29",
+        "D30"
+      ],
+      "preliminary_trigger_semantics": "Timestamped demerger event and preliminary valuation gap; terms and execution need deep work.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_DOMESTIC_CAPEX_BENEFICIARY",
+      "archetype_id": "DOMESTIC_CAPEX_BENEFICIARY",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/DOMESTIC_CAPEX_BENEFICIARY.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "sector_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "capacity_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "order_book_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D02",
+        "D03",
+        "D27"
+      ],
+      "preliminary_trigger_semantics": "Sector capex context with company-specific capacity/order clue; benefit not assumed.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_EARLY_EMERGING_LEADER_SMALL_MIDCAP",
+      "archetype_id": "EARLY_EMERGING_LEADER_SMALL_MIDCAP",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/EARLY_EMERGING_LEADER_SMALL_MIDCAP.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "earnings_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "volume_liquidity",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D06",
+        "D24",
+        "D25"
+      ],
+      "preliminary_trigger_semantics": "Accelerating growth plus market leadership proxy in an investable small/midcap context.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "OPTIONAL",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_EARNINGS_MOMENTUM",
+      "archetype_id": "EARNINGS_MOMENTUM",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/EARNINGS_MOMENTUM.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "earnings_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "margin_trajectory",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "rvol",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "guidance_flag",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D11",
+        "D24",
+        "D25",
+        "D26",
+        "D28"
+      ],
+      "preliminary_trigger_semantics": "Comparable growth acceleration with margin or price-volume follow-through; guidance/revision evidence only where available.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_EARNINGS_SURPRISE_POST_RESULT_DRIFT",
+      "archetype_id": "EARNINGS_SURPRISE_POST_RESULT_DRIFT",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/EARNINGS_SURPRISE_POST_RESULT_DRIFT.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "result_surprise_flag",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "price_breakout",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "rvol",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D10",
+        "D11",
+        "D24",
+        "D25",
+        "D37"
+      ],
+      "preliminary_trigger_semantics": "Comparable result surprise and post-result price-volume continuation; no inferred consensus if absent.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_EVENT_CATALYST",
+      "archetype_id": "EVENT_CATALYST",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/EVENT_CATALYST.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "filing_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "catalyst_presence",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D06",
+        "D30"
+      ],
+      "preliminary_trigger_semantics": "A public event flag with preliminary company linkage; why-now and impact require later validation.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_EXPORT_SCALING",
+      "archetype_id": "EXPORT_SCALING",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/EXPORT_SCALING.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "sector_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "market_share_proxy",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D02",
+        "D03",
+        "D24",
+        "D25"
+      ],
+      "preliminary_trigger_semantics": "Growth plus export/sector participation proxy; destination exposure and currency effects remain deep.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_FUNDAMENTAL_INFLECTION",
+      "archetype_id": "FUNDAMENTAL_INFLECTION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/FUNDAMENTAL_INFLECTION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "earnings_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "margin_trajectory",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "return_ratio_trend",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "capacity_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "order_book_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "customer_product_flag",
+          "cost_class": "C0_METADATA",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D17",
+        "D24",
+        "D25",
+        "D26",
+        "D27"
+      ],
+      "preliminary_trigger_semantics": "Multiple comparable operating improvements, with capacity/order/customer clues only as support.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "SECONDARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_GARP",
+      "archetype_id": "GARP",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/GARP.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "multi_year_growth",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "return_ratio_trend",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "valuation_level",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D16",
+        "D17",
+        "D29"
+      ],
+      "preliminary_trigger_semantics": "Sustained growth/returns with preliminary valuation discipline; full runway and price need deep work.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_IMPORT_SUBSTITUTION",
+      "archetype_id": "IMPORT_SUBSTITUTION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/IMPORT_SUBSTITUTION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "filing_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "market_share_proxy",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D24",
+        "D25"
+      ],
+      "preliminary_trigger_semantics": "Public product/policy flag with company share/growth clue; substitution economics remain unproven.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_INSTITUTIONAL_ACCUMULATION",
+      "archetype_id": "INSTITUTIONAL_ACCUMULATION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/INSTITUTIONAL_ACCUMULATION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "accumulation_proxy",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "rvol",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "delivery_activity",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D06",
+        "D07",
+        "D11",
+        "D36",
+        "D50"
+      ],
+      "preliminary_trigger_semantics": "Repeated price-volume/close-quality, delivery if available, OBV/RS proxy; never claim institutional identity.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_LONG_TERM_STRUCTURAL_COMPOUNDER",
+      "archetype_id": "LONG_TERM_STRUCTURAL_COMPOUNDER",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/LONG_TERM_STRUCTURAL_COMPOUNDER.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "multi_year_growth",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "return_ratio_trend",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "cash_conversion",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "leverage_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D16",
+        "D17",
+        "D18",
+        "D19"
+      ],
+      "preliminary_trigger_semantics": "Multi-year growth, returns and cash/debt discipline; moat and reinvestment runway are deep.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_MARGIN_EXPANSION",
+      "archetype_id": "MARGIN_EXPANSION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/MARGIN_EXPANSION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "margin_trajectory",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "working_capital_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D20",
+        "D24",
+        "D25",
+        "D26"
+      ],
+      "preliminary_trigger_semantics": "Comparable margin improvement with revenue and cash-cycle context.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_MARKET_RED_RESILIENCE",
+      "archetype_id": "MARKET_RED_RESILIENCE",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/MARKET_RED_RESILIENCE.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "market_red_relative_behavior",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "rvol",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D01",
+        "D06",
+        "D11"
+      ],
+      "preliminary_trigger_semantics": "Repeated weak-market stock-versus-benchmark-and-sector behavior, not one isolated day.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_MARKET_SHARE_GAINER",
+      "archetype_id": "MARKET_SHARE_GAINER",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/MARKET_SHARE_GAINER.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "market_share_proxy",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "sector_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D02",
+        "D03",
+        "D24",
+        "D25"
+      ],
+      "preliminary_trigger_semantics": "Comparable company-versus-industry growth/share clue; reported mix differences need validation.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_MID_TERM_COMPOUNDER",
+      "archetype_id": "MID_TERM_COMPOUNDER",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/MID_TERM_COMPOUNDER.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "multi_year_growth",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "earnings_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "return_ratio_trend",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "cash_conversion",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D16",
+        "D17",
+        "D18",
+        "D24",
+        "D25"
+      ],
+      "preliminary_trigger_semantics": "Sustained growth with improving earnings and cash-backed returns over a suitable horizon.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_NEW_PRODUCT_NEW_CUSTOMER_INFLECTION",
+      "archetype_id": "NEW_PRODUCT_NEW_CUSTOMER_INFLECTION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/NEW_PRODUCT_NEW_CUSTOMER_INFLECTION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "customer_product_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "filing_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "revenue_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D24",
+        "D25"
+      ],
+      "preliminary_trigger_semantics": "Public product/customer addition flag with early growth; materiality and repeatability need deep review.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_ORDER_BOOK_CAPEX_CYCLE",
+      "archetype_id": "ORDER_BOOK_CAPEX_CYCLE",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/ORDER_BOOK_CAPEX_CYCLE.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "order_book_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "capacity_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "sector_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D02",
+        "D03",
+        "D27"
+      ],
+      "preliminary_trigger_semantics": "Reported order backlog growth and sector/capacity context; conversion into revenue is unproved.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_POLICY_REGULATORY_BENEFICIARY",
+      "archetype_id": "POLICY_REGULATORY_BENEFICIARY",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/POLICY_REGULATORY_BENEFICIARY.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "filing_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "catalyst_presence",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "sector_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D02",
+        "D03",
+        "D30"
+      ],
+      "preliminary_trigger_semantics": "Public policy event plus preliminary sector/company linkage; legal transmission requires deep validation.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_PRE_BREAKOUT_ACCUMULATION",
+      "archetype_id": "PRE_BREAKOUT_ACCUMULATION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/PRE_BREAKOUT_ACCUMULATION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "base_presence",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "volatility_contraction",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "rvol",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "accumulation_proxy",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D06",
+        "D07",
+        "D11",
+        "D36",
+        "D37",
+        "D39",
+        "D50"
+      ],
+      "preliminary_trigger_semantics": "Base, higher lows, contraction, dry-up or supply/absorption proxy and rising RS; setup is not governed entry.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "OPTIONAL",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_PROMOTER_MANAGEMENT_TRANSFORMATION",
+      "archetype_id": "PROMOTER_MANAGEMENT_TRANSFORMATION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/PROMOTER_MANAGEMENT_TRANSFORMATION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "ownership_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "governance_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "margin_trajectory",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D21",
+        "D23",
+        "D26"
+      ],
+      "preliminary_trigger_semantics": "Observable ownership/governance change with early execution clue; management quality needs deep research.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "OPTIONAL",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_QARP",
+      "archetype_id": "QARP",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/QARP.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "return_ratio_trend",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "cash_conversion",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "valuation_level",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "leverage_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D17",
+        "D18",
+        "D19",
+        "D29"
+      ],
+      "preliminary_trigger_semantics": "Quality returns and cash conversion with preliminary reasonable valuation and debt discipline.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_RERATING_CANDIDATE",
+      "archetype_id": "RERATING_CANDIDATE",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/RERATING_CANDIDATE.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "valuation_deviation",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "return_ratio_trend",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "earnings_acceleration",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D17",
+        "D24",
+        "D25",
+        "D29"
+      ],
+      "preliminary_trigger_semantics": "Valuation gap with improving earnings/quality clue; rerating is not forecast.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "SECONDARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_SECTOR_ROTATION_LEADER",
+      "archetype_id": "SECTOR_ROTATION_LEADER",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/SECTOR_ROTATION_LEADER.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "sector_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "sector_breadth",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "relative_strength",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "accumulation_proxy",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D02",
+        "D03",
+        "D06",
+        "D07",
+        "D36",
+        "D50"
+      ],
+      "preliminary_trigger_semantics": "Sector RS, participation, breadth and earnings breadth where available, plus stock leadership proxies; no assertion of observed fund flows.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "NOT_REQUIRED",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_SPECIAL_SITUATION",
+      "archetype_id": "SPECIAL_SITUATION",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/SPECIAL_SITUATION.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "filing_event_flag",
+          "cost_class": "C0_METADATA",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "catalyst_presence",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "valuation_deviation",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D29",
+        "D30"
+      ],
+      "preliminary_trigger_semantics": "Public special-event flag with initial valuation relevance; event terms remain deep.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "PRIMARY",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "detector_id": "DET_TURNAROUND_RECOVERY",
+      "archetype_id": "TURNAROUND_RECOVERY",
+      "taxonomy_ref": "hsi_knowledge/strategies/taxonomy/TURNAROUND_RECOVERY.json",
+      "cheap_evidence_dependencies": [
+        {
+          "primitive_id": "margin_trajectory",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "leverage_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "PRIMARY_SCREEN"
+        },
+        {
+          "primitive_id": "cfo_change",
+          "cost_class": "C2_MODERATE_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        },
+        {
+          "primitive_id": "price_breakout",
+          "cost_class": "C1_CHEAP_DETERMINISTIC",
+          "role": "SUPPORTING_SCREEN"
+        }
+      ],
+      "cheap_diagnostic_ids": [
+        "D10",
+        "D18",
+        "D19",
+        "D26",
+        "D37"
+      ],
+      "preliminary_trigger_semantics": "Weak prior state with recent margins, debt/cash-flow repair and possible price confirmation.",
+      "trigger_outcome": "POSSIBLE_FIT_NOT_APPROVAL",
+      "unavailable_behavior": "DEFER_NO_NEGATIVE_SCORE; escalate only if another governed reason selects the security",
+      "false_positive_tolerance": "HIGH_AT_CHEAP_DISCOVERY_REDUCED_BY_PRELIMINARY_VALIDATION",
+      "future_runtime_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "ai_required": false,
+      "approved_investment": false,
+      "catalyst_dependency_strength": "OPTIONAL",
+      "escalation_destination": "PRELIMINARY_STRATEGY_VALIDATION"
+    }
+  ]
+}

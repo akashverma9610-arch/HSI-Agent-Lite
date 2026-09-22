@@ -1,0 +1,397 @@
+{
+  "contract_id": "REGIME_COMPATIBILITY_CONTRACT",
+  "version": "0.1.0",
+  "kind": "STRATEGY_REGIME_CONTEXT",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C2_MODERATE_DETERMINISTIC",
+  "regime_source": "hsi_knowledge/diagnostics/catalog/D01_market_regime.json",
+  "extremes_overlay_source": "hsi_knowledge/portfolio/market_extremes_residual.json",
+  "risk_off_semantic_preferences": [
+    "QUALITY",
+    "RESILIENCE",
+    "CASH_FLOW",
+    "LOWER_LEVERAGE",
+    "STRONG_RELATIVE_STRENGTH"
+  ],
+  "risk_on_semantic_permissions": [
+    "EMERGING_LEADERS",
+    "BREAKOUTS",
+    "CYCLICALS",
+    "SMALL_MIDCAP_INFLECTIONS",
+    "OPERATING_LEVERAGE"
+  ],
+  "archetype_mapping_source": "hsi_knowledge/strategies/STRATEGY_DEPENDENCY_MATRIX.json",
+  "mapping_rule": "Use each archetype's sector/macro, risk and horizon dependencies; preference is contextual, never a universal pass/fail or fixed threshold.",
+  "profile_count": 35,
+  "strategy_sensitivity_profiles": [
+    {
+      "archetype_id": "ASSET_MONETISATION",
+      "taxonomy_family": "FAMILY_C_RECOVERY_RERATING",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CAUTION_FINANCIAL_FRAGILITY",
+      "risk_on_context": "CONDITIONAL_RECOVERY_AND_RERATING",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "BREAKOUT_RETEST",
+      "taxonomy_family": "FAMILY_B_PRICE_FLOW",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "SELECTIVE_ONLY_WITH_RELATIVE_RESILIENCE",
+      "risk_on_context": "SUPPORTIVE_IF_GOVERNED_STRUCTURE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "CAPACITY_EXPANSION",
+      "taxonomy_family": "FAMILY_E_CATALYST",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "risk_on_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "CASH_FLOW_INFLECTION",
+      "taxonomy_family": "FAMILY_A_BUSINESS_EARNINGS",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CONDITIONAL_ON_CASH_BACKED_EARNINGS",
+      "risk_on_context": "SUPPORTIVE_OF_EARNINGS_ACCELERATION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "COMMODITY_UPCYCLE",
+      "taxonomy_family": "FAMILY_D_INDUSTRY_CYCLE",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "COMMODITY_CYCLE_SPECIFIC_NOT_GENERIC_RISK_OFF_FAIL",
+      "risk_on_context": "COMMODITY_CYCLE_SPECIFIC_NOT_GENERIC_RISK_ON_PASS",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "CONFIRMED_BREAKOUT",
+      "taxonomy_family": "FAMILY_B_PRICE_FLOW",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "SELECTIVE_ONLY_WITH_RELATIVE_RESILIENCE",
+      "risk_on_context": "SUPPORTIVE_IF_GOVERNED_STRUCTURE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "CYCLICAL_RECOVERY",
+      "taxonomy_family": "FAMILY_D_INDUSTRY_CYCLE",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "CAUTION_CYCLICAL_EXPOSURE",
+      "risk_on_context": "CONDITIONAL_INDUSTRY_CYCLE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "DEEP_VALUE_MEAN_REVERSION",
+      "taxonomy_family": "FAMILY_C_RECOVERY_RERATING",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CAUTION_VALUE_TRAP_AND_EXITABILITY",
+      "risk_on_context": "CONDITIONAL_REVERSION_AFTER_EVIDENCE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "DELEVERAGING",
+      "taxonomy_family": "FAMILY_C_RECOVERY_RERATING",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CAUTION_FINANCIAL_FRAGILITY",
+      "risk_on_context": "CONDITIONAL_RECOVERY_AND_RERATING",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "DEMERGER_VALUE_UNLOCK",
+      "taxonomy_family": "FAMILY_E_CATALYST",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "risk_on_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "DOMESTIC_CAPEX_BENEFICIARY",
+      "taxonomy_family": "FAMILY_D_INDUSTRY_CYCLE",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "CAUTION_CYCLICAL_EXPOSURE",
+      "risk_on_context": "CONDITIONAL_INDUSTRY_CYCLE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "EARLY_EMERGING_LEADER_SMALL_MIDCAP",
+      "taxonomy_family": "FAMILY_F_STRUCTURAL_GROWTH",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "CAUTION_SIZE_AND_LIQUIDITY_IN_RISK_OFF",
+      "risk_on_context": "CONDITIONAL_EMERGING_LEADERSHIP",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "EARNINGS_MOMENTUM",
+      "taxonomy_family": "FAMILY_A_BUSINESS_EARNINGS",
+      "sector_macro_dependency": "OPTIONAL",
+      "risk_off_context": "CONDITIONAL_ON_CASH_BACKED_EARNINGS",
+      "risk_on_context": "SUPPORTIVE_OF_EARNINGS_ACCELERATION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "EARNINGS_SURPRISE_POST_RESULT_DRIFT",
+      "taxonomy_family": "FAMILY_A_BUSINESS_EARNINGS",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CONDITIONAL_ON_CASH_BACKED_EARNINGS",
+      "risk_on_context": "SUPPORTIVE_OF_EARNINGS_ACCELERATION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "EVENT_CATALYST",
+      "taxonomy_family": "FAMILY_E_CATALYST",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "risk_on_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "EXPORT_SCALING",
+      "taxonomy_family": "FAMILY_F_STRUCTURAL_GROWTH",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "PREFER_CASH_BACKED_QUALITY",
+      "risk_on_context": "CONDITIONAL_STRUCTURAL_GROWTH",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "FUNDAMENTAL_INFLECTION",
+      "taxonomy_family": "FAMILY_A_BUSINESS_EARNINGS",
+      "sector_macro_dependency": "OPTIONAL",
+      "risk_off_context": "CONDITIONAL_ON_CASH_BACKED_EARNINGS",
+      "risk_on_context": "SUPPORTIVE_OF_EARNINGS_ACCELERATION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "GARP",
+      "taxonomy_family": "FAMILY_F_STRUCTURAL_GROWTH",
+      "sector_macro_dependency": "OPTIONAL",
+      "risk_off_context": "PREFER_CASH_BACKED_QUALITY",
+      "risk_on_context": "CONDITIONAL_STRUCTURAL_GROWTH",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "IMPORT_SUBSTITUTION",
+      "taxonomy_family": "FAMILY_D_INDUSTRY_CYCLE",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "CAUTION_CYCLICAL_EXPOSURE",
+      "risk_on_context": "CONDITIONAL_INDUSTRY_CYCLE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "INSTITUTIONAL_ACCUMULATION",
+      "taxonomy_family": "FAMILY_B_PRICE_FLOW",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "SELECTIVE_ONLY_WITH_RELATIVE_RESILIENCE",
+      "risk_on_context": "SUPPORTIVE_IF_GOVERNED_STRUCTURE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "LONG_TERM_STRUCTURAL_COMPOUNDER",
+      "taxonomy_family": "FAMILY_F_STRUCTURAL_GROWTH",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "PREFER_CASH_BACKED_QUALITY_WITH_VALUATION_DISCIPLINE",
+      "risk_on_context": "CONDITIONAL_LONG_TERM_COMPOUNDING",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "MARGIN_EXPANSION",
+      "taxonomy_family": "FAMILY_A_BUSINESS_EARNINGS",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CONDITIONAL_ON_CASH_BACKED_EARNINGS",
+      "risk_on_context": "SUPPORTIVE_OF_EARNINGS_ACCELERATION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "MARKET_RED_RESILIENCE",
+      "taxonomy_family": "FAMILY_B_PRICE_FLOW",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "RESEARCH_RELATIVE_RESILIENCE_IN_RISK_OFF",
+      "risk_on_context": "CONTEXT_NEUTRAL_CONTINUE_TO_THESIS",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "MARKET_SHARE_GAINER",
+      "taxonomy_family": "FAMILY_F_STRUCTURAL_GROWTH",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "PREFER_CASH_BACKED_QUALITY",
+      "risk_on_context": "CONDITIONAL_STRUCTURAL_GROWTH",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "MID_TERM_COMPOUNDER",
+      "taxonomy_family": "FAMILY_A_BUSINESS_EARNINGS",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "CONDITIONAL_ON_CASH_BACKED_EARNINGS",
+      "risk_on_context": "SUPPORTIVE_OF_EARNINGS_ACCELERATION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "NEW_PRODUCT_NEW_CUSTOMER_INFLECTION",
+      "taxonomy_family": "FAMILY_E_CATALYST",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "risk_on_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "ORDER_BOOK_CAPEX_CYCLE",
+      "taxonomy_family": "FAMILY_E_CATALYST",
+      "sector_macro_dependency": "SECONDARY",
+      "risk_off_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "risk_on_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "POLICY_REGULATORY_BENEFICIARY",
+      "taxonomy_family": "FAMILY_E_CATALYST",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "risk_on_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "PRE_BREAKOUT_ACCUMULATION",
+      "taxonomy_family": "FAMILY_B_PRICE_FLOW",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "SELECTIVE_ONLY_WITH_RELATIVE_RESILIENCE",
+      "risk_on_context": "SUPPORTIVE_IF_GOVERNED_STRUCTURE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "PROMOTER_MANAGEMENT_TRANSFORMATION",
+      "taxonomy_family": "FAMILY_C_RECOVERY_RERATING",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CAUTION_FINANCIAL_FRAGILITY",
+      "risk_on_context": "CONDITIONAL_RECOVERY_AND_RERATING",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "QARP",
+      "taxonomy_family": "FAMILY_F_STRUCTURAL_GROWTH",
+      "sector_macro_dependency": "OPTIONAL",
+      "risk_off_context": "PREFER_CASH_BACKED_QUALITY",
+      "risk_on_context": "CONDITIONAL_STRUCTURAL_GROWTH",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "RERATING_CANDIDATE",
+      "taxonomy_family": "FAMILY_C_RECOVERY_RERATING",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CAUTION_FINANCIAL_FRAGILITY",
+      "risk_on_context": "CONDITIONAL_RECOVERY_AND_RERATING",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "SECTOR_ROTATION_LEADER",
+      "taxonomy_family": "FAMILY_D_INDUSTRY_CYCLE",
+      "sector_macro_dependency": "PRIMARY",
+      "risk_off_context": "CAUTION_CYCLICAL_EXPOSURE",
+      "risk_on_context": "CONDITIONAL_INDUSTRY_CYCLE",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "SPECIAL_SITUATION",
+      "taxonomy_family": "FAMILY_E_CATALYST",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "risk_on_context": "EVENT_SPECIFIC_NO_REGIME_ASSUMPTION",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    },
+    {
+      "archetype_id": "TURNAROUND_RECOVERY",
+      "taxonomy_family": "FAMILY_C_RECOVERY_RERATING",
+      "sector_macro_dependency": "NOT_REQUIRED",
+      "risk_off_context": "CAUTION_FINANCIAL_FRAGILITY",
+      "risk_on_context": "CONDITIONAL_RECOVERY_AND_RERATING",
+      "authority": "UNVALIDATED_SEMANTIC_DESIGN",
+      "numeric_threshold": null,
+      "action_authority": false
+    }
+  ],
+  "stock_quality_equals_current_opportunity_quality": false,
+  "unsupported_numeric_market_thresholds": [],
+  "outcomes": [
+    "COMPATIBLE",
+    "CAUTION",
+    "INCOMPATIBLE_FOR_CURRENT_SETUP",
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "can_create_buy": false,
+  "can_create_sell": false,
+  "source_refs": [
+    "hsi_knowledge/diagnostics/catalog/D01_market_regime.json",
+    "hsi_knowledge/portfolio/market_extremes_residual.json"
+  ]
+}

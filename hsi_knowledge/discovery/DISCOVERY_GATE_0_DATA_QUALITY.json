@@ -1,0 +1,94 @@
+{
+  "contract_id": "DISCOVERY_GATE_0_DATA_QUALITY",
+  "version": "0.1.0",
+  "kind": "DISCOVERY_GATE",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C0_METADATA",
+  "gate_number": 0,
+  "execution_gate": false,
+  "purpose": "Evaluability before scoring; use C1 factual checks only when metadata alone cannot establish quality.",
+  "checks": [
+    {
+      "check_id": "canonical_security_identity",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "sufficient_price_history",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "corporate_action_adjustment_state",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "volume_data",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "delivery_data_when_required",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "financial_statement_recency",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "result_filing_recency",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "suspension_trading_status",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "split_bonus_anomalies",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "source_agreement_conflict",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "source_timestamp_freshness",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    },
+    {
+      "check_id": "historical_known_at_pit_when_requested",
+      "cost_class": "C0_METADATA",
+      "required_when": "RELEVANT_TO_REQUESTED_STRATEGY_OR_HISTORY"
+    }
+  ],
+  "outcomes": [
+    "EVALUABLE",
+    "EVALUABLE_WITH_LIMITATIONS",
+    "INSUFFICIENT_DATA",
+    "CONFLICTED_DATA",
+    "NON_EVALUABLE"
+  ],
+  "missing_critical_evidence_outcome": "NON_EVALUABLE",
+  "conflicted_critical_evidence_outcome": "CONFLICTED_DATA",
+  "non_evaluable_is_low_investment_score": false,
+  "missing_evidence_is_zero": false,
+  "score_allowed_only_after_evaluability": true,
+  "source_refs": [
+    "hsi_knowledge/governance/data_reliability.json",
+    "hsi_knowledge/governance/historical_pit.json",
+    "hsi_knowledge/governance/source_hierarchy.json"
+  ]
+}

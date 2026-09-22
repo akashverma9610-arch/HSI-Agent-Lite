@@ -1,0 +1,44 @@
+{
+  "contract_id": "PORTFOLIO_FIT_CONTRACT",
+  "version": "0.1.0",
+  "kind": "POSITION_AND_PORTFOLIO_CONTEXT",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C2_MODERATE_DETERMINISTIC",
+  "portfolio_knowledge_refs": [
+    "hsi_knowledge/portfolio/portfolio_state.json",
+    "hsi_knowledge/portfolio/portfolio_heat.json",
+    "hsi_knowledge/portfolio/holding_health.json",
+    "hsi_knowledge/portfolio/exitability.json",
+    "hsi_knowledge/portfolio/rotation.json"
+  ],
+  "dimensions": [
+    "sector_concentration",
+    "factor_exposure",
+    "cyclicality",
+    "market_cap_exposure",
+    "correlation",
+    "liquidity_exitability",
+    "proposed_portfolio_weight",
+    "thesis_overlap",
+    "cash_availability"
+  ],
+  "individual_stock_strength_guarantees_fit": false,
+  "unknown_cash_is_zero": false,
+  "missing_portfolio_context_behavior": "FIT_UNKNOWN_NOT_PASS",
+  "outcomes": [
+    "FIT_PLAUSIBLE_FOR_REVIEW",
+    "FIT_CONSTRAINED",
+    "FIT_UNKNOWN"
+  ],
+  "portfolio_mutation_allowed": false,
+  "source_refs": [
+    "hsi_knowledge/portfolio/portfolio_state.json",
+    "hsi_knowledge/portfolio/portfolio_heat.json",
+    "hsi_knowledge/portfolio/exitability.json"
+  ]
+}

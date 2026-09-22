@@ -1,0 +1,36 @@
+{
+  "contract_id": "RISK_REWARD_STAGE_CONTRACT",
+  "version": "0.1.0",
+  "kind": "CURRENT_STRATEGY_GEOMETRY_AND_ASYMMETRY",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C2_MODERATE_DETERMINISTIC",
+  "required_references": [
+    "current_entry_reference",
+    "strategy_specific_invalidation_or_stop",
+    "first_target",
+    "later_targets_if_governed",
+    "expected_friction",
+    "shared_horizon_where_comparing"
+  ],
+  "geometry_authority_ref": "hsi_knowledge/strategies/GEOMETRY_AUTHORITY_MAP.json",
+  "diagnostic_refs": [
+    "D43",
+    "D44",
+    "D45",
+    "D46"
+  ],
+  "universal_minimum_risk_reward_threshold": null,
+  "unresolved_geometry_behavior": "INSUFFICIENT_EVIDENCE_OR_WATCH",
+  "high_quality_poor_asymmetry_can_be_watch": true,
+  "missing_reference_may_be_invented": false,
+  "execution_gate_fail_overridable": false,
+  "source_refs": [
+    "hsi_knowledge/strategies/GEOMETRY_AUTHORITY_MAP.json",
+    "hsi_knowledge/gates/index.json"
+  ]
+}

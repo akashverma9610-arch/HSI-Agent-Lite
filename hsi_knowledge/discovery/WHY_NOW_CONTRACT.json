@@ -1,0 +1,55 @@
+{
+  "contract_id": "WHY_NOW_CONTRACT",
+  "version": "0.1.0",
+  "kind": "STRATEGY_RELATIVE_CATALYST_CONTEXT",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+  "question": "Why is this opportunity relevant now?",
+  "future_evidence_examples": [
+    "plant_commissioning",
+    "order_execution",
+    "margin_normalization",
+    "deleveraging",
+    "product_launch",
+    "customer_addition",
+    "regulatory_policy_change",
+    "capacity_utilization",
+    "earnings_upgrade",
+    "sector_cycle",
+    "corporate_action"
+  ],
+  "required_evidence_fields": [
+    "event_identity",
+    "primary_source_or_tier",
+    "observed_at",
+    "published_at",
+    "known_at",
+    "company_transmission",
+    "materiality",
+    "strategy_relevance",
+    "confidence"
+  ],
+  "applicability_from_taxonomy_field": "dependency_strengths.CATALYST_NEWS",
+  "primary_requires_validation": true,
+  "secondary_supportive_not_universal_gate": true,
+  "optional_not_gate": true,
+  "not_required_not_gate": true,
+  "quality_without_current_catalyst_can_remain_long_term_candidate": true,
+  "outcomes": [
+    "WHY_NOW_VALIDATED",
+    "WHY_NOW_POTENTIAL",
+    "NOT_APPLICABLE",
+    "INSUFFICIENT_EVIDENCE",
+    "CATALYST_INVALIDATED"
+  ],
+  "event_presence_alone_validates_why_now": false,
+  "source_refs": [
+    "hsi_knowledge/governance/macro_news_governance.json",
+    "hsi_knowledge/strategies/STRATEGY_DEPENDENCY_MATRIX.json"
+  ]
+}

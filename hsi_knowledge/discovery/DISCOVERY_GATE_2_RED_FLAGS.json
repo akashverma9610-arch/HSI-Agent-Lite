@@ -1,0 +1,54 @@
+{
+  "contract_id": "DISCOVERY_GATE_2_RED_FLAGS",
+  "version": "0.1.0",
+  "kind": "DISCOVERY_GATE",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C1_CHEAP_DETERMINISTIC",
+  "gate_number": 2,
+  "execution_gate": false,
+  "universal_red_flags": [
+    {"flag_id": "SEVERE_UNRESOLVED_GOVERNANCE_FAILURE", "cost_class": "C0_METADATA", "evaluation_phase": "GATE_2_FLAG_THEN_PRELIMINARY_MATERIALITY_REVIEW"},
+    {"flag_id": "UNUSABLE_FINANCIAL_DATA", "cost_class": "C0_METADATA", "evaluation_phase": "GATE_2"},
+    {"flag_id": "SEVERE_TRADING_RESTRICTION", "cost_class": "C0_METADATA", "evaluation_phase": "GATE_2"},
+    {"flag_id": "UNRESOLVED_IDENTITY_ANOMALY", "cost_class": "C0_METADATA", "evaluation_phase": "GATE_2"},
+    {"flag_id": "MATERIAL_AUDITOR_ISSUE", "cost_class": "C0_METADATA", "evaluation_phase": "GATE_2_FLAG_THEN_PRELIMINARY_MATERIALITY_REVIEW"},
+    {"flag_id": "SEVERE_POSITION_EXITABILITY_ISSUE", "cost_class": "C2_MODERATE_DETERMINISTIC", "evaluation_phase": "DEFER_TO_PORTFOLIO_FIT_WHEN_POSITION_SIZE_KNOWN"}
+  ],
+  "strategy_relative_examples": [
+    {
+      "condition": "HIGH_LEVERAGE",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "evaluation_phase": "PRELIMINARY_STRATEGY_VALIDATION",
+      "may_reject": "LONG_TERM_STRUCTURAL_COMPOUNDER",
+      "may_be_thesis_context": "DELEVERAGING"
+    },
+    {
+      "condition": "WEAK_HISTORICAL_MARGINS",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "evaluation_phase": "PRELIMINARY_STRATEGY_VALIDATION",
+      "may_reject": "MID_TERM_COMPOUNDER",
+      "may_be_thesis_context": "MARGIN_EXPANSION"
+    },
+    {
+      "condition": "DEPRESSED_VALUATION",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "evaluation_phase": "PRELIMINARY_STRATEGY_VALIDATION",
+      "may_be_irrelevant": "CONFIRMED_BREAKOUT",
+      "may_be_thesis_context": "DEEP_VALUE_MEAN_REVERSION"
+    }
+  ],
+  "universal_flag_requires_current_verified_material_evidence": true,
+  "unresolved_flag_outcome": "REVIEW_REQUIRED",
+  "blanket_fundamental_metric_rejection_allowed": false,
+  "per_strategy_evaluation_required": true,
+  "source_refs": [
+    "hsi_knowledge/strategies/STRATEGY_DEPENDENCY_MATRIX.json",
+    "hsi_knowledge/diagnostics/catalog/D23_governance.json",
+    "hsi_knowledge/portfolio/exitability.json"
+  ]
+}

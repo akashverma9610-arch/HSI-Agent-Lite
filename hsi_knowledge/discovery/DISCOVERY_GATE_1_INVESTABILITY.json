@@ -1,0 +1,88 @@
+{
+  "contract_id": "DISCOVERY_GATE_1_INVESTABILITY",
+  "version": "0.1.0",
+  "kind": "DISCOVERY_GATE",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C1_CHEAP_DETERMINISTIC",
+  "gate_number": 1,
+  "execution_gate": false,
+  "dimensions": [
+    {
+      "dimension_id": "market_capitalization",
+      "cost_class": "C0_METADATA",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS"
+    },
+    {
+      "dimension_id": "listing_and_trading_state",
+      "cost_class": "C0_METADATA",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS"
+    },
+    {
+      "dimension_id": "average_traded_value",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS"
+    },
+    {
+      "dimension_id": "median_traded_volume",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS"
+    },
+    {
+      "dimension_id": "free_float_if_reliable",
+      "cost_class": "C0_METADATA",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS"
+    },
+    {
+      "dimension_id": "delivery_turnover_if_available",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS"
+    },
+    {
+      "dimension_id": "position_size_aware_exitability",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS",
+      "evaluation_phase": "DEFER_TO_PORTFOLIO_FIT_NOT_WHOLE_UNIVERSE"
+    },
+    {
+      "dimension_id": "days_to_exit_if_evidenced",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS",
+      "evaluation_phase": "DEFER_TO_PORTFOLIO_FIT_NOT_WHOLE_UNIVERSE"
+    },
+    {
+      "dimension_id": "surveillance_and_circuit_constraints",
+      "cost_class": "C0_METADATA",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS"
+    },
+    {
+      "dimension_id": "minimum_usable_history",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "unavailable_behavior": "UNKNOWN_NOT_PASS"
+    }
+  ],
+  "market_cap_filter": {
+    "configurable": true,
+    "default_numeric_bounds": null,
+    "presets": [
+      "MICRO",
+      "SMALL_MID",
+      "MID_LARGE",
+      "ALL_NSE",
+      "CUSTOM"
+    ],
+    "preset_numeric_bounds_selected": false,
+    "founder_3000_30000_crore_range_is_mandatory": false
+  },
+  "position_size_aware_exitability_required_for_actionable_claim": true,
+  "unknown_future_position_size_behavior": "DEFER_EXITABILITY_TO_PORTFOLIO_FIT",
+  "no_universal_exit_days_threshold": true,
+  "source_refs": [
+    "hsi_knowledge/portfolio/exitability.json",
+    "hsi_knowledge/gates/catalog/GATE_3_surveillance.json"
+  ]
+}

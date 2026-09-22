@@ -1,0 +1,60 @@
+{
+  "contract_id": "DELIVERY_BUCKET_CONTRACT",
+  "version": "0.1.0",
+  "kind": "ANALYTICAL_DELIVERY_STATES",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C1_CHEAP_DETERMINISTIC",
+  "buckets": [
+    {
+      "bucket_id": "A_ACTIONABLE_NOW",
+      "meaning": "Future separately qualified opportunity with current timing, R:R, portfolio fit and all applicable execution gates admissible; analytical label only.",
+      "requires_governed_execution_gate_pass": true,
+      "broker_order_authority": false
+    },
+    {
+      "bucket_id": "B_ENTRY_WATCH",
+      "meaning": "Research and thesis plausible; wait for governed entry/timing or asymmetry.",
+      "requires_governed_execution_gate_pass": false,
+      "broker_order_authority": false
+    },
+    {
+      "bucket_id": "C_RESEARCH_WATCH",
+      "meaning": "Potential strategy fit needs deeper, fresher or comparable evidence.",
+      "requires_governed_execution_gate_pass": false,
+      "broker_order_authority": false
+    },
+    {
+      "bucket_id": "D_QUALITY_WRONG_PRICE",
+      "meaning": "Company/thesis quality may be high but valuation, entry or current asymmetry is unfavorable.",
+      "requires_governed_execution_gate_pass": false,
+      "broker_order_authority": false
+    },
+    {
+      "bucket_id": "E_REJECT_AVOID",
+      "meaning": "Verified disqualifying evidence, persistent mismatch or governed red flag; not a substitute for missing data.",
+      "requires_governed_execution_gate_pass": false,
+      "broker_order_authority": false
+    },
+    {
+      "bucket_id": "NON_EVALUABLE",
+      "meaning": "Critical missing, conflicted or unusable inputs prevent a defensible assessment; not a low score.",
+      "requires_governed_execution_gate_pass": false,
+      "broker_order_authority": false
+    }
+  ],
+  "bucket_count": 6,
+  "outputs_are_orders": false,
+  "actionable_now_is_broker_order": false,
+  "execution_gate_fail_overridable": false,
+  "missing_data_defaults_to": "NON_EVALUABLE",
+  "no_numeric_bucket_thresholds_selected": true,
+  "source_refs": [
+    "hsi_knowledge/gates/index.json",
+    "hsi_knowledge/portfolio/"
+  ]
+}

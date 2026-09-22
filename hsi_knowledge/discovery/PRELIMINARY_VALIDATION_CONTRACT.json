@@ -1,0 +1,59 @@
+{
+  "contract_id": "PRELIMINARY_VALIDATION_CONTRACT",
+  "version": "0.1.0",
+  "kind": "MODERATE_FALSE_POSITIVE_VALIDATION",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C2_MODERATE_DETERMINISTIC",
+  "entry_requires": [
+    "DISCOVERY_GATE_0_DATA_QUALITY_NOT_NON_EVALUABLE",
+    "DISCOVERY_GATE_1_INVESTABILITY_EVALUABLE",
+    "DISCOVERY_GATE_2_RED_FLAGS_REVIEWED",
+    "AT_LEAST_ONE_DETECTOR_TRIGGER"
+  ],
+  "checks": [
+    {
+      "check_id": "source_quality_and_freshness",
+      "cost_class": "C0_METADATA"
+    },
+    {
+      "check_id": "strategy_specific_required_dependencies",
+      "cost_class": "C2_MODERATE_DETERMINISTIC"
+    },
+    {
+      "check_id": "major_universal_and_strategy_relative_flags",
+      "cost_class": "C1_CHEAP_DETERMINISTIC"
+    },
+    {
+      "check_id": "preliminary_valuation_if_relevant",
+      "cost_class": "C2_MODERATE_DETERMINISTIC"
+    },
+    {
+      "check_id": "liquidity_and_possible_exitability",
+      "cost_class": "C2_MODERATE_DETERMINISTIC"
+    },
+    {
+      "check_id": "basic_strategy_consistency",
+      "cost_class": "C2_MODERATE_DETERMINISTIC"
+    }
+  ],
+  "outcomes": [
+    "VALIDATED_FOR_DEEP_RESEARCH",
+    "DEFER_INSUFFICIENT_EVIDENCE",
+    "STRATEGY_MISMATCH",
+    "NON_EVALUABLE"
+  ],
+  "deep_business_news_analysis_allowed": false,
+  "c4_ai_allowed": false,
+  "unknown_does_not_equal_fail_or_low_score": true,
+  "finalist_only_escalation": true,
+  "source_refs": [
+    "hsi_knowledge/strategies/STRATEGY_DEPENDENCY_MATRIX.json",
+    "hsi_knowledge/portfolio/exitability.json",
+    "hsi_knowledge/governance/data_reliability.json"
+  ]
+}

@@ -1,0 +1,711 @@
+{
+  "contract_id": "DETECTOR_PRIMITIVE_CATALOG",
+  "version": "0.1.0",
+  "kind": "CANONICAL_CHEAP_PRIMITIVE_CATALOG",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C2_MODERATE_DETERMINISTIC",
+  "existing_evidence_catalog": "hsi_knowledge/diagnostics/EVIDENCE_DEPENDENCY_CATALOG.json",
+  "owner_rule": "Exactly one future canonical owner per primitive; detectors reference primitive IDs and shared evidence identity, never recalculate.",
+  "future_evidence_rule": "A future_evidence_families ID is an explicit missing contract, not evidence currently available.",
+  "primitive_count": 39,
+  "primitives": [
+    {
+      "primitive_id": "security_identity",
+      "cost_class": "C0_METADATA",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "canonical_security_identity"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.security_identity",
+      "data_requirement": "Canonical NSE security identity and security-type lineage.",
+      "unresolved_limitations": [
+        "Identity reconciliation/source conflicts may make security non-evaluable."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "price_history",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "adjusted_price_history"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.price_history",
+      "data_requirement": "Timestamped adjusted price bars with usable lookback.",
+      "unresolved_limitations": [
+        "Split/bonus and history gaps block technical comparisons."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "trading_status",
+      "cost_class": "C0_METADATA",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "listing_trading_status"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.trading_status",
+      "data_requirement": "Listed, suspended, circuit and surveillance state.",
+      "unresolved_limitations": [
+        "Trading restriction is not inferred from price alone."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "corporate_action_state",
+      "cost_class": "C0_METADATA",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "corporate_action_adjustment"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.corporate_action_state",
+      "data_requirement": "Split/bonus adjustment and anomaly status.",
+      "unresolved_limitations": [
+        "Unreconciled actions block price-derived claims."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "volume_liquidity",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "traded_value_volume"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.volume_liquidity",
+      "data_requirement": "Aligned average traded value and median volume.",
+      "unresolved_limitations": [
+        "Turnover is not position-size-aware exitability."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "financial_recency",
+      "cost_class": "C0_METADATA",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "financial_filing_recency"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.financial_recency",
+      "data_requirement": "Statement period, filing publication and known-at.",
+      "unresolved_limitations": [
+        "Recent price does not make statements current."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "filing_event_flag",
+      "cost_class": "C0_METADATA",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "public_filing_event_index"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.filing_event_flag",
+      "data_requirement": "Metadata-only event category and publication time.",
+      "unresolved_limitations": [
+        "Event flag is not a verified company benefit or catalyst."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "revenue_acceleration",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "quarterly_growth"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D24",
+        "D25"
+      ],
+      "future_calculation_owner": "future.discovery.revenue_acceleration",
+      "data_requirement": "Comparable quarterly/annual revenue growth series.",
+      "unresolved_limitations": [
+        "Non-comparable reporting periods remain unavailable."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "earnings_acceleration",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "quarterly_growth"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D24",
+        "D25"
+      ],
+      "future_calculation_owner": "future.discovery.earnings_acceleration",
+      "data_requirement": "Comparable profit growth and recent result series.",
+      "unresolved_limitations": [
+        "One-off items and basis changes need later validation."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "margin_trajectory",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "margins"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D26"
+      ],
+      "future_calculation_owner": "future.discovery.margin_trajectory",
+      "data_requirement": "Comparable operating margin periods.",
+      "unresolved_limitations": [
+        "Weak past margin may be a recovery thesis, not universal reject."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "leverage_change",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "leverage"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D19"
+      ],
+      "future_calculation_owner": "future.discovery.leverage_change",
+      "data_requirement": "Comparable debt and balance-sheet periods.",
+      "unresolved_limitations": [
+        "Debt change does not prove deleveraging quality."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "cfo_change",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "cash_flow_quality"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D18"
+      ],
+      "future_calculation_owner": "future.discovery.cfo_change",
+      "data_requirement": "Comparable operating cash-flow periods.",
+      "unresolved_limitations": [
+        "CFO seasonality and accounting quality need later review."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "relative_strength",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "relative_strength"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D06"
+      ],
+      "future_calculation_owner": "future.discovery.relative_strength",
+      "data_requirement": "Aligned stock, benchmark, sector and peer price series.",
+      "unresolved_limitations": [
+        "Benchmark/peer coverage and horizon must match."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "sector_strength",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "sector_health",
+        "sector_rotation"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D02",
+        "D03"
+      ],
+      "future_calculation_owner": "future.discovery.sector_strength",
+      "data_requirement": "Aligned sector and market index bars.",
+      "unresolved_limitations": [
+        "Sector rotation label is price proxy, not observed capital flow."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "base_presence",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "base_pattern"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D37"
+      ],
+      "future_calculation_owner": "future.discovery.base_presence",
+      "data_requirement": "Adjusted price/volume structure, including higher-low context where observable.",
+      "unresolved_limitations": [
+        "A base proxy does not approve entry geometry."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "volatility_contraction",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "atr",
+        "base_pattern"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D37",
+        "D39"
+      ],
+      "future_calculation_owner": "future.discovery.volatility_contraction",
+      "data_requirement": "Price-range/ATR history and base context.",
+      "unresolved_limitations": [
+        "Contraction alone may be illiquidity."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "rvol",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "rvol"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D11"
+      ],
+      "future_calculation_owner": "future.discovery.rvol",
+      "data_requirement": "Comparable volume bars and lookback.",
+      "unresolved_limitations": [
+        "Low/high volume can have conflicting interpretations."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "accumulation_proxy",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "accumulation_distribution",
+        "obv"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D07",
+        "D36",
+        "D50"
+      ],
+      "future_calculation_owner": "future.discovery.accumulation_proxy",
+      "data_requirement": "Repeated accumulation-day, close-quality, down/up-volume asymmetry and OBV proxies.",
+      "unresolved_limitations": [
+        "No institutional identity or exact order flow is observed."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "market_red_relative_behavior",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "market_regime",
+        "relative_strength"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D01",
+        "D06"
+      ],
+      "future_calculation_owner": "future.discovery.market_red_relative_behavior",
+      "data_requirement": "Repeated weak-market dates and aligned stock/sector/benchmark returns.",
+      "unresolved_limitations": [
+        "Single weak day does not establish resilience."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "valuation_deviation",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "valuation"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D29"
+      ],
+      "future_calculation_owner": "future.discovery.valuation_deviation",
+      "data_requirement": "Comparable historical/peer valuation basis.",
+      "unresolved_limitations": [
+        "Cheap is not intrinsic undervaluation."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "valuation_level",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "valuation"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D29"
+      ],
+      "future_calculation_owner": "future.discovery.valuation_level",
+      "data_requirement": "Current valuation metrics with source and period.",
+      "unresolved_limitations": [
+        "No universal cheap/expensive numeric boundary."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "order_book_change",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "order_book"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D27"
+      ],
+      "future_calculation_owner": "future.discovery.order_book_change",
+      "data_requirement": "Reported order book periods and execution context.",
+      "unresolved_limitations": [
+        "Order announcement is not revenue conversion."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "ownership_change",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "ownership"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D21"
+      ],
+      "future_calculation_owner": "future.discovery.ownership_change",
+      "data_requirement": "Comparable public ownership filings.",
+      "unresolved_limitations": [
+        "Ownership change does not identify hidden institutions."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "catalyst_presence",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "catalysts"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D30"
+      ],
+      "future_calculation_owner": "future.discovery.catalyst_presence",
+      "data_requirement": "Timestamped public catalyst/event evidence.",
+      "unresolved_limitations": [
+        "Presence is not why-now validation or action."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "return_ratio_trend",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "return_ratios"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D17"
+      ],
+      "future_calculation_owner": "future.discovery.return_ratio_trend",
+      "data_requirement": "Comparable ROCE/ROE periods.",
+      "unresolved_limitations": [
+        "Accounting comparability and capital base need later review."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "multi_year_growth",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "financial_growth_series"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D16"
+      ],
+      "future_calculation_owner": "future.discovery.multi_year_growth",
+      "data_requirement": "Multi-year comparable revenue/profit history.",
+      "unresolved_limitations": [
+        "Short coverage stays unavailable."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "cash_conversion",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "cash_flow_quality"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D18"
+      ],
+      "future_calculation_owner": "future.discovery.cash_conversion",
+      "data_requirement": "CFO/FCF and reported earnings periods.",
+      "unresolved_limitations": [
+        "Not a full earnings-quality conclusion."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "working_capital_change",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "working_capital"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D20"
+      ],
+      "future_calculation_owner": "future.discovery.working_capital_change",
+      "data_requirement": "Receivables, inventory and payable periods.",
+      "unresolved_limitations": [
+        "Industry seasonality requires later interpretation."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "guidance_flag",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "guidance_delivery"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D28"
+      ],
+      "future_calculation_owner": "future.discovery.guidance_flag",
+      "data_requirement": "Timestamped management guidance/revision flag.",
+      "unresolved_limitations": [
+        "Guidance truth and execution history are deep research."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "price_breakout",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "market_structure",
+        "base_pattern"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D10",
+        "D37"
+      ],
+      "future_calculation_owner": "future.discovery.price_breakout",
+      "data_requirement": "Adjusted close and recorded base/structure.",
+      "unresolved_limitations": [
+        "A breakout proxy does not authorize buying."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "price_retest",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [
+        "pullback"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D38"
+      ],
+      "future_calculation_owner": "future.discovery.price_retest",
+      "data_requirement": "Recorded prior breakout level and subsequent bars.",
+      "unresolved_limitations": [
+        "Support and stop geometry remain strategy-specific."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "delivery_activity",
+      "cost_class": "C1_CHEAP_DETERMINISTIC",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "delivery_turnover"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.delivery_activity",
+      "data_requirement": "Delivery quantity/turnover when a reliable source exists.",
+      "unresolved_limitations": [
+        "Missing delivery must not be backfilled from volume."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "sector_breadth",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "sector_constituent_breadth",
+        "sector_earnings_breadth"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.sector_breadth",
+      "data_requirement": "Point-in-time sector participation, constituent breadth and earnings breadth where available.",
+      "unresolved_limitations": [
+        "Membership changes and survivorship need lineage."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "commodity_cycle_proxy",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "commodity_cycle_context"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.commodity_cycle_proxy",
+      "data_requirement": "Timestamped commodity/sector price and earnings-cycle facts.",
+      "unresolved_limitations": [
+        "Commodity move alone does not prove company benefit."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "capacity_event_flag",
+      "cost_class": "C0_METADATA",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "capacity_event_index"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.capacity_event_flag",
+      "data_requirement": "Public commissioning or expansion event metadata.",
+      "unresolved_limitations": [
+        "Capacity announcement is not realized utilization."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "customer_product_flag",
+      "cost_class": "C0_METADATA",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "customer_product_event_index"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.customer_product_flag",
+      "data_requirement": "Public product/customer addition event metadata.",
+      "unresolved_limitations": [
+        "Flag does not prove material revenues."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "market_share_proxy",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [],
+      "future_evidence_families": [
+        "market_share_comparable_series"
+      ],
+      "diagnostic_ids": [],
+      "future_calculation_owner": "future.discovery.market_share_proxy",
+      "data_requirement": "Comparable industry/company share or growth proxy.",
+      "unresolved_limitations": [
+        "Revenue outperformance alone may be mix or reporting effect."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "result_surprise_flag",
+      "cost_class": "C2_MODERATE_DETERMINISTIC",
+      "existing_evidence_families": [
+        "quarterly_growth"
+      ],
+      "future_evidence_families": [
+        "result_consensus_comparability"
+      ],
+      "diagnostic_ids": [
+        "D24",
+        "D25"
+      ],
+      "future_calculation_owner": "future.discovery.result_surprise_flag",
+      "data_requirement": "Current reported result versus valid prior/consensus where available.",
+      "unresolved_limitations": [
+        "No surprise claim without comparable expectations."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    },
+    {
+      "primitive_id": "governance_event_flag",
+      "cost_class": "C0_METADATA",
+      "existing_evidence_families": [
+        "governance_claims"
+      ],
+      "future_evidence_families": [],
+      "diagnostic_ids": [
+        "D23"
+      ],
+      "future_calculation_owner": "future.discovery.governance_event_flag",
+      "data_requirement": "Public auditor/governance event metadata and source.",
+      "unresolved_limitations": [
+        "A flag requires materiality and source review."
+      ],
+      "missing_input_behavior": "UNAVAILABLE_NOT_FALSE",
+      "investment_verdict": false
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "contract_id": "TECHNICAL_TIMING_CONTRACT",
+  "version": "0.1.0",
+  "kind": "STRATEGY_AWARE_CURRENT_TIMING",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C2_MODERATE_DETERMINISTIC",
+  "outcomes": [
+    "GOOD_COMPANY_GOOD_TIMING",
+    "GOOD_COMPANY_BAD_TIMING",
+    "EARLY_SETUP",
+    "EXTENDED",
+    "STRUCTURE_INVALID",
+    "NOT_APPLICABLE",
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "quality_and_timing_separate": true,
+  "strong_fundamentals_imply_good_entry": false,
+  "strategy_geometry_ref": "hsi_knowledge/strategies/GEOMETRY_AUTHORITY_MAP.json",
+  "evidence_refs": [
+    "D04",
+    "D06",
+    "D10",
+    "D37",
+    "D39",
+    "D40",
+    "D41",
+    "D43",
+    "D46"
+  ],
+  "unapproved_generic_entry_may_be_used_as_order": false,
+  "source_refs": [
+    "hsi_knowledge/strategies/GEOMETRY_AUTHORITY_MAP.json",
+    "hsi_knowledge/portfolio/thesis_invalidation.json"
+  ]
+}

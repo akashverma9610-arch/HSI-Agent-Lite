@@ -1,0 +1,48 @@
+{
+  "contract_id": "CANDIDATE_UNION_CONTRACT",
+  "version": "0.1.0",
+  "kind": "CANDIDATE_IDENTITY_AND_EVIDENCE_UNION",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C1_CHEAP_DETERMINISTIC",
+  "input": "Multiple detector results for the same canonical security identity.",
+  "merge_key": [
+    "canonical_security_id",
+    "as_of_cutoff",
+    "security_identity_version"
+  ],
+  "one_security_may_trigger_multiple_detectors": true,
+  "output_fields": [
+    "canonical_security_id",
+    "as_of_cutoff",
+    "triggered_archetype_ids",
+    "detector_result_refs",
+    "trigger_evidence_refs",
+    "shared_evidence_ids",
+    "source_lineage_refs",
+    "evidence_observed_at",
+    "evidence_known_at",
+    "detector_versions",
+    "quality_conflicts"
+  ],
+  "deduplicate_evidence_by": [
+    "evidence_id",
+    "source_record_id",
+    "calculation_owner_version",
+    "as_of_cutoff"
+  ],
+  "clone_underlying_evidence_per_strategy": false,
+  "shared_evidence_one_identity": true,
+  "conflicting_identity_behavior": "QUARANTINE_UNTIL_RECONCILED",
+  "incomplete_timestamp_behavior": "PRESERVE_UNKNOWN_AND_DEFER",
+  "detector_count_is_confluence": false,
+  "source_refs": [
+    "hsi_knowledge/strategies/STRATEGY_CONFLUENCE_MODEL.json",
+    "hsi_knowledge/governance/historical_pit.json",
+    "hsi_knowledge/governance/evidence_discipline.json"
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "contract_id": "WHOLE_NSE_FUNNEL",
+  "version": "0.1.0",
+  "kind": "STAGED_DISCOVERY_FUNNEL",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C0_METADATA",
+  "universe_scope": "ALL_CANONICAL_NSE_SECURITIES_WITH_POINT_IN_TIME_IDENTITY",
+  "universe_size_fixed": false,
+  "stage_count": 15,
+  "stages": [
+    {
+      "order": 0,
+      "stage_id": "WHOLE_NSE_UNIVERSE",
+      "default_cost_class": "C0_METADATA",
+      "purpose": "Canonical listed-security universe; size is not fixed.",
+      "allowed_cost_classes": [
+        "C0_METADATA"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "DISCOVERY_GATE_0_DATA_QUALITY"
+    },
+    {
+      "order": 1,
+      "stage_id": "DISCOVERY_GATE_0_DATA_QUALITY",
+      "default_cost_class": "C0_METADATA",
+      "purpose": "Evaluability and source/PIT checks precede any score.",
+      "allowed_cost_classes": [
+        "C0_METADATA",
+        "C1_CHEAP_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "DISCOVERY_GATE_1_INVESTABILITY"
+    },
+    {
+      "order": 2,
+      "stage_id": "DISCOVERY_GATE_1_INVESTABILITY",
+      "default_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "purpose": "Configurable universe and investability filters.",
+      "allowed_cost_classes": [
+        "C0_METADATA",
+        "C1_CHEAP_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "DISCOVERY_GATE_2_RED_FLAGS"
+    },
+    {
+      "order": 3,
+      "stage_id": "DISCOVERY_GATE_2_RED_FLAGS",
+      "default_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "purpose": "Universal versus strategy-relative risk separation.",
+      "allowed_cost_classes": [
+        "C0_METADATA",
+        "C1_CHEAP_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "CHEAP_STRATEGY_DETECTORS"
+    },
+    {
+      "order": 4,
+      "stage_id": "CHEAP_STRATEGY_DETECTORS",
+      "default_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "purpose": "Inexpensive possible-fit probes for 35 archetypes.",
+      "allowed_cost_classes": [
+        "C0_METADATA",
+        "C1_CHEAP_DETERMINISTIC",
+        "C2_MODERATE_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "CANDIDATE_UNION_DEDUPLICATION"
+    },
+    {
+      "order": 5,
+      "stage_id": "CANDIDATE_UNION_DEDUPLICATION",
+      "default_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "purpose": "Canonical identity union with shared evidence references.",
+      "allowed_cost_classes": [
+        "C1_CHEAP_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "PRELIMINARY_STRATEGY_VALIDATION"
+    },
+    {
+      "order": 6,
+      "stage_id": "PRELIMINARY_STRATEGY_VALIDATION",
+      "default_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "purpose": "Moderate-cost false-positive and source-quality validation.",
+      "allowed_cost_classes": [
+        "C0_METADATA",
+        "C1_CHEAP_DETERMINISTIC",
+        "C2_MODERATE_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "DEEP_HSI_ANALYSIS"
+    },
+    {
+      "order": 7,
+      "stage_id": "DEEP_HSI_ANALYSIS",
+      "default_cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+      "purpose": "Strategy-selective fundamentals/business/management/forward/valuation modules for finalists.",
+      "allowed_cost_classes": [
+        "C3_DEEP_STRUCTURED_RESEARCH",
+        "C4_AI_DEEP_RESEARCH"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "STRATEGY_CONFLUENCE"
+    },
+    {
+      "order": 8,
+      "stage_id": "STRATEGY_CONFLUENCE",
+      "default_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "purpose": "Task #008 governed confluence, not detector-count voting.",
+      "allowed_cost_classes": [
+        "C2_MODERATE_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "CATALYST_WHY_NOW"
+    },
+    {
+      "order": 9,
+      "stage_id": "CATALYST_WHY_NOW",
+      "default_cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+      "purpose": "Strategy-relative catalyst and timing relevance.",
+      "allowed_cost_classes": [
+        "C3_DEEP_STRUCTURED_RESEARCH"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "TECHNICAL_TIMING"
+    },
+    {
+      "order": 10,
+      "stage_id": "TECHNICAL_TIMING",
+      "default_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "purpose": "Strategy-specific timing; separate from company quality.",
+      "allowed_cost_classes": [
+        "C2_MODERATE_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "REGIME_COMPATIBILITY"
+    },
+    {
+      "order": 11,
+      "stage_id": "REGIME_COMPATIBILITY",
+      "default_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "purpose": "Contextual regime preference without trade authority.",
+      "allowed_cost_classes": [
+        "C2_MODERATE_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "RISK_REWARD"
+    },
+    {
+      "order": 12,
+      "stage_id": "RISK_REWARD",
+      "default_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "purpose": "Strategy-specific current geometry and friction, no universal minimum.",
+      "allowed_cost_classes": [
+        "C2_MODERATE_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "PORTFOLIO_FIT"
+    },
+    {
+      "order": 13,
+      "stage_id": "PORTFOLIO_FIT",
+      "default_cost_class": "C2_MODERATE_DETERMINISTIC",
+      "purpose": "Task #009 portfolio constraints and cash context.",
+      "allowed_cost_classes": [
+        "C2_MODERATE_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": "FINAL_DELIVERY_BUCKET"
+    },
+    {
+      "order": 14,
+      "stage_id": "FINAL_DELIVERY_BUCKET",
+      "default_cost_class": "C1_CHEAP_DETERMINISTIC",
+      "purpose": "Analytical classification only.",
+      "allowed_cost_classes": [
+        "C1_CHEAP_DETERMINISTIC"
+      ],
+      "c4_enabled_by_default": false,
+      "next_stage": null
+    }
+  ],
+  "compute_cost_classes": [
+    "C0_METADATA",
+    "C1_CHEAP_DETERMINISTIC",
+    "C2_MODERATE_DETERMINISTIC",
+    "C3_DEEP_STRUCTURED_RESEARCH",
+    "C4_AI_DEEP_RESEARCH"
+  ],
+  "compute_budget": {
+    "whole_universe_allowed": [
+      "C0_METADATA",
+      "C1_CHEAP_DETERMINISTIC"
+    ],
+    "investable_subset_allowed": [
+      "C1_CHEAP_DETERMINISTIC",
+      "C2_MODERATE_DETERMINISTIC"
+    ],
+    "validated_finalists_allowed": [
+      "C2_MODERATE_DETERMINISTIC",
+      "C3_DEEP_STRUCTURED_RESEARCH"
+    ],
+    "c4_default_enabled": false,
+    "c4_requires_separate_approval_and_budget": true,
+    "fixed_candidate_count": null,
+    "deep_analysis_of_whole_universe_allowed": false,
+    "missing_data_becomes_low_score": false
+  },
+  "discovery_gate_ids": [
+    "DISCOVERY_GATE_0_DATA_QUALITY",
+    "DISCOVERY_GATE_1_INVESTABILITY",
+    "DISCOVERY_GATE_2_RED_FLAGS"
+  ],
+  "execution_gate_catalog": "hsi_knowledge/gates/index.json",
+  "discovery_gates_are_execution_gates": false,
+  "execution_gate_fail_overridable": false,
+  "confluence_source": "hsi_knowledge/strategies/STRATEGY_CONFLUENCE_MODEL.json",
+  "detector_count_is_confluence": false,
+  "stock_quality_equals_current_opportunity_quality": false,
+  "source_refs": [
+    "hsi_knowledge/strategies/taxonomy",
+    "hsi_knowledge/diagnostics/EVIDENCE_DEPENDENCY_CATALOG.json",
+    "hsi_knowledge/portfolio/"
+  ]
+}

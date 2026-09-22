@@ -1,0 +1,103 @@
+{
+  "contract_id": "DEEP_ANALYSIS_MODULE_MAP",
+  "version": "0.1.0",
+  "kind": "STRATEGY_SELECTIVE_DEEP_RESEARCH",
+  "status": "DESIGN_ONLY",
+  "effective_from": null,
+  "task": "TASK_010",
+  "lite_baseline_sha": "0c47679c81f311ed3a18fa8d53701fca1809aa22",
+  "runtime_implemented": false,
+  "broker_order_authority": false,
+  "cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+  "entry_requires": "VALIDATED_FOR_DEEP_RESEARCH",
+  "whole_nse_deep_analysis_allowed": false,
+  "selection_rule": "Select only modules whose Task #008 archetype dependencies and unresolved preliminary questions justify them; reuse one normalized evidence object across strategies.",
+  "dependency_map_ref": "hsi_knowledge/strategies/STRATEGY_DEPENDENCY_MATRIX.json",
+  "modules": [
+    {
+      "module_id": "FUNDAMENTALS",
+      "cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+      "topics": [
+        "multi-year history where needed",
+        "quarterly trajectory",
+        "margins",
+        "ROCE_ROE",
+        "FCF",
+        "working capital",
+        "leverage",
+        "dilution",
+        "earnings quality"
+      ],
+      "strategy_dependency": "FUNDAMENTALS_OR_EARNINGS_OR_BALANCE_SHEET_CASH_FLOW"
+    },
+    {
+      "module_id": "BUSINESS",
+      "cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+      "topics": [
+        "TAM",
+        "market share",
+        "competition",
+        "moat",
+        "pricing power",
+        "products",
+        "customers",
+        "capacity",
+        "order book"
+      ],
+      "strategy_dependency": "FUNDAMENTALS_OR_CATALYST_NEWS"
+    },
+    {
+      "module_id": "MANAGEMENT",
+      "cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+      "topics": [
+        "guidance",
+        "capital allocation",
+        "governance",
+        "remuneration",
+        "related parties",
+        "execution history"
+      ],
+      "strategy_dependency": "MANAGEMENT_GOVERNANCE"
+    },
+    {
+      "module_id": "FORWARD_ANALYSIS",
+      "cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+      "topics": [
+        "capacity",
+        "demand",
+        "order execution",
+        "pricing",
+        "margins",
+        "earnings scenarios"
+      ],
+      "strategy_dependency": "EARNINGS_OR_CATALYST_NEWS"
+    },
+    {
+      "module_id": "VALUATION",
+      "cost_class": "C3_DEEP_STRUCTURED_RESEARCH",
+      "topics": [
+        "historical valuation",
+        "peer valuation",
+        "PE",
+        "EV_EBITDA",
+        "PEG",
+        "PB_WHERE_RELEVANT",
+        "FCF_yield",
+        "forward valuation",
+        "growth_adjusted_valuation"
+      ],
+      "strategy_dependency": "VALUATION"
+    }
+  ],
+  "c4_ai_deep_research": {
+    "available_only_by_future_separate_approval": true,
+    "default_enabled": false,
+    "no_llm_called_in_this_task": true,
+    "only_for_validated_finalists": true
+  },
+  "missing_deep_evidence_behavior": "UNAVAILABLE_NOT_INFERRED",
+  "source_refs": [
+    "hsi_knowledge/diagnostics/EVIDENCE_DEPENDENCY_CATALOG.json",
+    "hsi_knowledge/strategies/STRATEGY_DEPENDENCY_MATRIX.json"
+  ]
+}
