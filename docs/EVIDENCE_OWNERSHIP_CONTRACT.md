@@ -1,0 +1,7 @@
+# Evidence ownership contract
+
+One calculation owner produces one normalized evidence record for a metric, policy version, instrument, timeframe, parameters, as-of and source set; many diagnostics, gates and strategies consume its `evidence_id`. Consumers may not silently rerun or reimplement an upstream metric. A diagnostic may perform a justified unique composite or reconciliation across existing records, with its own explicit owner for that composite. AI interprets evidence but does not calculate the metric.
+
+Examples of future owner assignments—not migrated implementations—are RSI → technical tool; RVOL → one selected technical/volume owner; base pattern → structure owner; liquidity pools → liquidity owner; revenue growth → fundamental owner; relative strength → relative-strength tool. Selection and exact semantics require review; two modules producing a similarly named value are not automatically equivalent.
+
+Every record carries `computation_id`, `computation_version`, `parameters`, `timeframe`, `as_of`, `source_ids`, `source_timestamps`, quality, freshness and provenance. Source timestamps include known-at/observation time where relevant. IDs and timestamps are aligned by position. Missing, stale, non-comparable or uncertified inputs yield UNKNOWN/UNAVAILABLE, never inferred PASS. A source ID without its timestamp cannot validate. Evidence is immutable for a given identity; corrected data produces a new record/version with lineage.

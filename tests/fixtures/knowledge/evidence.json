@@ -1,0 +1,17 @@
+{
+  "evidence_id": "synthetic.evidence.example",
+  "symbol": "FAKE",
+  "evidence_type": "synthetic_flag",
+  "as_of": "2026-01-01T00:00:00Z",
+  "source_ids": ["synthetic.source"],
+  "source_timestamps": ["2026-01-01T00:00:00Z"],
+  "computation_id": "synthetic.owner",
+  "computation_version": "0.1.0",
+  "parameters": {},
+  "timeframe": "synthetic",
+  "value": {"kind": "BOOLEAN", "payload": true},
+  "quality": "VALID",
+  "freshness": "CURRENT",
+  "provenance": {"owner_artifact_id": "synthetic.owner", "owner_artifact_version": "0.1.0"},
+  "limitations": ["Fixture only"]
+}

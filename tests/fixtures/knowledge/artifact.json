@@ -1,0 +1,47 @@
+{
+  "id": "synthetic.diagnostic.example",
+  "name": "Synthetic evidence check",
+  "artifact_type": "diagnostic",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [{
+    "path": "synthetic/not-a-real-source.md",
+    "symbol_or_heading": "Synthetic example",
+    "authority": "AUTHORITATIVE_ACCEPTED",
+    "source_role": "CONTRACT"
+  }],
+  "authority_status": "AUTHORITATIVE_ACCEPTED",
+  "extraction_status": "EXTRACTED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": ["synthetic.evidence.example"],
+  "known_limitations": ["Fixture only; no HSI policy"],
+  "conflicts": [],
+  "notes": "Synthetic shape example",
+  "deterministic_computation": false,
+  "details": {
+    "diagnostic_id": "synthetic.diagnostic.example",
+    "canonical_name": "Synthetic evidence check",
+    "version": "0.1.0",
+    "authority": "AUTHORITATIVE_ACCEPTED",
+    "lifecycle": "REVIEW_REQUIRED",
+    "evidence_dependencies": ["synthetic.evidence.example"],
+    "evaluation_type": "PURE_CONSUMER",
+    "result_semantics": {
+      "PASS": "A reviewed predicate is satisfied",
+      "CAUTION": "A reviewed caution predicate applies",
+      "FAIL": "A reviewed failure predicate applies",
+      "UNKNOWN": "Required evidence is unavailable or uncertified"
+    },
+    "criticality": "NON_CRITICAL",
+    "score_relationship": "No score implied by fixture",
+    "gate_relationship": "No gate override",
+    "strategy_relationship": "No strategy activation",
+    "provenance": ["synthetic/not-a-real-source.md#Synthetic example"],
+    "limitations": ["No actual HSI rule"]
+  }
+}

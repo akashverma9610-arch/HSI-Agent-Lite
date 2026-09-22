@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hsi-agent-lite.local/schema/strategy.schema.json",
+  "title": "Strategy details profile; validate with knowledge envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["strategy_id", "name", "version", "authority", "lifecycle", "purpose", "horizon", "required_evidence", "deterministic_eligibility", "interpretive_guidance", "gate_dependencies", "entry_policy_reference", "invalidation_policy_reference", "target_policy_reference", "liquidity_policy_reference", "portfolio_implications", "known_blockers", "provenance"],
+  "properties": {
+    "strategy_id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "authority": {"enum": ["AUTHORITATIVE_ACCEPTED", "LATEST_ACCEPTED_WITH_LIMITATIONS", "PROPOSED_NOT_ACTIVE", "HISTORICAL_ONLY", "OBSOLETE_OR_SUPERSEDED", "CONFLICT_REVIEW_REQUIRED", "NOT_FOUND"]},
+    "lifecycle": {"enum": ["INVENTORIED", "EXTRACTED_DRAFT", "REVIEW_REQUIRED", "APPROVED_FOR_LITE", "ACTIVE", "INACTIVE", "QUARANTINED", "SUPERSEDED"]},
+    "purpose": {"type": "string", "minLength": 1},
+    "horizon": {"type": "string", "minLength": 1},
+    "required_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "deterministic_eligibility": {"type": "array", "items": {"$ref": "#/$defs/policy_reference"}},
+    "interpretive_guidance": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "gate_dependencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "entry_policy_reference": {"$ref": "#/$defs/nullable_reference"},
+    "invalidation_policy_reference": {"$ref": "#/$defs/nullable_reference"},
+    "target_policy_reference": {"$ref": "#/$defs/nullable_reference"},
+    "liquidity_policy_reference": {"$ref": "#/$defs/nullable_reference"},
+    "portfolio_implications": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "known_blockers": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "provenance": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "policy_reference": {"type": "string", "minLength": 1},
+    "nullable_reference": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/policy_reference"}]}
+  },
+  "allOf": [
+    {"if": {"properties": {"lifecycle": {"enum": ["APPROVED_FOR_LITE", "ACTIVE"]}}}, "then": {"properties": {"authority": {"enum": ["AUTHORITATIVE_ACCEPTED", "LATEST_ACCEPTED_WITH_LIMITATIONS"]}}}},
+    {"if": {"properties": {"lifecycle": {"const": "ACTIVE"}}}, "then": {"properties": {"known_blockers": {"maxItems": 0}, "entry_policy_reference": {"type": "string"}, "invalidation_policy_reference": {"type": "string"}, "target_policy_reference": {"type": "string"}, "liquidity_policy_reference": {"type": "string"}}}}
+  ]
+}

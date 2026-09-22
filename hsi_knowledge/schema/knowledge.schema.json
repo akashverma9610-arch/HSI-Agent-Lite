@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hsi-agent-lite.local/schema/knowledge.schema.json",
+  "title": "HSI Lite knowledge artifact envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "artifact_type", "version", "status", "effective_from", "supersedes", "legacy_repository", "legacy_commit", "legacy_sources", "authority_status", "extraction_status", "review_status", "calculation_owner", "evidence_dependencies", "known_limitations", "conflicts", "notes", "deterministic_computation", "details"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "artifact_type": {"enum": ["diagnostic", "gate", "strategy", "governance_policy", "portfolio_policy", "evidence_definition", "calculation_definition", "interpretation_guidance"]},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["INVENTORIED", "EXTRACTED_DRAFT", "REVIEW_REQUIRED", "APPROVED_FOR_LITE", "ACTIVE", "INACTIVE", "QUARANTINED", "SUPERSEDED"]},
+    "effective_from": {"type": ["string", "null"], "format": "date-time"},
+    "supersedes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "legacy_repository": {"const": "Hybrid-Stock-Intelligence"},
+    "legacy_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "legacy_sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/legacy_source"}},
+    "authority_status": {"$ref": "#/$defs/authority"},
+    "extraction_status": {"enum": ["NOT_STARTED", "EXTRACTED", "VERIFIED"]},
+    "review_status": {"enum": ["UNREVIEWED", "IN_REVIEW", "HUMAN_APPROVED", "REJECTED"]},
+    "calculation_owner": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/owner"}]},
+    "evidence_dependencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "known_limitations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "conflicts": {"type": "array", "items": {"$ref": "#/$defs/conflict"}},
+    "notes": {"type": "string"},
+    "deterministic_computation": {"type": "boolean"},
+    "details": {"type": "object"}
+  },
+  "$defs": {
+    "authority": {"enum": ["AUTHORITATIVE_ACCEPTED", "LATEST_ACCEPTED_WITH_LIMITATIONS", "PROPOSED_NOT_ACTIVE", "HISTORICAL_ONLY", "OBSOLETE_OR_SUPERSEDED", "CONFLICT_REVIEW_REQUIRED", "NOT_FOUND"]},
+    "legacy_source": {"type": "object", "additionalProperties": false, "required": ["path", "symbol_or_heading", "authority", "source_role"], "properties": {"path": {"type": "string", "minLength": 1}, "symbol_or_heading": {"type": "string", "minLength": 1}, "authority": {"$ref": "#/$defs/authority"}, "source_role": {"enum": ["APPROVAL", "CONTRACT", "IMPLEMENTATION", "TEST", "AUDIT", "PROPOSAL", "HISTORICAL"]}}},
+    "owner": {"type": "object", "additionalProperties": false, "required": ["computation_id", "computation_version"], "properties": {"computation_id": {"type": "string", "minLength": 1}, "computation_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}}},
+    "conflict": {"type": "object", "additionalProperties": false, "required": ["code", "description", "resolution_status"], "properties": {"code": {"type": "string", "minLength": 1}, "description": {"type": "string", "minLength": 1}, "resolution_status": {"enum": ["UNRESOLVED", "RESOLVED_WITH_REVIEW"]}}}
+  },
+  "allOf": [
+    {"if": {"properties": {"artifact_type": {"const": "diagnostic"}}}, "then": {"properties": {"details": {"$ref": "diagnostic.schema.json"}}}},
+    {"if": {"properties": {"artifact_type": {"const": "strategy"}}}, "then": {"properties": {"details": {"$ref": "strategy.schema.json"}}}},
+    {"if": {"properties": {"artifact_type": {"const": "gate"}}}, "then": {"properties": {"details": {"$ref": "gate.schema.json"}}}},
+    {"if": {"properties": {"artifact_type": {"enum": ["governance_policy", "portfolio_policy", "evidence_definition", "calculation_definition", "interpretation_guidance"]}}, "required": ["artifact_type"]}, "then": {"properties": {"status": {"not": {"enum": ["APPROVED_FOR_LITE", "ACTIVE"]}}}}},
+    {"if": {"properties": {"artifact_type": {"enum": ["diagnostic", "gate", "strategy"]}, "status": {"const": "ACTIVE"}}, "required": ["artifact_type", "status"]}, "then": {"properties": {"details": {"properties": {"lifecycle": {"const": "ACTIVE"}}}}}},
+    {"if": {"properties": {"artifact_type": {"enum": ["diagnostic", "gate", "strategy"]}, "status": {"const": "APPROVED_FOR_LITE"}}, "required": ["artifact_type", "status"]}, "then": {"properties": {"details": {"properties": {"lifecycle": {"const": "APPROVED_FOR_LITE"}}}}}},
+    {"if": {"properties": {"deterministic_computation": {"const": true}}, "required": ["deterministic_computation"]}, "then": {"properties": {"calculation_owner": {"$ref": "#/$defs/owner"}}}},
+    {"if": {"properties": {"artifact_type": {"const": "calculation_definition"}}, "required": ["artifact_type"]}, "then": {"properties": {"deterministic_computation": {"const": true}, "calculation_owner": {"$ref": "#/$defs/owner"}}}},
+    {"if": {"properties": {"artifact_type": {"const": "interpretation_guidance"}}, "required": ["artifact_type"]}, "then": {"properties": {"deterministic_computation": {"const": false}, "calculation_owner": {"type": "null"}}}},
+    {"if": {"properties": {"status": {"enum": ["APPROVED_FOR_LITE", "ACTIVE"]}}, "required": ["status"]}, "then": {"properties": {"authority_status": {"enum": ["AUTHORITATIVE_ACCEPTED", "LATEST_ACCEPTED_WITH_LIMITATIONS"]}, "extraction_status": {"const": "VERIFIED"}, "review_status": {"const": "HUMAN_APPROVED"}}}},
+    {"if": {"properties": {"status": {"const": "ACTIVE"}}, "required": ["status"]}, "then": {"properties": {"effective_from": {"type": "string", "format": "date-time"}, "conflicts": {"items": {"properties": {"resolution_status": {"const": "RESOLVED_WITH_REVIEW"}}}}, "legacy_sources": {"contains": {"properties": {"authority": {"enum": ["AUTHORITATIVE_ACCEPTED", "LATEST_ACCEPTED_WITH_LIMITATIONS"]}, "source_role": {"enum": ["APPROVAL", "CONTRACT"]}}, "required": ["authority", "source_role"]}}}}}
+  ]
+}

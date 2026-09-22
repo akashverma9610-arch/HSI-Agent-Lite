@@ -1,0 +1,13 @@
+{
+  "gate_id": "synthetic.gate.example",
+  "version": "0.1.0",
+  "authority": "AUTHORITATIVE_ACCEPTED",
+  "lifecycle": "REVIEW_REQUIRED",
+  "required_evidence": ["synthetic.evidence.example"],
+  "pass_condition": {"policy_reference": "synthetic.pass", "description": "Placeholder reviewed condition"},
+  "fail_condition": {"policy_reference": "synthetic.fail", "description": "Placeholder reviewed condition"},
+  "unknown_behavior": "BLOCK",
+  "criticality": "CRITICAL",
+  "score_or_llm_override_allowed": false,
+  "provenance": ["synthetic/not-a-real-source.md#Synthetic example"]
+}

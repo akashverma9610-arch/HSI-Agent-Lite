@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hsi-agent-lite.local/schema/evidence.schema.json",
+  "title": "Normalized evidence record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "symbol", "evidence_type", "as_of", "source_ids", "source_timestamps", "computation_id", "computation_version", "parameters", "timeframe", "value", "quality", "freshness", "provenance", "limitations"],
+  "properties": {
+    "evidence_id": {"type": "string", "minLength": 1},
+    "symbol": {"type": "string", "minLength": 1},
+    "evidence_type": {"type": "string", "minLength": 1},
+    "as_of": {"type": "string", "format": "date-time"},
+    "source_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "source_timestamps": {"type": "array", "minItems": 1, "items": {"type": "string", "format": "date-time"}},
+    "computation_id": {"type": "string", "minLength": 1},
+    "computation_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "parameters": {"type": "object"},
+    "timeframe": {"type": "string", "minLength": 1},
+    "value": {"$ref": "#/$defs/typed_value"},
+    "quality": {"enum": ["VALID", "PARTIAL", "UNAVAILABLE", "REJECTED"]},
+    "freshness": {"enum": ["CURRENT", "STALE", "UNKNOWN"]},
+    "provenance": {"type": "object", "additionalProperties": false, "required": ["owner_artifact_id", "owner_artifact_version"], "properties": {"owner_artifact_id": {"type": "string", "minLength": 1}, "owner_artifact_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}}},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "typed_value": {"type": "object", "additionalProperties": false, "required": ["kind", "payload"], "properties": {"kind": {"enum": ["NUMBER", "STRING", "BOOLEAN", "OBJECT", "ARRAY", "UNAVAILABLE"]}, "payload": {"type": ["number", "string", "boolean", "object", "array", "null"]}}, "allOf": [
+      {"if": {"properties": {"kind": {"const": "NUMBER"}}}, "then": {"properties": {"payload": {"type": "number"}}}},
+      {"if": {"properties": {"kind": {"const": "STRING"}}}, "then": {"properties": {"payload": {"type": "string"}}}},
+      {"if": {"properties": {"kind": {"const": "BOOLEAN"}}}, "then": {"properties": {"payload": {"type": "boolean"}}}},
+      {"if": {"properties": {"kind": {"const": "OBJECT"}}}, "then": {"properties": {"payload": {"type": "object"}}}},
+      {"if": {"properties": {"kind": {"const": "ARRAY"}}}, "then": {"properties": {"payload": {"type": "array"}}}},
+      {"if": {"properties": {"kind": {"const": "UNAVAILABLE"}}}, "then": {"properties": {"payload": {"type": "null"}}}}
+    ]}
+  },
+  "allOf": [
+    {"if": {"properties": {"quality": {"const": "UNAVAILABLE"}}}, "then": {"properties": {"value": {"properties": {"kind": {"const": "UNAVAILABLE"}}}}}},
+    {"if": {"properties": {"value": {"properties": {"kind": {"const": "UNAVAILABLE"}}}}}, "then": {"properties": {"quality": {"const": "UNAVAILABLE"}}}}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "strategy_id": "synthetic.strategy.example",
+  "name": "Synthetic strategy shape",
+  "version": "0.1.0",
+  "authority": "PROPOSED_NOT_ACTIVE",
+  "lifecycle": "EXTRACTED_DRAFT",
+  "purpose": "Demonstrate schema only",
+  "horizon": "unspecified",
+  "required_evidence": ["synthetic.evidence.example"],
+  "deterministic_eligibility": [],
+  "interpretive_guidance": ["No action from this fixture"],
+  "gate_dependencies": [],
+  "entry_policy_reference": null,
+  "invalidation_policy_reference": null,
+  "target_policy_reference": null,
+  "liquidity_policy_reference": null,
+  "portfolio_implications": [],
+  "known_blockers": ["No reviewed policy"],
+  "provenance": ["synthetic/not-a-real-source.md#Synthetic example"]
+}
