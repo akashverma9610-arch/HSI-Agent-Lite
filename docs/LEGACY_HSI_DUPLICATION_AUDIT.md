@@ -1,0 +1,83 @@
+# Legacy 61-diagnostic duplication audit — Task #002
+
+This is a committed-source call-graph audit at legacy HEAD `f88b44d514fc9a2654040aa04e5350fc9e8660fe`. The canonical ID/name list is `app/registry/canonical.py#DIAGNOSTIC_RULES`; `docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json#records` independently lists 61 wrappers, inputs and readiness axes. `app/diagnostics/evaluators.py#DeterministicDiagnosticEvaluators` is the dispatch layer. The table audits whether that layer or its called helper recomputes a metric that another rule may already have produced. It does **not** claim any rule ran on live data or that repeated work necessarily changed the result.
+
+Classification definitions: `PURE_CONSUMER` delegates to one calculation owner without identified repeated metric in the inspected path; `JUSTIFIED_UNIQUE_CHECK` performs a distinct cross-evidence/diagnostic reconciliation; `DUPLICATE_COMPUTATION` recalculates an upstream helper or metric instead of consuming its prior result; `CONFLICTING_AUTHORITY` exposes a result whose generic semantics conflict with the named canonical input requirement; `UNKNOWN_NEEDS_EXTRACTION` cannot establish the required canonical input-to-result authority. `DUPLICATE_COMPUTATION` often means repeated *work* under the same owner, not two independently approved policies. Risk describes the chance of diverging meaning/provenance, not a finding of incorrect trades.
+
+Owner key (all paths at the SHA above): `MR` = `app/analysis/market_regime.py`; `SV` = `app/analysis/sector_volume_ichimoku.py`; `TE` = `app/analysis/technical.py`; `TR` = `app/analysis/trend.py`; `RS` = `app/analysis/relative_strength.py`; `LI` = `app/analysis/liquidity.py`; `FU` = `app/analysis/fundamentals.py`; `FC` = `app/fundamentals/diagnostic_comparability.py`; `RE` = `app/research/engine.py`; `VT` = `app/analysis/valuation_trade.py`; `CR` = `app/crowd/engine.py`; `SY` = `app/diagnostics/synthesis.py`; `EV` = `app/diagnostics/evaluators.py`. `FC` is an accepted certified-input/comparability path for selected financial rules, not a second financial source or a new calculation policy (`docs/architecture/CANONICAL_FINANCIAL_DIAGNOSTIC_INPUT_COMPARABILITY_CLOSURE_V1.md#Implementation and audit reproducibility`).
+
+| ID / diagnostic concept | Required metric or evidence | Existing computation owner | Does diagnostic recompute it? | Class / duplicate authority risk | Recommended Lite pattern |
+| --- | --- | --- | --- | --- | --- |
+| 01 Market regime | Index OHLC, return, trend, ATR | `MR:MarketRegimeEngine.classify` | No; wrapper delegates | `PURE_CONSUMER` / low | Normalize one regime result. |
+| 02 Sector health | Aligned sector/benchmark excess return | `SV:sector_health` | No | `PURE_CONSUMER` / low | Normalize sector-relative metrics once. |
+| 03 Sector rotation phase | Same sector health/excess | `SV:sector_rotation→sector_health` | Yes, if Rule 2 also ran | `DUPLICATE_COMPUTATION` / medium | Derive phase from Rule 2 owner evidence; do not rerun return. |
+| 04 Weekly/daily trend | Distinct daily and weekly trend outputs | `TR:TrendEngine.classify`; `EV:primary_trend` | No formula; unique alignment | `JUSTIFIED_UNIQUE_CHECK` / low | Reconcile two normalized trend records. |
+| 05 Weinstein stage | Weekly close, moving average and slope | `EV:weinstein`; overlapping `TE:sma` | Yes; evaluator computes MA directly | `DUPLICATE_COMPUTATION` / high | One technical MA/stage owner; diagnostic consumes result. |
+| 06 Relative strength | Stock/benchmark, optional sector/peers | `RS:RelativeStrengthEngine.calculate` | No | `PURE_CONSUMER` / low | Consume dated relative-strength evidence; peers unavailable until certified. |
+| 07 Smart-money proxy | Price/volume accumulation proxy | `LI:smart_money→accumulation_distribution` | Yes, repeats Rule 50 chain | `DUPLICATE_COMPUTATION` / medium | Reuse normalized accumulation proxy; never claim institution identity. |
+| 08 Liquidity pools | Repeated high/low clusters | `LI:pools` | No | `PURE_CONSUMER` / low | Persist/normalize one pool map. |
+| 09 Wyckoff phase | Price range plus liquidity event | `LI:wyckoff→events→pools` | Yes, repeats 52/08 work | `DUPLICATE_COMPUTATION` / medium | Consume pool/event evidence, then phase interpretation. |
+| 10 Market structure | Pivot HH/HL, LH/LL | `TE:price_structure`; `EV:market_structure` | No formula; unique classification | `JUSTIFIED_UNIQUE_CHECK` / low | Consume pivot record, classify once. |
+| 11 Relative volume | Current volume versus lookback | `SV:volume_rvol` | No | `PURE_CONSUMER` / low | One versioned RVOL metric. |
+| 12 Ichimoku cloud | OHLC cloud values | `SV:ichimoku` | No | `PURE_CONSUMER` / low | One indicator result per timeframe. |
+| 13 Chikou confirmation | Chikou field of Ichimoku output | `EV:chikou→SV:ichimoku` | Yes, re-runs Rule 12 helper | `DUPLICATE_COMPUTATION` / medium | Consume same timeframe Ichimoku record. |
+| 14 Multi-timeframe alignment | Distinct frame Ichimoku states | `SV:multi_timeframe_alignment→ichimoku`; `EV:mtf` | Yes, can recalculate Rule 12/13 | `DUPLICATE_COMPUTATION` / medium | Reconcile keyed per-frame indicator records; fail closed on missing frames. |
+| 15 Business moat | Dated typed research claims | `RE:moat` | No | `PURE_CONSUMER` / low | Consume provenance-bearing claim assessment. |
+| 16 Five-year trend | Comparable annual revenue/EBITDA/PAT/EPS | `FU:five_year_trend`; `FC` input certification | No repeated metric identified | `PURE_CONSUMER` / medium | Financial engine owns series/math; V2 six-rule change remains inactive. |
+| 17 Return ratios | ROCE/ROE, valid denominators | `FU:return_ratios`; `FC` input certification | No | `PURE_CONSUMER` / medium | Reuse certified facts/ratio output; do not infer missing denominators. |
+| 18 Cash flow | CFO, CAPEX, PAT | `FU:cash_flow` | No | `PURE_CONSUMER` / medium | Use one financial calculation; missing CAPEX is not zero. |
+| 19 Leverage | Debt/equity/cash/EBIT/interest | `FU:leverage`; `FC` input certification | No | `PURE_CONSUMER` / medium | Financial owner computes; preserve bank applicability gap. |
+| 20 Working capital | Receivables/inventory/payables/COGS | `FU:working_capital` | No | `PURE_CONSUMER` / medium | Consume certified company-type-aware metric or unavailable. |
+| 21 Ownership | Comparable promoter/pledge periods | `FU:ownership` | No | `PURE_CONSUMER` / medium | Normalize official dated ownership, then diagnose shift. |
+| 22 Institutional holdings | Comparable FII/DII/MF periods | `FU:institutional` | No | `PURE_CONSUMER` / medium | Keep holdings separate from daily flows. |
+| 23 Governance | Auditor/regulatory/related-party claims | `RE:governance` | No | `PURE_CONSUMER` / medium | Typed primary claims; absence is not clearance. |
+| 24 Earnings acceleration | Five-quarter reported revenue comparison | `FU:earnings_acceleration`; `FC` input certification | No in this row | `PURE_CONSUMER` / medium | Own reported YoY metric once; organic/one-off remains unassessed. |
+| 25 Latest quarter | Revenue/EBITDA/PAT/EPS YoY/QoQ | `FU:latest_quarter`; `FC` input certification | Yes, revenue YoY overlaps Rule 24 | `DUPLICATE_COMPUTATION` / medium | Share certified quarterly growth series across 24/25. |
+| 26 Margins | Comparable EBITDA/revenue margins | `FU:margins` | No | `PURE_CONSUMER` / medium | Consume financial margin result; no PAT substitute. |
+| 27 Order book | Typed order book/inflow/revenue | `FU:order_book` | No | `PURE_CONSUMER` / medium | Require canonical direct order evidence and reporting period. |
+| 28 Guidance delivery | Dated expected versus actual guidance | `RE:guidance_delivery` | No | `PURE_CONSUMER` / medium | Consume typed guidance comparison, not narrative. |
+| 29 Valuation | Price, EPS, debt/cash/shares/EBITDA | `VT:valuation`; `FC` input certification | No repeated metric identified | `PURE_CONSUMER` / medium | One valuation owner; do not default debt/cash or forward inputs. |
+| 30 Catalysts | Typed non-cancelled event and document | `RE:catalysts` | No | `PURE_CONSUMER` / medium | Consume canonical event assessment; not product strategy. |
+| 31 Comprehensive risk | Eligible upstream 1/2/19/23/29/46/55/30 | `SY:risk` | No; ordinal reconciliation | `JUSTIFIED_UNIQUE_CHECK` / low | Reconcile rule states; no calibrated probability claim. |
+| 32 Trading thesis | Rules 43/45/46 and context | `SY:trading_thesis` | No; synthesis | `JUSTIFIED_UNIQUE_CHECK` / low | Versioned, non-executable synthesis over normalized records. |
+| 33 Investment thesis | Rules 16/17/18/19/23 | `SY:investment_thesis` | No; synthesis | `JUSTIFIED_UNIQUE_CHECK` / low | Do not relabel as active long-term family strategy. |
+| 34 Bull/base/bear scenarios | Rules 31/32/33 | `SY:scenarios` | No; synthesis | `JUSTIFIED_UNIQUE_CHECK` / low | Preserve qualitative/ordinal scenario limits. |
+| 35 VWAP/value area | Named canonical VWAP and value-area stream | `SV:vwap`; audit names missing stream | Generic OHLCV VWAP returns while value area unavailable | `CONFLICTING_AUTHORITY` / high | Quarantine generic fallback; require named source semantics first. |
+| 36 OBV | Daily close/volume | `SV:obv` | No | `PURE_CONSUMER` / low | One OBV result. |
+| 37 Base pattern | Daily OHLCV/base structure | `VT:base_pattern` | No | `PURE_CONSUMER` / medium | Keep generic pattern separate from governed Pre-Breakout base. |
+| 38 Pullback quality | Base support and close | `VT:pullback→base_pattern` | Yes, repeats Rule 37 base | `DUPLICATE_COMPUTATION` / medium | Consume one base-pattern record. |
+| 39 RSI/ADX/ATR layer | Three technical indicators | `TE:rsi,adx,atr`; `EV:indicator_layer` | No formula; unique composite | `JUSTIFIED_UNIQUE_CHECK` / low | Reconcile three normalized indicator results. |
+| 40 Aggressive entry | Base resistance/support | `VT:aggressive_entry→base_pattern` | Yes, repeats Rule 37 base | `DUPLICATE_COMPUTATION` / medium | Consume strategy-scoped base; keep candidate non-executable. |
+| 41 Confirmation entry | Base resistance and completed close | `VT:confirmation_entry→base_pattern` | Yes | `DUPLICATE_COMPUTATION` / medium | Reuse base and close evidence under selected strategy policy. |
+| 42 Retest entry | Pullback/support | `VT:retest_entry→pullback→base_pattern` | Yes, nested repeat | `DUPLICATE_COMPUTATION` / medium | Reuse base and pullback evidence. |
+| 43 Structural stop | Pullback/support | `VT:structural_stop→pullback→base_pattern` | Yes, nested repeat | `DUPLICATE_COMPUTATION` / medium | One strategy-specific stop geometry owner. |
+| 44 T1/T2/Extended | Base height/resistance | `VT:targets→base_pattern` | Yes, repeats Rule 37 base | `DUPLICATE_COMPUTATION` / medium | One strategy-specific target geometry owner. |
+| 45 Risk/reward | Entry, stop and first target | `VT:risk_reward` | No | `PURE_CONSUMER` / low | Compute once from selected geometry; gates stay independent. |
+| 46 Thesis invalidation | Structural support/stop | `VT:invalidation→structural_stop→pullback→base_pattern` | Yes, nested repeat | `DUPLICATE_COMPUTATION` / high | Consume selected stop/support; keep fundamental invalidation separate. |
+| 47 Crowd sentiment | Typed crowd observations | `CR:sentiment` | No | `PURE_CONSUMER` / medium | One source-qualified sentiment metric. |
+| 48 Crowd positioning | Typed positioning observations | `CR:positioning` | No | `PURE_CONSUMER` / medium | Consume typed positioning; no inferred holdings. |
+| 49 Crowd confidence | Sample/reliability/dedup | `CR:confidence` | No | `PURE_CONSUMER` / low | One evidence-quality metric, separate from score. |
+| 50 Accumulation/distribution | Price, events, Wyckoff proxy | `LI:accumulation_distribution→events,wyckoff` | Yes; Wyckoff calls events again | `DUPLICATE_COMPUTATION` / high | Reuse normalized event/phase outputs; no institutional-flow claim. |
+| 51 Stop clusters | Pool map | `LI:stop_clusters→pools` | Yes, repeats Rule 8 pools | `DUPLICATE_COMPUTATION` / medium | Derive cluster interpretation from one pool record. |
+| 52 Liquidity events | Pool map plus current bar | `LI:events→pools` | Yes, repeats Rule 8 pools | `DUPLICATE_COMPUTATION` / medium | Reuse pool map and bar; absorption stays unavailable without book. |
+| 53 Bull trap | Pool map plus price/volume | `LI:bull_trap→pools` | Yes | `DUPLICATE_COMPUTATION` / medium | Reuse pool map and trap evidence. |
+| 54 Bear trap | Pool map plus price/volume | `LI:bear_trap→pools` | Yes | `DUPLICATE_COMPUTATION` / medium | Reuse pool map and trap evidence. |
+| 55 Crowd trap probability | Sentiment, confidence, divergence | `CR:trap_probability→sentiment,confidence,divergence` | Yes; divergence calls sentiment again | `DUPLICATE_COMPUTATION` / high | Consume Rules 47/49/56 evidence; retain uncalibrated label. |
+| 56 Price/crowd divergence | Sentiment and aligned price | `CR:divergence→sentiment` | Yes, repeats Rule 47 | `DUPLICATE_COMPUTATION` / medium | Consume one sentiment record plus price. |
+| 57 Post-news reaction | Typed event, known-at and completed sessions | `CR:post_news`; canonical event owner unresolved | Not provable against required canonical input | `UNKNOWN_NEEDS_EXTRACTION` / high | Block until canonical event/session join and polarity authority are mapped. |
+| 58 Volume climax | RVOL, range, close location | `LI:volume_climax`; overlap `SV:volume_rvol` | Yes, independent RVOL formula | `DUPLICATE_COMPUTATION` / high | One normalized RVOL definition, then climax-specific check. |
+| 59 Contrarian Ichimoku | Rules 47/12/13/14 | `CR:ichimoku_confluence` | No; cross-rule synthesis | `JUSTIFIED_UNIQUE_CHECK` / low | Require all upstream eligible, as closure repair does. |
+| 60 Contrarian quality | Rules 55/56/59/49 | `CR:quality` | No; cross-rule synthesis | `JUSTIFIED_UNIQUE_CHECK` / low | Reconcile normalized rule results. |
+| 61 Contrarian verdict | Rules 60/49 | `CR:verdict` | No; cross-rule synthesis | `JUSTIFIED_UNIQUE_CHECK` / low | Descriptive verdict only; no order authority. |
+
+Counts over **exactly 61 IDs**: `PURE_CONSUMER` **27**; `JUSTIFIED_UNIQUE_CHECK` **10**; `DUPLICATE_COMPUTATION` **22**; `CONFLICTING_AUTHORITY` **1**; `UNKNOWN_NEEDS_EXTRACTION` **1**.
+
+## Evidence and extraction implications
+
+1. `EV` mostly delegates to existing owners, but Rule 5 calculates a moving average in the evaluator despite `TE:sma`. This is the clearest independent formula duplication. Rule 58 has a second RVOL calculation in `LI` alongside `SV:volume_rvol`; confirm lookback/denominator semantics before extraction.
+2. Repeated helper calls create work and lineage duplication: `SV:sector_rotation→sector_health`, `SV:ichimoku` through Rules 12/13/14, `VT:base_pattern` through Rules 37–46, `LI:pools/events/wyckoff` through Rules 7/8/9/50–54, and `CR:sentiment` through Rules 47/55/56. They are **not** evidence of separately approved policies. A Lite normalized evidence registry should memoize a calculation keyed by canonical instrument, source IDs, as-of, timeframe, policy/version and parameters; downstream diagnostics should reference that result.
+3. The 61-rule closure says Rule 35 is `NAMED_VWAP_SEMANTICS_UNAVAILABLE`; `SV:vwap` computes a generic typical-price/volume result with `value_area=UNAVAILABLE`. The generic fallback cannot certify the named diagnostic. Rule 57 remains `EVENT_EVIDENCE_NOT_READY`; `CR:post_news` consumes older crowd-event polarity and bars after publication, without proving the canonical materiality, known-at and completed-session relation. Both require human source/semantic review, not silent reuse.
+4. `docs/architecture/CANONICAL_FINANCIAL_DIAGNOSTIC_INPUT_COMPARABILITY_CLOSURE_V1.md#Approved boundary decisions` identifies a lossy older financial adapter (basis/scale/period-start collapse and aliases). The newer certification path reuses the same immutable facts and is not a second source; it is partial (for example Rules 24/25 have comparable five-quarter evidence for a subset, not full organic or EBITDA readiness). Lite must preserve input comparability before any rule interpretation.
+5. The diagnostic coverage closure states `31` rules had source-authority-ready inputs and `30` partial at that dated audit; all 61 had evaluator wrappers. This audit's class counts describe **code paths**, not operational eligibility. No full 61-rule production materialization, historical-PIT certification, score/gate invocation, or strategy activation is inferred.
+
+The desired Lite boundary is: **one engine/tool calculates → one normalized evidence record → one or more diagnostics consume/reconcile**. This document inventories that migration decision; it does not create rules or change either implementation.

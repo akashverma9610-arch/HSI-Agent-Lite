@@ -1,0 +1,372 @@
+# Task #002 inventory metadata only. No thresholds, migrated rules, or activation.
+schema_version: 1
+inventory_only: true
+final_rules_present: false
+legacy_repository:
+  name: Hybrid-Stock-Intelligence
+  local_checkout_name: nse-stock-manager
+  baseline_sha: "f88b44d514fc9a2654040aa04e5350fc9e8660fe"
+  expected_ancestor_sha: "810590be84d483f02be0a6518cf84fba02d8bab9"
+  mode: READ_ONLY
+  scope: committed_source_and_documentation_only
+knowledge_domains:
+  - id: diagnostics_61
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [B, E]
+    sources:
+      - path: app/registry/canonical.py
+        symbol_or_heading: DIAGNOSTIC_RULES
+        authority: canonical_v1_registry
+      - path: docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_CLOSURE_V1.md
+        symbol_or_heading: Final readiness matrix
+        authority: accepted_closure_with_partial_coverage
+    target_destination: hsi_knowledge/diagnostics/
+    conflicts: [six_v2_semantics_inactive, named_vwap_and_event_input_gaps]
+  - id: decision_score_10
+    status: AUTHORITATIVE_ACCEPTED
+    roles: [A, B]
+    sources:
+      - path: app/scoring/engine.py
+        symbol_or_heading: COMPONENTS and build_scorecard
+        authority: core_v1_calculation
+      - path: docs/DECISION_SCORE.md
+        symbol_or_heading: Decision Score
+        authority: architecture_contract
+    target_destination: hsi_knowledge/diagnostics/
+    conflicts: []
+  - id: six_gates
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [D, A]
+    sources:
+      - path: app/gates/production_policy.py
+        symbol_or_heading: POLICY_ID
+        authority: active_v1_policy
+      - path: docs/architecture/EXECUTION_GATE_POLICY_V2_COMPOSITE_GOVERNANCE_APPROVAL_2.md
+        symbol_or_heading: Single successor
+        authority: v2_semantic_approval_not_active
+    target_destination: hsi_knowledge/gates/
+    conflicts: [v2_activation_blocked, source_readiness_partial]
+  - id: pre_breakout
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [C, D]
+    sources:
+      - path: app/strategies/pre_breakout/governance.py
+        symbol_or_heading: PreBreakoutPolicyGovernanceService
+        authority: governed_policy_selection
+      - path: docs/reports/P1_PROSPECTIVE_HISTORY_RUNTIME_CLOSURE_2026-09-22.md
+        symbol_or_heading: Source audit
+        authority: latest_partial_runtime_closure
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [complete_source_known_at_adapter_missing]
+  - id: tactical
+    status: PROPOSED_NOT_ACTIVE
+    roles: [C]
+    sources:
+      - path: docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md
+        symbol_or_heading: TACTICAL_BREAKOUT_PULLBACK
+        authority: approved_product_scope_not_strategy_policy
+      - path: app/analysis/valuation_trade.py
+        symbol_or_heading: base_pattern and pullback
+        authority: reusable_core_technical_calculation
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [tactical_policy_unavailable]
+  - id: positional
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [C]
+    sources:
+      - path: docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md
+        symbol_or_heading: POSITIONAL_SETUP
+        authority: approved_product_scope_not_strategy_policy
+      - path: app/strategies/pre_breakout/setup_assessment.py
+        symbol_or_heading: setup assessment
+        authority: implemented_pre_breakout_instance
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [other_positional_policies_unavailable]
+  - id: long_term
+    status: PROPOSED_NOT_ACTIVE
+    roles: [C, B]
+    sources:
+      - path: docs/architecture/POST_V1_LONG_TERM_THESIS_FAMILY_POLICY_PROPOSAL.md
+        symbol_or_heading: Existing Core V1 reuse and limits
+        authority: proposed_family_policy
+      - path: docs/architecture/POST_V1_LONG_TERM_RESEARCH_SHADOW_V1.md
+        symbol_or_heading: Status
+        authority: research_shadow_not_product_active
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [family_policy_and_valuation_unapproved]
+  - id: event_catalyst
+    status: PROPOSED_NOT_ACTIVE
+    roles: [C, D]
+    sources:
+      - path: docs/architecture/CATALYST_EVENT_INTELLIGENCE_OPERATIONAL_CLOSURE_V1.md
+        symbol_or_heading: Inventory and readiness
+        authority: evidence_path_operational_with_gaps
+      - path: docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md
+        symbol_or_heading: Data-readiness matrix
+        authority: calibration_insufficient_receipt
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [operational_parameters_unapproved, verified_exposure_sparse]
+  - id: market_red_resilience
+    status: PROPOSED_NOT_ACTIVE
+    roles: [C]
+    sources:
+      - path: docs/architecture/POST_V1_BATCH_1_EVENT_CATALYST_AND_RESILIENCE_POLICY_PROPOSAL.md
+        symbol_or_heading: MARKET_RED_RELATIVE_RESILIENCE
+        authority: evidence_boundaries_only
+      - path: docs/architecture/POST_V1_BATCH_1_HISTORICAL_CALIBRATION_RESEARCH.md
+        symbol_or_heading: Data-readiness matrix
+        authority: calibration_insufficient_receipt
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [historical_breadth_and_persistence_unavailable]
+  - id: market_extremes
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [A, D]
+    sources:
+      - path: docs/MARKET_EXTREMES_ENGINE.md
+        symbol_or_heading: Two independent tails
+        authority: core_v1_contract
+      - path: docs/architecture/POST_V1_MARKET_EXTREMES_ASSURANCE_PROJECTION.md
+        symbol_or_heading: Status
+        authority: future_projection_not_active
+    target_destination: hsi_knowledge/governance/
+    conflicts: [assurance_projection_not_active]
+  - id: macro_news
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [B, D]
+    sources:
+      - path: docs/architecture/economic_news_intelligence.md
+        symbol_or_heading: Economic and News Intelligence
+        authority: context_architecture
+      - path: docs/architecture/CATALYST_EVENT_INTELLIGENCE_OPERATIONAL_CLOSURE_V1.md
+        symbol_or_heading: Inventory and readiness
+        authority: partial_operational_closure
+    target_destination: hsi_knowledge/governance/
+    conflicts: [source_and_transmission_coverage_partial]
+  - id: liquidity_exitability
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [A, C]
+    sources:
+      - path: app/analysis/liquidity.py
+        symbol_or_heading: pools and events
+        authority: core_proxy_calculation
+      - path: docs/LIQUIDITY_SMC.md
+        symbol_or_heading: Liquidity and SMC proxies
+        authority: semantic_limit_contract
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [universal_exitability_policy_not_found]
+  - id: entry
+    status: CONFLICT_REVIEW_REQUIRED
+    roles: [A, C, G]
+    sources:
+      - path: app/analysis/valuation_trade.py
+        symbol_or_heading: aggressive_entry confirmation_entry retest_entry
+        authority: generic_v1_diagnostic_geometry
+      - path: app/strategies/pre_breakout/policy.py
+        symbol_or_heading: EntryReferenceMethod
+        authority: strategy_specific_governed_policy
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [generic_vs_pre_breakout_entry_authority]
+  - id: stop_invalidation
+    status: CONFLICT_REVIEW_REQUIRED
+    roles: [A, C, G]
+    sources:
+      - path: app/analysis/valuation_trade.py
+        symbol_or_heading: structural_stop and invalidation
+        authority: generic_v1_price_structure
+      - path: docs/architecture/POST_V1_LONG_TERM_THESIS_FAMILY_POLICY_PROPOSAL.md
+        symbol_or_heading: Risks and invalidation
+        authority: proposed_non_price_scope
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [generic_vs_strategy_specific_stop, non_price_invalidation_unapproved]
+  - id: targets
+    status: CONFLICT_REVIEW_REQUIRED
+    roles: [A, C, G]
+    sources:
+      - path: app/analysis/valuation_trade.py
+        symbol_or_heading: targets
+        authority: generic_v1_diagnostic_geometry
+      - path: app/strategies/pre_breakout/policy.py
+        symbol_or_heading: TargetSupportBindingStatus
+        authority: strategy_specific_governed_policy
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [generic_vs_pre_breakout_target_authority]
+  - id: trim_profit
+    status: PROPOSED_NOT_ACTIVE
+    roles: [D, C]
+    sources:
+      - path: docs/architecture/PORTFOLIO_SELL_SIDE_DECISION_POLICY_V1_APPROVAL.md
+        symbol_or_heading: Deferred policy gaps
+        authority: approved_but_not_selected_no_trim
+      - path: docs/architecture/POST_V1_SELL_PROFIT_ROTATION_POLICY_PROPOSAL.md
+        symbol_or_heading: Scope and reuse
+        authority: future_product_policy_unapproved
+    target_destination: hsi_knowledge/portfolio/
+    conflicts: [trim_trigger_quantity_tax_reentry_unapproved]
+  - id: portfolio_health
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [A, B]
+    sources:
+      - path: docs/PORTFOLIO_MODEL.md
+        symbol_or_heading: Portfolio State Model
+        authority: core_immutable_state_contract
+      - path: app/portfolio/holding_intelligence.py
+        symbol_or_heading: compose_holding_intelligence
+        authority: core_read_only_composition
+    target_destination: hsi_knowledge/portfolio/
+    conflicts: [sell_side_action_policy_not_active]
+  - id: portfolio_rotation
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [A, C]
+    sources:
+      - path: app/rotation/engine.py
+        symbol_or_heading: CapitalRotationEngine.evaluate
+        authority: core_analytical_comparison
+      - path: docs/architecture/GATE1_ROTATION_RESEARCH_HORIZON_AUTHORITY_POLICY_V1.md
+        symbol_or_heading: Remaining
+        authority: open_research_horizon_blockers
+    target_destination: hsi_knowledge/portfolio/
+    conflicts: [gate1_v2_horizon_and_parcel_unready, fast_rotation_not_active]
+  - id: data_reliability
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [D, A]
+    sources:
+      - path: docs/DATA_FRESHNESS.md
+        symbol_or_heading: Market-data quality freshness and provenance
+        authority: core_source_contract
+      - path: docs/architecture/PILOT_SOURCE_CURRENT_EOD_AND_HANDOFF_V1.md
+        symbol_or_heading: Current EOD versus frozen history
+        authority: latest_partial_source_handoff
+    target_destination: hsi_knowledge/governance/
+    conflicts: [source_publication_vs_receipt, bounded_current_eod_partial]
+  - id: source_hierarchy
+    status: AUTHORITATIVE_ACCEPTED
+    roles: [D]
+    sources:
+      - path: docs/SOURCE_RELIABILITY.md
+        symbol_or_heading: Source reliability
+        authority: core_tier_hierarchy
+      - path: docs/CLAIM_MODEL.md
+        symbol_or_heading: Claim Model
+        authority: claim_provenance_contract
+    target_destination: hsi_knowledge/governance/
+    conflicts: []
+  - id: evidence_discipline
+    status: AUTHORITATIVE_ACCEPTED
+    roles: [D]
+    sources:
+      - path: docs/architecture/brain_contract.md
+        symbol_or_heading: Brain Contract
+        authority: core_evidence_discipline
+      - path: app/domain/models.py
+        symbol_or_heading: Evidence
+        authority: typed_core_evidence
+    target_destination: hsi_knowledge/governance/
+    conflicts: []
+  - id: historical_pit
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [D, A]
+    sources:
+      - path: app/historical/guard.py
+        symbol_or_heading: historical guard
+        authority: core_pit_guard
+      - path: docs/reports/P1_PROSPECTIVE_HISTORY_RUNTIME_CLOSURE_2026-09-22.md
+        symbol_or_heading: Source audit
+        authority: latest_partial_p1_closure
+    target_destination: hsi_knowledge/governance/
+    conflicts: [strict_historical_rule_readiness_zero, p1_dependency_known_at_missing]
+  - id: model_governance
+    status: AUTHORITATIVE_ACCEPTED
+    roles: [D]
+    sources:
+      - path: docs/architecture/model_governance.md
+        symbol_or_heading: Model Governance and Drift
+        authority: core_human_review_chain
+      - path: app/governance/drift.py
+        symbol_or_heading: drift facade
+        authority: observation_only_implementation
+    target_destination: hsi_knowledge/governance/
+    conflicts: []
+  - id: prospective_validation
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [D]
+    sources:
+      - path: docs/OUT_OF_SAMPLE_VALIDATION.md
+        symbol_or_heading: Out-of-Sample Validation
+        authority: core_oos_contract
+      - path: docs/WALK_FORWARD_VALIDATION.md
+        symbol_or_heading: Walk-Forward Validation
+        authority: core_walk_forward_contract
+    target_destination: hsi_knowledge/governance/
+    conflicts: [shadow_evidence_not_activation]
+  - id: signal_watch
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [D, B]
+    sources:
+      - path: docs/architecture/POST_V1_HSI_SIGNAL_P1_ACTIVATION_PROPOSAL.md
+        symbol_or_heading: Status
+        authority: internal_watch_only_projection
+      - path: docs/architecture/SIGNAL_LIFECYCLE_P1_RUNTIME_BINDING_V1.md
+        symbol_or_heading: Strict source trust boundary
+        authority: isolated_not_production_wired
+    target_destination: hsi_knowledge/governance/
+    conflicts: [p1_complete_source_closure_missing]
+  - id: strategy_registry
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [D, C]
+    sources:
+      - path: app/intelligence/hsi_signal_strategy_registry.py
+        symbol_or_heading: HSI_SIGNAL_STRATEGY_REGISTRY_ID
+        authority: read_only_policy_provenance
+      - path: docs/architecture/POST_V1_STRATEGY_AND_SIGNAL_WINDOW_CATALOGUE.md
+        symbol_or_heading: Capability-status matrix
+        authority: future_product_scope_not_activation
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [catalogue_not_active_strategy_policy]
+  - id: market_regime
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [A, B]
+    sources:
+      - path: app/analysis/market_regime.py
+        symbol_or_heading: MarketRegimeEngine.classify
+        authority: core_deterministic_engine
+      - path: docs/MARKET_REGIME.md
+        symbol_or_heading: Limitations
+        authority: calibration_limit_contract
+    target_destination: hsi_knowledge/diagnostics/
+    conflicts: [mock_thresholds_not_production_calibrated]
+  - id: sector_context
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [A, B]
+    sources:
+      - path: app/analysis/sector_volume_ichimoku.py
+        symbol_or_heading: sector_health and sector_rotation
+        authority: core_sector_proxy_calculation
+      - path: docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_CLOSURE_V1.md
+        symbol_or_heading: Measured security and technical coverage
+        authority: dated_partial_coverage_audit
+    target_destination: hsi_knowledge/diagnostics/
+    conflicts: [sector_history_partial, rotation_not_fund_flow]
+  - id: relative_strength
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [A, B]
+    sources:
+      - path: app/analysis/relative_strength.py
+        symbol_or_heading: RelativeStrengthEngine.calculate
+        authority: core_relative_engine
+      - path: docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_CLOSURE_V1.md
+        symbol_or_heading: Rule 6
+        authority: dated_peer_coverage_limit
+    target_destination: hsi_knowledge/diagnostics/
+    conflicts: [authoritative_peer_cohort_unavailable]
+  - id: risk_reward
+    status: LATEST_ACCEPTED_WITH_LIMITATIONS
+    roles: [A, C]
+    sources:
+      - path: app/analysis/valuation_trade.py
+        symbol_or_heading: risk_reward
+        authority: generic_structural_geometry
+      - path: docs/CAPITAL_ROTATION.md
+        symbol_or_heading: Capital Rotation
+        authority: governed_comparison_context
+    target_destination: hsi_knowledge/strategies/
+    conflicts: [strategy_specific_geometry_and_gate_admission_required]
