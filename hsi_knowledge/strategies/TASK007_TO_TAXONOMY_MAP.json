@@ -1,0 +1,90 @@
+{
+  "version": "0.1.0",
+  "status": "DESIGN_ONLY_NOT_ACTIVE",
+  "prior_registry": "hsi_knowledge/strategies/registry.json",
+  "taxonomy_directory": "hsi_knowledge/strategies/taxonomy",
+  "authority_transfer_default": false,
+  "entries": [
+    {
+      "prior_strategy_id": "PRE_BREAKOUT",
+      "new_archetype_ids": [
+        "PRE_BREAKOUT_ACCUMULATION"
+      ],
+      "mapping_type": "PARTIAL",
+      "prior_authority_transfers": false,
+      "limitations": [
+        "Legacy selected Pre-Breakout compression/setup scope is narrower than founder accumulation archetype.",
+        "P1 remains Watch-only, source known-at closure incomplete; exact policy selection is required."
+      ]
+    },
+    {
+      "prior_strategy_id": "TACTICAL",
+      "new_archetype_ids": [
+        "CONFIRMED_BREAKOUT",
+        "BREAKOUT_RETEST"
+      ],
+      "mapping_type": "UMBRELLA",
+      "prior_authority_transfers": false,
+      "limitations": [
+        "No approved Tactical product policy; these are design candidates only.",
+        "No Pre-Breakout geometry inheritance."
+      ]
+    },
+    {
+      "prior_strategy_id": "POSITIONAL",
+      "new_archetype_ids": [
+        "PRE_BREAKOUT_ACCUMULATION",
+        "MID_TERM_COMPOUNDER",
+        "TURNAROUND_RECOVERY"
+      ],
+      "mapping_type": "UMBRELLA",
+      "prior_authority_transfers": false,
+      "limitations": [
+        "Positional is a context family, not an archetype or eligibility policy.",
+        "Pre-Breakout is only one narrower governed instance."
+      ]
+    },
+    {
+      "prior_strategy_id": "LONG_TERM",
+      "new_archetype_ids": [
+        "FUNDAMENTAL_INFLECTION",
+        "LONG_TERM_STRUCTURAL_COMPOUNDER",
+        "QARP",
+        "GARP",
+        "EXPORT_SCALING",
+        "MARKET_SHARE_GAINER",
+        "EARLY_EMERGING_LEADER_SMALL_MIDCAP"
+      ],
+      "mapping_type": "RESEARCH_CONTEXT",
+      "prior_authority_transfers": false,
+      "limitations": [
+        "Task #007 Long-Term subfamilies are research-only and not product strategies.",
+        "No universal long-term geometry, valuation, horizon or portfolio policy."
+      ]
+    },
+    {
+      "prior_strategy_id": "EVENT_CATALYST",
+      "new_archetype_ids": [
+        "EVENT_CATALYST"
+      ],
+      "mapping_type": "EXACT",
+      "prior_authority_transfers": false,
+      "limitations": [
+        "Exact conceptual name only; EC evidence boundaries are not active product policy.",
+        "D57 remains quarantined; materiality/expiry/reaction calibration unresolved."
+      ]
+    },
+    {
+      "prior_strategy_id": "MARKET_RED_RESILIENCE",
+      "new_archetype_ids": [
+        "MARKET_RED_RESILIENCE"
+      ],
+      "mapping_type": "EXACT",
+      "prior_authority_transfers": false,
+      "limitations": [
+        "Exact conceptual name only; MR evidence boundaries are not active product policy.",
+        "No calibrated weak-market/persistence/exitability parameters or sponsorship inference."
+      ]
+    }
+  ]
+}

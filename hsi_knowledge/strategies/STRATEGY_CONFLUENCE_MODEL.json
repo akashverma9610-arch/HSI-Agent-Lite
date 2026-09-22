@@ -1,0 +1,73 @@
+{
+  "version": "0.1.0",
+  "status": "SEMANTIC_CONTRACT_ONLY_NOT_ACTIVE",
+  "source": "TASK_008_USER_BRIEF#STRATEGY_CONFLUENCE",
+  "eligible_match_runtime": "NOT_IMPLEMENTED_IN_LITE",
+  "numeric_score_runtime": "NOT_IMPLEMENTED_IN_LITE",
+  "numeric_activation_threshold": null,
+  "numeric_strategy_threshold": null,
+  "universal_strategy_score": null,
+  "states": [
+    {
+      "state": "NO_CONFLUENCE",
+      "meaning": "Complete eligible evaluation set contains no matched archetype; missing coverage cannot be called zero."
+    },
+    {
+      "state": "SINGLE_STRATEGY",
+      "meaning": "One eligible archetype match with complete lineage."
+    },
+    {
+      "state": "MULTI_STRATEGY_SAME_FAMILY",
+      "meaning": "Several matches share a primary family; not counted as independent by number."
+    },
+    {
+      "state": "CROSS_FAMILY_CONFLUENCE",
+      "meaning": "Matches span primary families and overlap metadata permits a cross-family interpretation; not an action."
+    },
+    {
+      "state": "HIGH_DIVERSITY_CONFLUENCE",
+      "meaning": "Future higher-diversity designation requires separately calibrated independence and coverage rules; no current threshold or classification."
+    },
+    {
+      "state": "UNRESOLVED",
+      "meaning": "Missing eligibility, incomplete lineage, duplicate event, unknown overlap, or incompatible PIT state prevents a supported confluence classification."
+    }
+  ],
+  "required_future_inputs": [
+    "approved archetype versions and eligibility results",
+    "exact evidence/diagnostic/event/source identity and PIT lineage",
+    "overlap category from rule-based overlap model",
+    "primary and secondary family tags",
+    "global score as separate context",
+    "independent six-gate results for any later actionability"
+  ],
+  "global_hsi_score": {
+    "policy_id": "decision-score-v1",
+    "scale": "0–10",
+    "role": "BROAD_ANALYTICAL_COMPRESSION",
+    "replaced_by_strategy_score": false
+  },
+  "archetype_specific_score": {
+    "status": "FUTURE_NOT_IMPLEMENTED",
+    "role": "OPPORTUNITY_TYPE_FIT",
+    "numeric_policy": null
+  },
+  "confluence_role": "DESCRIPTIVE_SYNTHESIS_OF_DISTINCT_STRATEGY_FITS_WITH_OVERLAP_GUARD",
+  "count_above_threshold_formula_allowed": false,
+  "naive_match_count_as_independent_allowed": false,
+  "gate_fail_override_allowed": false,
+  "broker_order_authority": false,
+  "portfolio_mutation_authority": false,
+  "unknown_strategy_result": "STRATEGY_UNAVAILABLE",
+  "unknown_overlap_result": "UNRESOLVED",
+  "provenance": [
+    "hsi_knowledge/scoring/decision_score_v1.json",
+    "hsi_knowledge/gates/index.json",
+    "hsi_knowledge/strategies/registry.json",
+    "hsi_knowledge/governance/strategy_registry.json",
+    "hsi_knowledge/governance/evidence_discipline.json",
+    "hsi_knowledge/governance/historical_pit.json",
+    "hsi_knowledge/governance/prospective_validation.json",
+    "TASK_008_USER_BRIEF#STRATEGY_CONFLUENCE"
+  ]
+}

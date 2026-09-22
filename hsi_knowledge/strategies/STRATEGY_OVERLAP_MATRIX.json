@@ -1,0 +1,72 @@
+{
+  "version": "0.1.0",
+  "status": "SEMANTIC_RULES_ONLY_NOT_ACTIVE",
+  "archetype_count": 35,
+  "pair_population": "RULE_BASED_NOT_ENUMERATED_35x35",
+  "categories": [
+    "INDEPENDENT",
+    "PARTIALLY_OVERLAPPING",
+    "HIGHLY_OVERLAPPING",
+    "SAME_FAMILY_CORRELATED",
+    "UNRESOLVED"
+  ],
+  "required_pair_metadata": [
+    "primary_family",
+    "normalized_evidence_identity_set",
+    "diagnostic_identity_set",
+    "source_lineage_set",
+    "event_identity_set",
+    "selected_policy_fingerprint_if_any",
+    "PIT_cutoff_and_completeness"
+  ],
+  "source_lineage_scope": "UNDERLYING_MARKET_FINANCIAL_EVENT_EVIDENCE_ONLY_EXCLUDE_SHARED_TAXONOMY_DESIGN_PROVENANCE",
+  "rules_in_precedence_order": [
+    {
+      "rule_id": "R1_IDENTITY",
+      "if": "same canonical archetype ID",
+      "category": "HIGHLY_OVERLAPPING",
+      "independent_confirmation_allowed": false
+    },
+    {
+      "rule_id": "R2_SHARED_EVENT_OR_POLICY",
+      "if": "same exact event identity or same selected policy fingerprint",
+      "category": "HIGHLY_OVERLAPPING",
+      "independent_confirmation_allowed": false
+    },
+    {
+      "rule_id": "R3_IDENTICAL_DEPENDENCY_LINEAGE",
+      "if": "complete identical evidence and diagnostic identity sets with common source lineage",
+      "category": "HIGHLY_OVERLAPPING",
+      "independent_confirmation_allowed": false
+    },
+    {
+      "rule_id": "R4_SAME_PRIMARY_FAMILY",
+      "if": "same primary family after R1-R3",
+      "category": "SAME_FAMILY_CORRELATED",
+      "independent_confirmation_allowed": false
+    },
+    {
+      "rule_id": "R5_CROSS_FAMILY_SHARED_INPUT",
+      "if": "different primary families with any shared event, normalized evidence, diagnostic, or source lineage",
+      "category": "PARTIALLY_OVERLAPPING",
+      "independent_confirmation_allowed": false
+    },
+    {
+      "rule_id": "R6_CROSS_FAMILY_DISTINCT",
+      "if": "different primary families and complete disjoint event, evidence, diagnostic and source lineage sets at compatible PIT cutoffs",
+      "category": "INDEPENDENT",
+      "independent_confirmation_allowed": true
+    },
+    {
+      "rule_id": "R7_INCOMPLETE_METADATA",
+      "if": "none of R1-R6 can be established because lineage/identity/completeness is missing or conflicting",
+      "category": "UNRESOLVED",
+      "independent_confirmation_allowed": false
+    }
+  ],
+  "secondary_family_tags_are_not_independence_proof": true,
+  "no_naive_independent_confirmation_count": true,
+  "numeric_overlap_threshold": null,
+  "unknown_or_conflicting_overlap_behavior": "UNRESOLVED",
+  "notes": "An INDEPENDENT label is a future evidence-lineage classification, not a numeric confluence award or trading signal."
+}
