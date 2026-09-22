@@ -1,0 +1,85 @@
+{
+  "id": "D57",
+  "name": "Post-News Price Reaction — Absorption vs Sell-the-News",
+  "artifact_type": "diagnostic",
+  "version": "1.0.0",
+  "status": "QUARANTINED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/registry/canonical.py",
+      "symbol_or_heading": "DIAGNOSTIC_RULES",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/diagnostics/evaluators.py",
+      "symbol_or_heading": "DeterministicDiagnosticEvaluators.post_news_reaction",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json",
+      "symbol_or_heading": "records[rule_id=57]",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "AUDIT"
+    }
+  ],
+  "authority_status": "CONFLICT_REVIEW_REQUIRED",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "post_news_reaction"
+  ],
+  "known_limitations": [
+    "No same-date/post-news-price inference",
+    "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+    "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here.",
+    "Canonical event identity, materiality, polarity, known-at and completed-session relation are unresolved."
+  ],
+  "conflicts": [
+    {
+      "code": "EVENT_EVIDENCE_NOT_READY",
+      "description": "Canonical event known-at, polarity and completed-session authority unresolved.",
+      "resolution_status": "UNRESOLVED"
+    }
+  ],
+  "notes": "Legacy V1 diagnostic-registry-v1. Audited metric: Typed event, known-at and completed sessions. Coverage input: Canonical event materiality/known-at/completed-session relation. Legacy audit class: UNKNOWN_NEEDS_EXTRACTION. Lite interpretation: Block until canonical event/session join and polarity authority are mapped. Legacy evaluation mode: HYBRID. Legacy operational state: NOT_READY. No thresholds, direct score, gates, strategy or order authority migrated.",
+  "deterministic_computation": false,
+  "details": {
+    "diagnostic_id": "D57",
+    "canonical_name": "Post-News Price Reaction — Absorption vs Sell-the-News",
+    "version": "1.0.0",
+    "authority": "CONFLICT_REVIEW_REQUIRED",
+    "lifecycle": "QUARANTINED",
+    "evidence_dependencies": [
+      "post_news_reaction"
+    ],
+    "evaluation_type": "UNRESOLVED",
+    "result_semantics": {
+      "PASS": "Not evaluable: Post-news reaction authority unresolved; no PASS may be emitted.",
+      "CAUTION": "Not evaluable; no provisional CAUTION or legacy NEUTRAL promotion.",
+      "FAIL": "Not evaluable: unresolved input semantics do not establish a governed FAIL.",
+      "UNKNOWN": "Canonical event, known-at and completed-session evidence is unresolved or unavailable; remain UNKNOWN, never PASS."
+    },
+    "criticality": "NON_CRITICAL",
+    "score_relationship": "Legacy coverage audit references optional:liquidity_smc_traps; no Lite score computed.",
+    "gate_relationship": "Six gates are independent governed consumers; this diagnostic cannot override a gate or authorize execution.",
+    "strategy_relationship": "May inform a separately approved future strategy; this diagnostic alone never creates setup, trade, BUY or SELL.",
+    "provenance": [
+      "app/registry/canonical.py#DIAGNOSTIC_RULES",
+      "app/diagnostics/evaluators.py#DeterministicDiagnosticEvaluators.post_news_reaction",
+      "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json#records[rule_id=57]"
+    ],
+    "limitations": [
+      "No same-date/post-news-price inference",
+      "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+      "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here.",
+      "Canonical event identity, materiality, polarity, known-at and completed-session relation are unresolved."
+    ]
+  }
+}

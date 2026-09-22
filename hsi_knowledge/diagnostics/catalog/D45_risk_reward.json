@@ -1,0 +1,83 @@
+{
+  "id": "D45",
+  "name": "Risk/Reward Calculation — minimum structural R:R normally 1:2",
+  "artifact_type": "diagnostic",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/registry/canonical.py",
+      "symbol_or_heading": "DIAGNOSTIC_RULES",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/diagnostics/evaluators.py",
+      "symbol_or_heading": "DeterministicDiagnosticEvaluators.risk_reward",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json",
+      "symbol_or_heading": "records[rule_id=45]",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "AUDIT"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "entry_geometry",
+    "stop_geometry",
+    "target_geometry",
+    "risk_reward"
+  ],
+  "known_limitations": [
+    "Input readiness does not guarantee valid reward/risk geometry",
+    "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+    "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here."
+  ],
+  "conflicts": [],
+  "notes": "Legacy V1 diagnostic-registry-v1. Audited metric: Entry, stop and first target. Coverage input: Existing Rule40/43/44 geometry. Legacy audit class: PURE_CONSUMER. Lite interpretation: Compute once from selected geometry; gates stay independent. Legacy evaluation mode: DETERMINISTIC. Legacy operational state: OPERATIONAL_CURRENT_DESCRIPTIVE. No thresholds, direct score, gates, strategy or order authority migrated.",
+  "deterministic_computation": false,
+  "details": {
+    "diagnostic_id": "D45",
+    "canonical_name": "Risk/Reward Calculation — minimum structural R:R normally 1:2",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "evidence_dependencies": [
+      "entry_geometry",
+      "stop_geometry",
+      "target_geometry",
+      "risk_reward"
+    ],
+    "evaluation_type": "PURE_CONSUMER",
+    "result_semantics": {
+      "PASS": "Only an accepted V1 result confirming Entry, stop and first target from certified inputs may be PASS; no threshold is defined by this artifact.",
+      "CAUTION": "No direct V1 CAUTION status exists; a future reviewed mapping of V1 NEUTRAL or mixed Risk/reward evidence is required. Missing input is not CAUTION.",
+      "FAIL": "Only an accepted V1 result finding adverse Entry, stop and first target from certified inputs may be FAIL; no threshold is defined by this artifact.",
+      "UNKNOWN": "V1 INSUFFICIENT_DATA or UNVERIFIED for missing, stale, noncomparable, conflicting or unsupported Entry, stop and first target; never PASS."
+    },
+    "criticality": "NON_CRITICAL",
+    "score_relationship": "Legacy coverage audit references mandatory:valuation_risk_reward; no Lite score computed.",
+    "gate_relationship": "Six gates are independent governed consumers; this diagnostic cannot override a gate or authorize execution.",
+    "strategy_relationship": "May inform a separately approved future strategy; this diagnostic alone never creates setup, trade, BUY or SELL.",
+    "provenance": [
+      "app/registry/canonical.py#DIAGNOSTIC_RULES",
+      "app/diagnostics/evaluators.py#DeterministicDiagnosticEvaluators.risk_reward",
+      "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json#records[rule_id=45]"
+    ],
+    "limitations": [
+      "Input readiness does not guarantee valid reward/risk geometry",
+      "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+      "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here."
+    ]
+  }
+}

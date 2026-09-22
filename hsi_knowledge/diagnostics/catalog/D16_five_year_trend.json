@@ -1,0 +1,90 @@
+{
+  "id": "D16",
+  "name": "Five-Year Financial Trend — Revenue, EBITDA, PAT, EPS CAGR",
+  "artifact_type": "diagnostic",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/registry/canonical.py",
+      "symbol_or_heading": "DIAGNOSTIC_RULES",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/diagnostics/evaluators.py",
+      "symbol_or_heading": "DeterministicDiagnosticEvaluators.financial_trend",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json",
+      "symbol_or_heading": "records[rule_id=16]",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "AUDIT"
+    },
+    {
+      "path": "docs/architecture/FUNDAMENTAL_DIAGNOSTIC_REGISTRY_V2_GOVERNANCE_APPROVAL.md",
+      "symbol_or_heading": "Authority, identity and scope",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "APPROVAL"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "financial_growth_series",
+    "financial_comparability"
+  ],
+  "known_limitations": [
+    "Calendar continuity, basis and units must be comparable",
+    "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+    "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here.",
+    "Financial comparability required: preserve period basis, scale, denominator and source; missing CAPEX or other inputs are not zero/default.",
+    "Governance-approved V2 successor semantics are NOT_ACTIVE; this artifact retains V1 meaning."
+  ],
+  "conflicts": [],
+  "notes": "Legacy V1 diagnostic-registry-v1. Audited metric: Comparable annual revenue/EBITDA/PAT/EPS. Coverage input: 6 annual revenue/EBITDA/PAT/EPS points for 5-year CAGR. Legacy audit class: PURE_CONSUMER. Lite interpretation: Financial engine owns series/math; V2 six-rule change remains inactive. Legacy evaluation mode: DETERMINISTIC. Legacy operational state: PARTIAL. No thresholds, direct score, gates, strategy or order authority migrated.",
+  "deterministic_computation": false,
+  "details": {
+    "diagnostic_id": "D16",
+    "canonical_name": "Five-Year Financial Trend — Revenue, EBITDA, PAT, EPS CAGR",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "evidence_dependencies": [
+      "financial_growth_series",
+      "financial_comparability"
+    ],
+    "evaluation_type": "PURE_CONSUMER",
+    "result_semantics": {
+      "PASS": "Only an accepted V1 result confirming Comparable annual revenue/EBITDA/PAT/EPS from certified inputs may be PASS; no threshold is defined by this artifact.",
+      "CAUTION": "No direct V1 CAUTION status exists; a future reviewed mapping of V1 NEUTRAL or mixed Five-year trend evidence is required. Missing input is not CAUTION.",
+      "FAIL": "Only an accepted V1 result finding adverse Comparable annual revenue/EBITDA/PAT/EPS from certified inputs may be FAIL; no threshold is defined by this artifact.",
+      "UNKNOWN": "V1 INSUFFICIENT_DATA or UNVERIFIED for missing, stale, noncomparable, conflicting or unsupported Comparable annual revenue/EBITDA/PAT/EPS; never PASS."
+    },
+    "criticality": "NON_CRITICAL",
+    "score_relationship": "Legacy coverage audit references optional:earnings_acceleration; no Lite score computed.",
+    "gate_relationship": "Six gates are independent governed consumers; this diagnostic cannot override a gate or authorize execution.",
+    "strategy_relationship": "May inform a separately approved future strategy; this diagnostic alone never creates setup, trade, BUY or SELL.",
+    "provenance": [
+      "app/registry/canonical.py#DIAGNOSTIC_RULES",
+      "app/diagnostics/evaluators.py#DeterministicDiagnosticEvaluators.financial_trend",
+      "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json#records[rule_id=16]",
+      "docs/architecture/FUNDAMENTAL_DIAGNOSTIC_REGISTRY_V2_GOVERNANCE_APPROVAL.md#Authority, identity and scope"
+    ],
+    "limitations": [
+      "Calendar continuity, basis and units must be comparable",
+      "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+      "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here.",
+      "Financial comparability required: preserve period basis, scale, denominator and source; missing CAPEX or other inputs are not zero/default.",
+      "Governance-approved V2 successor semantics are NOT_ACTIVE; this artifact retains V1 meaning."
+    ]
+  }
+}

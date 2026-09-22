@@ -1,0 +1,81 @@
+{
+  "id": "D46",
+  "name": "Exact Thesis Invalidation Conditions",
+  "artifact_type": "diagnostic",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/registry/canonical.py",
+      "symbol_or_heading": "DIAGNOSTIC_RULES",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/diagnostics/evaluators.py",
+      "symbol_or_heading": "DeterministicDiagnosticEvaluators.thesis_invalidation",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json",
+      "symbol_or_heading": "records[rule_id=46]",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "AUDIT"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "base_pattern",
+    "stop_geometry"
+  ],
+  "known_limitations": [
+    "Descriptive invalidation; no automatic sale",
+    "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+    "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here.",
+    "Legacy DUPLICATE_COMPUTATION: Yes, nested repeat. Future Lite consumes normalized base_pattern, stop_geometry; the repeated upstream calculation is removed from diagnostic responsibility."
+  ],
+  "conflicts": [],
+  "notes": "Legacy V1 diagnostic-registry-v1. Audited metric: Structural support/stop. Coverage input: Existing structural/volume invalidation. Legacy audit class: DUPLICATE_COMPUTATION. Lite interpretation: Consume selected stop/support; keep fundamental invalidation separate. Legacy evaluation mode: INTERPRETIVE. Legacy operational state: OPERATIONAL_CURRENT_DESCRIPTIVE. No thresholds, direct score, gates, strategy or order authority migrated.",
+  "deterministic_computation": false,
+  "details": {
+    "diagnostic_id": "D46",
+    "canonical_name": "Exact Thesis Invalidation Conditions",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "evidence_dependencies": [
+      "base_pattern",
+      "stop_geometry"
+    ],
+    "evaluation_type": "PURE_CONSUMER",
+    "result_semantics": {
+      "PASS": "Only an accepted V1 result confirming Structural support/stop from certified inputs may be PASS; no threshold is defined by this artifact.",
+      "CAUTION": "No direct V1 CAUTION status exists; a future reviewed mapping of V1 NEUTRAL or mixed Thesis invalidation evidence is required. Missing input is not CAUTION.",
+      "FAIL": "Only an accepted V1 result finding adverse Structural support/stop from certified inputs may be FAIL; no threshold is defined by this artifact.",
+      "UNKNOWN": "V1 INSUFFICIENT_DATA or UNVERIFIED for missing, stale, noncomparable, conflicting or unsupported Structural support/stop; never PASS."
+    },
+    "criticality": "NON_CRITICAL",
+    "score_relationship": "Legacy coverage audit references optional:price_structure; no Lite score computed.",
+    "gate_relationship": "Six gates are independent governed consumers; this diagnostic cannot override a gate or authorize execution.",
+    "strategy_relationship": "May inform a separately approved future strategy; this diagnostic alone never creates setup, trade, BUY or SELL.",
+    "provenance": [
+      "app/registry/canonical.py#DIAGNOSTIC_RULES",
+      "app/diagnostics/evaluators.py#DeterministicDiagnosticEvaluators.thesis_invalidation",
+      "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json#records[rule_id=46]"
+    ],
+    "limitations": [
+      "Descriptive invalidation; no automatic sale",
+      "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+      "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here.",
+      "Legacy DUPLICATE_COMPUTATION: Yes, nested repeat. Future Lite consumes normalized base_pattern, stop_geometry; the repeated upstream calculation is removed from diagnostic responsibility."
+    ]
+  }
+}

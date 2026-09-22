@@ -1,0 +1,81 @@
+{
+  "id": "D39",
+  "name": "Technical Indicator Layer — RSI, ADX, ATR",
+  "artifact_type": "diagnostic",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/registry/canonical.py",
+      "symbol_or_heading": "DIAGNOSTIC_RULES",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/diagnostics/evaluators.py",
+      "symbol_or_heading": "DeterministicDiagnosticEvaluators.indicator_layer",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json",
+      "symbol_or_heading": "records[rule_id=39]",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "AUDIT"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "rsi",
+    "adx",
+    "atr"
+  ],
+  "known_limitations": [
+    "5 daily observations; no added indicators",
+    "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+    "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here."
+  ],
+  "conflicts": [],
+  "notes": "Legacy V1 diagnostic-registry-v1. Audited metric: Three technical indicators. Coverage input: Existing RSI/ADX/ATR inputs. Legacy audit class: JUSTIFIED_UNIQUE_CHECK. Lite interpretation: Reconcile three normalized indicator results. Legacy evaluation mode: DETERMINISTIC. Legacy operational state: OPERATIONAL_CURRENT_DESCRIPTIVE. No thresholds, direct score, gates, strategy or order authority migrated.",
+  "deterministic_computation": false,
+  "details": {
+    "diagnostic_id": "D39",
+    "canonical_name": "Technical Indicator Layer — RSI, ADX, ATR",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "evidence_dependencies": [
+      "rsi",
+      "adx",
+      "atr"
+    ],
+    "evaluation_type": "JUSTIFIED_UNIQUE_CHECK",
+    "result_semantics": {
+      "PASS": "Only an accepted V1 result confirming Three technical indicators from certified inputs may be PASS; no threshold is defined by this artifact.",
+      "CAUTION": "No direct V1 CAUTION status exists; a future reviewed mapping of V1 NEUTRAL or mixed RSI/ADX/ATR layer evidence is required. Missing input is not CAUTION.",
+      "FAIL": "Only an accepted V1 result finding adverse Three technical indicators from certified inputs may be FAIL; no threshold is defined by this artifact.",
+      "UNKNOWN": "V1 INSUFFICIENT_DATA or UNVERIFIED for missing, stale, noncomparable, conflicting or unsupported Three technical indicators; never PASS."
+    },
+    "criticality": "NON_CRITICAL",
+    "score_relationship": "No direct score component established by this extraction; no Lite score computed.",
+    "gate_relationship": "Six gates are independent governed consumers; this diagnostic cannot override a gate or authorize execution.",
+    "strategy_relationship": "May inform a separately approved future strategy; this diagnostic alone never creates setup, trade, BUY or SELL.",
+    "provenance": [
+      "app/registry/canonical.py#DIAGNOSTIC_RULES",
+      "app/diagnostics/evaluators.py#DeterministicDiagnosticEvaluators.indicator_layer",
+      "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json#records[rule_id=39]"
+    ],
+    "limitations": [
+      "5 daily observations; no added indicators",
+      "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+      "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here."
+    ]
+  }
+}

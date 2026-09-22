@@ -1,0 +1,81 @@
+{
+  "id": "D59",
+  "name": "Contrarian Ichimoku Confluence",
+  "artifact_type": "diagnostic",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/registry/canonical.py",
+      "symbol_or_heading": "DIAGNOSTIC_RULES",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/diagnostics/evaluators.py",
+      "symbol_or_heading": "DeterministicDiagnosticEvaluators.contrarian_ichimoku",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json",
+      "symbol_or_heading": "records[rule_id=59]",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "AUDIT"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "diagnostic_results",
+    "ichimoku",
+    "crowd_sentiment"
+  ],
+  "known_limitations": [
+    "Missing upstream is INSUFFICIENT_DATA, not CONFLICTING",
+    "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+    "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here."
+  ],
+  "conflicts": [],
+  "notes": "Legacy V1 diagnostic-registry-v1. Audited metric: Rules 47/12/13/14. Coverage input: Eligible 47/12/13/14. Legacy audit class: JUSTIFIED_UNIQUE_CHECK. Lite interpretation: Require all upstream eligible, as closure repair does. Legacy evaluation mode: HYBRID. Legacy operational state: PARTIAL. No thresholds, direct score, gates, strategy or order authority migrated.",
+  "deterministic_computation": false,
+  "details": {
+    "diagnostic_id": "D59",
+    "canonical_name": "Contrarian Ichimoku Confluence",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "evidence_dependencies": [
+      "diagnostic_results",
+      "ichimoku",
+      "crowd_sentiment"
+    ],
+    "evaluation_type": "JUSTIFIED_UNIQUE_CHECK",
+    "result_semantics": {
+      "PASS": "Only an accepted V1 result confirming Rules 47/12/13/14 from certified inputs may be PASS; no threshold is defined by this artifact.",
+      "CAUTION": "No direct V1 CAUTION status exists; a future reviewed mapping of V1 NEUTRAL or mixed Contrarian Ichimoku evidence is required. Missing input is not CAUTION.",
+      "FAIL": "Only an accepted V1 result finding adverse Rules 47/12/13/14 from certified inputs may be FAIL; no threshold is defined by this artifact.",
+      "UNKNOWN": "V1 INSUFFICIENT_DATA or UNVERIFIED for missing, stale, noncomparable, conflicting or unsupported Rules 47/12/13/14; never PASS."
+    },
+    "criticality": "NON_CRITICAL",
+    "score_relationship": "Legacy coverage audit references optional:ichimoku_mtf; no Lite score computed.",
+    "gate_relationship": "Six gates are independent governed consumers; this diagnostic cannot override a gate or authorize execution.",
+    "strategy_relationship": "May inform a separately approved future strategy; this diagnostic alone never creates setup, trade, BUY or SELL.",
+    "provenance": [
+      "app/registry/canonical.py#DIAGNOSTIC_RULES",
+      "app/diagnostics/evaluators.py#DeterministicDiagnosticEvaluators.contrarian_ichimoku",
+      "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json#records[rule_id=59]"
+    ],
+    "limitations": [
+      "Missing upstream is INSUFFICIENT_DATA, not CONFLICTING",
+      "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+      "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here."
+    ]
+  }
+}

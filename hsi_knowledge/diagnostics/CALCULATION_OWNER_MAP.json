@@ -1,0 +1,681 @@
+{
+  "version": "0.1.0",
+  "kind": "CONCEPTUAL_CALCULATION_OWNER_MAP",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "no_runtime_calculations": true,
+  "calculation_families": [
+    {
+      "calculation_id": "market_regime",
+      "conceptual_owner": "market_regime",
+      "current_legacy_source": "app/analysis/market_regime.py#MarketRegimeEngine.classify",
+      "diagnostic_consumers": [
+        "D01"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "sector_health",
+      "conceptual_owner": "sector",
+      "current_legacy_source": "app/analysis/sector_volume_ichimoku.py#sector_health",
+      "diagnostic_consumers": [
+        "D02",
+        "D03"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D03",
+          "legacy_repeated_path": "`SV:sector_rotation→sector_health`",
+          "transformation": "Derive phase from Rule 2 owner evidence; do not rerun return."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "sector_rotation",
+      "conceptual_owner": "sector",
+      "current_legacy_source": "app/analysis/sector_volume_ichimoku.py#sector_rotation",
+      "diagnostic_consumers": [
+        "D03"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "trend_daily",
+      "conceptual_owner": "technical",
+      "current_legacy_source": "app/analysis/trend.py#TrendEngine.classify",
+      "diagnostic_consumers": [
+        "D04"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "trend_weekly",
+      "conceptual_owner": "technical",
+      "current_legacy_source": "app/analysis/trend.py#TrendEngine.classify",
+      "diagnostic_consumers": [
+        "D04",
+        "D05"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "moving_average_structure",
+      "conceptual_owner": "technical",
+      "current_legacy_source": "app/analysis/technical.py#TechnicalAnalysisEngine.sma",
+      "diagnostic_consumers": [
+        "D05"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D05",
+          "legacy_repeated_path": "`EV:weinstein`; overlapping `TE:sma`",
+          "transformation": "One technical MA/stage owner; diagnostic consumes result."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "relative_strength",
+      "conceptual_owner": "relative_strength",
+      "current_legacy_source": "app/analysis/relative_strength.py#RelativeStrengthEngine.calculate",
+      "diagnostic_consumers": [
+        "D06"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "accumulation_distribution",
+      "conceptual_owner": "liquidity",
+      "current_legacy_source": "app/analysis/liquidity.py#accumulation_distribution",
+      "diagnostic_consumers": [
+        "D07",
+        "D50"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D07",
+          "legacy_repeated_path": "`LI:smart_money→accumulation_distribution`",
+          "transformation": "Reuse normalized accumulation proxy; never claim institution identity."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "liquidity_pools",
+      "conceptual_owner": "liquidity",
+      "current_legacy_source": "app/analysis/liquidity.py#pools",
+      "diagnostic_consumers": [
+        "D08",
+        "D09",
+        "D51",
+        "D52",
+        "D53",
+        "D54"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D09",
+          "legacy_repeated_path": "`LI:wyckoff→events→pools`",
+          "transformation": "Consume pool/event evidence, then phase interpretation."
+        },
+        {
+          "diagnostic_id": "D50",
+          "legacy_repeated_path": "`LI:accumulation_distribution→events,wyckoff`",
+          "transformation": "Reuse normalized event/phase outputs; no institutional-flow claim."
+        },
+        {
+          "diagnostic_id": "D51",
+          "legacy_repeated_path": "`LI:stop_clusters→pools`",
+          "transformation": "Derive cluster interpretation from one pool record."
+        },
+        {
+          "diagnostic_id": "D52",
+          "legacy_repeated_path": "`LI:events→pools`",
+          "transformation": "Reuse pool map and bar; absorption stays unavailable without book."
+        },
+        {
+          "diagnostic_id": "D53",
+          "legacy_repeated_path": "`LI:bull_trap→pools`",
+          "transformation": "Reuse pool map and trap evidence."
+        },
+        {
+          "diagnostic_id": "D54",
+          "legacy_repeated_path": "`LI:bear_trap→pools`",
+          "transformation": "Reuse pool map and trap evidence."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "liquidity_events",
+      "conceptual_owner": "liquidity",
+      "current_legacy_source": "app/analysis/liquidity.py#events",
+      "diagnostic_consumers": [
+        "D09",
+        "D50",
+        "D52"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "wyckoff_phase",
+      "conceptual_owner": "liquidity",
+      "current_legacy_source": "app/analysis/liquidity.py#wyckoff",
+      "diagnostic_consumers": [
+        "D09",
+        "D50"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "market_structure",
+      "conceptual_owner": "technical",
+      "current_legacy_source": "app/analysis/technical.py#TechnicalAnalysisEngine.price_structure",
+      "diagnostic_consumers": [
+        "D10"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "rvol",
+      "conceptual_owner": "technical_volume",
+      "current_legacy_source": "app/analysis/sector_volume_ichimoku.py#volume_rvol",
+      "diagnostic_consumers": [
+        "D11",
+        "D58"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D58",
+          "legacy_repeated_path": "`LI:volume_climax`; overlap `SV:volume_rvol`",
+          "transformation": "One normalized RVOL definition, then climax-specific check."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "ichimoku",
+      "conceptual_owner": "technical",
+      "current_legacy_source": "app/analysis/sector_volume_ichimoku.py#ichimoku",
+      "diagnostic_consumers": [
+        "D12",
+        "D13",
+        "D14",
+        "D59"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D13",
+          "legacy_repeated_path": "`EV:chikou→SV:ichimoku`",
+          "transformation": "Consume same timeframe Ichimoku record."
+        },
+        {
+          "diagnostic_id": "D14",
+          "legacy_repeated_path": "`SV:multi_timeframe_alignment→ichimoku`; `EV:mtf`",
+          "transformation": "Reconcile keyed per-frame indicator records; fail closed on missing frames."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "financial_growth_series",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#five_year_trend",
+      "diagnostic_consumers": [
+        "D16"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "financial_comparability",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/fundamentals/diagnostic_comparability.py#CanonicalFinancialComparability",
+      "diagnostic_consumers": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28",
+        "D29"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "return_ratios",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#return_ratios",
+      "diagnostic_consumers": [
+        "D17"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "cash_flow_quality",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#cash_flow",
+      "diagnostic_consumers": [
+        "D18"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "leverage",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#leverage",
+      "diagnostic_consumers": [
+        "D19"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "working_capital",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#working_capital",
+      "diagnostic_consumers": [
+        "D20"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "ownership",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#ownership",
+      "diagnostic_consumers": [
+        "D21"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "institutional_holdings",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#institutional",
+      "diagnostic_consumers": [
+        "D22"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "quarterly_growth",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#earnings_acceleration",
+      "diagnostic_consumers": [
+        "D24",
+        "D25"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D25",
+          "legacy_repeated_path": "`FU:latest_quarter`; `FC` input certification",
+          "transformation": "Share certified quarterly growth series across 24/25."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "margins",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#margins",
+      "diagnostic_consumers": [
+        "D26"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "order_book",
+      "conceptual_owner": "fundamental",
+      "current_legacy_source": "app/analysis/fundamentals.py#order_book",
+      "diagnostic_consumers": [
+        "D27"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "valuation",
+      "conceptual_owner": "valuation_trade_geometry",
+      "current_legacy_source": "app/analysis/valuation_trade.py#valuation",
+      "diagnostic_consumers": [
+        "D29"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "obv",
+      "conceptual_owner": "technical_volume",
+      "current_legacy_source": "app/analysis/sector_volume_ichimoku.py#obv",
+      "diagnostic_consumers": [
+        "D36"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "base_pattern",
+      "conceptual_owner": "valuation_trade_geometry",
+      "current_legacy_source": "app/analysis/valuation_trade.py#base_pattern",
+      "diagnostic_consumers": [
+        "D37",
+        "D38",
+        "D40",
+        "D41",
+        "D42",
+        "D43",
+        "D44",
+        "D46"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D38",
+          "legacy_repeated_path": "`VT:pullback→base_pattern`",
+          "transformation": "Consume one base-pattern record."
+        },
+        {
+          "diagnostic_id": "D40",
+          "legacy_repeated_path": "`VT:aggressive_entry→base_pattern`",
+          "transformation": "Consume strategy-scoped base; keep candidate non-executable."
+        },
+        {
+          "diagnostic_id": "D41",
+          "legacy_repeated_path": "`VT:confirmation_entry→base_pattern`",
+          "transformation": "Reuse base and close evidence under selected strategy policy."
+        },
+        {
+          "diagnostic_id": "D42",
+          "legacy_repeated_path": "`VT:retest_entry→pullback→base_pattern`",
+          "transformation": "Reuse base and pullback evidence."
+        },
+        {
+          "diagnostic_id": "D43",
+          "legacy_repeated_path": "`VT:structural_stop→pullback→base_pattern`",
+          "transformation": "One strategy-specific stop geometry owner."
+        },
+        {
+          "diagnostic_id": "D44",
+          "legacy_repeated_path": "`VT:targets→base_pattern`",
+          "transformation": "One strategy-specific target geometry owner."
+        },
+        {
+          "diagnostic_id": "D46",
+          "legacy_repeated_path": "`VT:invalidation→structural_stop→pullback→base_pattern`",
+          "transformation": "Consume selected stop/support; keep fundamental invalidation separate."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "pullback",
+      "conceptual_owner": "valuation_trade_geometry",
+      "current_legacy_source": "app/analysis/valuation_trade.py#pullback",
+      "diagnostic_consumers": [
+        "D38",
+        "D42",
+        "D43"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "rsi",
+      "conceptual_owner": "technical",
+      "current_legacy_source": "app/analysis/technical.py#TechnicalAnalysisEngine.rsi",
+      "diagnostic_consumers": [
+        "D39"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "adx",
+      "conceptual_owner": "technical",
+      "current_legacy_source": "app/analysis/technical.py#TechnicalAnalysisEngine.adx",
+      "diagnostic_consumers": [
+        "D39"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "atr",
+      "conceptual_owner": "technical",
+      "current_legacy_source": "app/analysis/technical.py#TechnicalAnalysisEngine.atr",
+      "diagnostic_consumers": [
+        "D39"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "entry_geometry",
+      "conceptual_owner": "valuation_trade_geometry",
+      "current_legacy_source": "app/analysis/valuation_trade.py#aggressive_entry",
+      "diagnostic_consumers": [
+        "D40",
+        "D41",
+        "D42",
+        "D45"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "stop_geometry",
+      "conceptual_owner": "valuation_trade_geometry",
+      "current_legacy_source": "app/analysis/valuation_trade.py#structural_stop",
+      "diagnostic_consumers": [
+        "D43",
+        "D45",
+        "D46"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "target_geometry",
+      "conceptual_owner": "valuation_trade_geometry",
+      "current_legacy_source": "app/analysis/valuation_trade.py#targets",
+      "diagnostic_consumers": [
+        "D44",
+        "D45"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "risk_reward",
+      "conceptual_owner": "valuation_trade_geometry",
+      "current_legacy_source": "app/analysis/valuation_trade.py#risk_reward",
+      "diagnostic_consumers": [
+        "D45"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "crowd_sentiment",
+      "conceptual_owner": "crowd",
+      "current_legacy_source": "app/crowd/engine.py#sentiment",
+      "diagnostic_consumers": [
+        "D47",
+        "D55",
+        "D56",
+        "D59"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [
+        {
+          "diagnostic_id": "D55",
+          "legacy_repeated_path": "`CR:trap_probability→sentiment,confidence,divergence`",
+          "transformation": "Consume Rules 47/49/56 evidence; retain uncalibrated label."
+        },
+        {
+          "diagnostic_id": "D56",
+          "legacy_repeated_path": "`CR:divergence→sentiment`",
+          "transformation": "Consume one sentiment record plus price."
+        }
+      ],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "crowd_positioning",
+      "conceptual_owner": "crowd",
+      "current_legacy_source": "app/crowd/engine.py#positioning",
+      "diagnostic_consumers": [
+        "D48"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "crowd_data_confidence",
+      "conceptual_owner": "crowd",
+      "current_legacy_source": "app/crowd/engine.py#confidence",
+      "diagnostic_consumers": [
+        "D49",
+        "D55",
+        "D60",
+        "D61"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "trap_evidence",
+      "conceptual_owner": "liquidity",
+      "current_legacy_source": "app/analysis/liquidity.py#bull_trap",
+      "diagnostic_consumers": [
+        "D53",
+        "D54"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "crowd_divergence",
+      "conceptual_owner": "crowd",
+      "current_legacy_source": "app/crowd/engine.py#divergence",
+      "diagnostic_consumers": [
+        "D55",
+        "D56",
+        "D60"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    },
+    {
+      "calculation_id": "volume_climax",
+      "conceptual_owner": "liquidity",
+      "current_legacy_source": "app/analysis/liquidity.py#volume_climax",
+      "diagnostic_consumers": [
+        "D58"
+      ],
+      "duplicate_legacy_paths_removed_in_lite": [],
+      "future_runtime_implementation_status": "NOT_IMPLEMENTED",
+      "version": "0.1.0",
+      "notes": "Single conceptual owner for this metric family. Future versioned runtime must normalize once; diagnostic consumers never re-run it. Parameters and source certification require review."
+    }
+  ]
+}

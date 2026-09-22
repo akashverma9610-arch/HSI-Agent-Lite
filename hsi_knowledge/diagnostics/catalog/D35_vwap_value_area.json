@@ -1,0 +1,85 @@
+{
+  "id": "D35",
+  "name": "VWAP & Value Area Acceptance",
+  "artifact_type": "diagnostic",
+  "version": "1.0.0",
+  "status": "QUARANTINED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/registry/canonical.py",
+      "symbol_or_heading": "DIAGNOSTIC_RULES",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/diagnostics/evaluators.py",
+      "symbol_or_heading": "DeterministicDiagnosticEvaluators.vwap",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json",
+      "symbol_or_heading": "records[rule_id=35]",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "AUDIT"
+    }
+  ],
+  "authority_status": "CONFLICT_REVIEW_REQUIRED",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "named_vwap_value_area"
+  ],
+  "known_limitations": [
+    "Legacy generic VWAP fallback is not canonical source readiness",
+    "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+    "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here.",
+    "Named VWAP/value-area authority is not established by generic VWAP fallback."
+  ],
+  "conflicts": [
+    {
+      "code": "NAMED_VWAP_SEMANTICS_UNAVAILABLE",
+      "description": "Generic fallback cannot certify named VWAP/value-area stream.",
+      "resolution_status": "UNRESOLVED"
+    }
+  ],
+  "notes": "Legacy V1 diagnostic-registry-v1. Audited metric: Named canonical VWAP and value-area stream. Coverage input: Named canonical VWAP/value-area semantics. Legacy audit class: CONFLICTING_AUTHORITY. Lite interpretation: Quarantine generic fallback; require named source semantics first. Legacy evaluation mode: DETERMINISTIC. Legacy operational state: NOT_READY. No thresholds, direct score, gates, strategy or order authority migrated.",
+  "deterministic_computation": false,
+  "details": {
+    "diagnostic_id": "D35",
+    "canonical_name": "VWAP & Value Area Acceptance",
+    "version": "1.0.0",
+    "authority": "CONFLICT_REVIEW_REQUIRED",
+    "lifecycle": "QUARANTINED",
+    "evidence_dependencies": [
+      "named_vwap_value_area"
+    ],
+    "evaluation_type": "UNRESOLVED",
+    "result_semantics": {
+      "PASS": "Not evaluable: VWAP/value area authority unresolved; no PASS may be emitted.",
+      "CAUTION": "Not evaluable; no provisional CAUTION or legacy NEUTRAL promotion.",
+      "FAIL": "Not evaluable: unresolved input semantics do not establish a governed FAIL.",
+      "UNKNOWN": "Named VWAP/value-area evidence is unresolved or unavailable; remain UNKNOWN, never PASS."
+    },
+    "criticality": "NON_CRITICAL",
+    "score_relationship": "Legacy coverage audit references optional:volume_obv_vwap; no Lite score computed.",
+    "gate_relationship": "Six gates are independent governed consumers; this diagnostic cannot override a gate or authorize execution.",
+    "strategy_relationship": "May inform a separately approved future strategy; this diagnostic alone never creates setup, trade, BUY or SELL.",
+    "provenance": [
+      "app/registry/canonical.py#DIAGNOSTIC_RULES",
+      "app/diagnostics/evaluators.py#DeterministicDiagnosticEvaluators.vwap",
+      "docs/architecture/DIAGNOSTIC_61_OPERATIONAL_COVERAGE_V1.json#records[rule_id=35]"
+    ],
+    "limitations": [
+      "Legacy generic VWAP fallback is not canonical source readiness",
+      "No Lite evaluator or calculation runtime; current-descriptive legacy coverage is not production/PIT readiness.",
+      "Legacy rule-level gate criticality is not separately designated; NON_CRITICAL means no direct gate authority here.",
+      "Named VWAP/value-area authority is not established by generic VWAP fallback."
+    ]
+  }
+}

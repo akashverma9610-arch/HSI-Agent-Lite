@@ -1,0 +1,1183 @@
+{
+  "version": "0.1.0",
+  "kind": "LOGICAL_EVIDENCE_DEPENDENCY_CATALOG",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "not_runtime_data": true,
+  "evidence_families": [
+    {
+      "evidence_id": "market_regime",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "market_regime",
+      "required_input_family": [
+        "Index OHLC, return, trend, ATR"
+      ],
+      "consumers": [
+        "D01"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/market_regime.py",
+        "symbol_or_heading": "MarketRegimeEngine.classify"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "sector_health",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "sector",
+      "required_input_family": [
+        "Aligned sector/benchmark excess return",
+        "Same sector health/excess"
+      ],
+      "consumers": [
+        "D02",
+        "D03"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/sector_volume_ichimoku.py",
+        "symbol_or_heading": "sector_health"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "sector_rotation",
+      "upstream_evidence_dependencies": ["sector_health"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "sector",
+      "required_input_family": [
+        "Same sector health/excess"
+      ],
+      "consumers": [
+        "D03"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/sector_volume_ichimoku.py",
+        "symbol_or_heading": "sector_rotation"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "trend_daily",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical",
+      "required_input_family": [
+        "Distinct daily and weekly trend outputs"
+      ],
+      "consumers": [
+        "D04"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/trend.py",
+        "symbol_or_heading": "TrendEngine.classify"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "trend_weekly",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical",
+      "required_input_family": [
+        "Distinct daily and weekly trend outputs",
+        "Weekly close, moving average and slope"
+      ],
+      "consumers": [
+        "D04",
+        "D05"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/trend.py",
+        "symbol_or_heading": "TrendEngine.classify"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "moving_average_structure",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical",
+      "required_input_family": [
+        "Weekly close, moving average and slope"
+      ],
+      "consumers": [
+        "D05"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/technical.py",
+        "symbol_or_heading": "TechnicalAnalysisEngine.sma"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "relative_strength",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "relative_strength",
+      "required_input_family": [
+        "Stock/benchmark, optional sector/peers"
+      ],
+      "consumers": [
+        "D06"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/relative_strength.py",
+        "symbol_or_heading": "RelativeStrengthEngine.calculate"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "accumulation_distribution",
+      "upstream_evidence_dependencies": ["liquidity_events","wyckoff_phase"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "liquidity",
+      "required_input_family": [
+        "Price/volume accumulation proxy",
+        "Price, events, Wyckoff proxy"
+      ],
+      "consumers": [
+        "D07",
+        "D50"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/liquidity.py",
+        "symbol_or_heading": "accumulation_distribution"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "liquidity_pools",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "liquidity",
+      "required_input_family": [
+        "Repeated high/low clusters",
+        "Price range plus liquidity event",
+        "Pool map",
+        "Pool map plus current bar",
+        "Pool map plus price/volume"
+      ],
+      "consumers": [
+        "D08",
+        "D09",
+        "D51",
+        "D52",
+        "D53",
+        "D54"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/liquidity.py",
+        "symbol_or_heading": "pools"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "liquidity_events",
+      "upstream_evidence_dependencies": ["liquidity_pools"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "liquidity",
+      "required_input_family": [
+        "Price range plus liquidity event",
+        "Price, events, Wyckoff proxy",
+        "Pool map plus current bar"
+      ],
+      "consumers": [
+        "D09",
+        "D50",
+        "D52"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/liquidity.py",
+        "symbol_or_heading": "events"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "wyckoff_phase",
+      "upstream_evidence_dependencies": ["liquidity_events","liquidity_pools"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "liquidity",
+      "required_input_family": [
+        "Price range plus liquidity event",
+        "Price, events, Wyckoff proxy"
+      ],
+      "consumers": [
+        "D09",
+        "D50"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/liquidity.py",
+        "symbol_or_heading": "wyckoff"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "market_structure",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical",
+      "required_input_family": [
+        "Pivot HH/HL, LH/LL"
+      ],
+      "consumers": [
+        "D10"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/technical.py",
+        "symbol_or_heading": "TechnicalAnalysisEngine.price_structure"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "rvol",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical_volume",
+      "required_input_family": [
+        "Current volume versus lookback",
+        "RVOL, range, close location"
+      ],
+      "consumers": [
+        "D11",
+        "D58"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/sector_volume_ichimoku.py",
+        "symbol_or_heading": "volume_rvol"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "ichimoku",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical",
+      "required_input_family": [
+        "OHLC cloud values",
+        "Chikou field of Ichimoku output",
+        "Distinct frame Ichimoku states",
+        "Rules 47/12/13/14"
+      ],
+      "consumers": [
+        "D12",
+        "D13",
+        "D14",
+        "D59"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/sector_volume_ichimoku.py",
+        "symbol_or_heading": "ichimoku"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "business_moat_claims",
+      "evidence_type": "QUALIFIED_EVIDENCE_SET",
+      "conceptual_owner": "research_claim",
+      "required_input_family": [
+        "Dated typed research claims"
+      ],
+      "consumers": [
+        "D15"
+      ],
+      "deterministic": false,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/research/engine.py",
+        "symbol_or_heading": "moat"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "financial_growth_series",
+      "upstream_evidence_dependencies": ["financial_comparability"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Comparable annual revenue/EBITDA/PAT/EPS"
+      ],
+      "consumers": [
+        "D16"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "five_year_trend"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "financial_comparability",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Comparable annual revenue/EBITDA/PAT/EPS",
+        "ROCE/ROE, valid denominators",
+        "CFO, CAPEX, PAT",
+        "Debt/equity/cash/EBIT/interest",
+        "Receivables/inventory/payables/COGS",
+        "Five-quarter reported revenue comparison",
+        "Revenue/EBITDA/PAT/EPS YoY/QoQ",
+        "Comparable EBITDA/revenue margins",
+        "Typed order book/inflow/revenue",
+        "Dated expected versus actual guidance",
+        "Price, EPS, debt/cash/shares/EBITDA"
+      ],
+      "consumers": [
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28",
+        "D29"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/fundamentals/diagnostic_comparability.py",
+        "symbol_or_heading": "CanonicalFinancialComparability"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "return_ratios",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "ROCE/ROE, valid denominators"
+      ],
+      "consumers": [
+        "D17"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "return_ratios"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "cash_flow_quality",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "CFO, CAPEX, PAT"
+      ],
+      "consumers": [
+        "D18"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "cash_flow"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "leverage",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Debt/equity/cash/EBIT/interest"
+      ],
+      "consumers": [
+        "D19"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "leverage"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "working_capital",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Receivables/inventory/payables/COGS"
+      ],
+      "consumers": [
+        "D20"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "working_capital"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "ownership",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Comparable promoter/pledge periods"
+      ],
+      "consumers": [
+        "D21"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "ownership"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "institutional_holdings",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Comparable FII/DII/MF periods"
+      ],
+      "consumers": [
+        "D22"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "institutional"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "governance_claims",
+      "evidence_type": "QUALIFIED_EVIDENCE_SET",
+      "conceptual_owner": "research_claim",
+      "required_input_family": [
+        "Auditor/regulatory/related-party claims"
+      ],
+      "consumers": [
+        "D23"
+      ],
+      "deterministic": false,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/research/engine.py",
+        "symbol_or_heading": "governance"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "quarterly_growth",
+      "upstream_evidence_dependencies": ["financial_comparability"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Five-quarter reported revenue comparison",
+        "Revenue/EBITDA/PAT/EPS YoY/QoQ"
+      ],
+      "consumers": [
+        "D24",
+        "D25"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "earnings_acceleration"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "margins",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Comparable EBITDA/revenue margins"
+      ],
+      "consumers": [
+        "D26"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "margins"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "order_book",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "fundamental",
+      "required_input_family": [
+        "Typed order book/inflow/revenue"
+      ],
+      "consumers": [
+        "D27"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/fundamentals.py",
+        "symbol_or_heading": "order_book"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "guidance_delivery",
+      "evidence_type": "QUALIFIED_EVIDENCE_SET",
+      "conceptual_owner": "research_claim",
+      "required_input_family": [
+        "Dated expected versus actual guidance"
+      ],
+      "consumers": [
+        "D28"
+      ],
+      "deterministic": false,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/research/engine.py",
+        "symbol_or_heading": "guidance_delivery"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "valuation",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "valuation_trade_geometry",
+      "required_input_family": [
+        "Price, EPS, debt/cash/shares/EBITDA"
+      ],
+      "consumers": [
+        "D29"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/valuation_trade.py",
+        "symbol_or_heading": "valuation"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "catalysts",
+      "evidence_type": "QUALIFIED_EVIDENCE_SET",
+      "conceptual_owner": "research_claim",
+      "required_input_family": [
+        "Typed non-cancelled event and document"
+      ],
+      "consumers": [
+        "D30"
+      ],
+      "deterministic": false,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/research/engine.py",
+        "symbol_or_heading": "catalysts"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "diagnostic_results",
+      "evidence_type": "NORMALIZED_DIAGNOSTIC_RESULT_SET",
+      "conceptual_owner": "synthesis",
+      "required_input_family": [
+        "Eligible upstream 1/2/19/23/29/46/55/30",
+        "Rules 43/45/46 and context",
+        "Rules 16/17/18/19/23",
+        "Rules 31/32/33",
+        "Rules 47/12/13/14",
+        "Rules 55/56/59/49",
+        "Rules 60/49"
+      ],
+      "consumers": [
+        "D31",
+        "D32",
+        "D33",
+        "D34",
+        "D59",
+        "D60",
+        "D61"
+      ],
+      "deterministic": false,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/diagnostics/evaluators.py",
+        "symbol_or_heading": "DeterministicDiagnosticEvaluators"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "named_vwap_value_area",
+      "evidence_type": "UNRESOLVED_CONCEPT",
+      "conceptual_owner": "unresolved",
+      "required_input_family": [
+        "Named canonical VWAP and value-area stream"
+      ],
+      "consumers": [
+        "D35"
+      ],
+      "deterministic": false,
+      "authority_state": "CONFLICT_REVIEW_REQUIRED",
+      "unresolved_semantics": "Named VWAP/value-area source and meaning not proven by generic fallback",
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/sector_volume_ichimoku.py",
+        "symbol_or_heading": "vwap"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "obv",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical_volume",
+      "required_input_family": [
+        "Daily close/volume"
+      ],
+      "consumers": [
+        "D36"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/sector_volume_ichimoku.py",
+        "symbol_or_heading": "obv"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "base_pattern",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "valuation_trade_geometry",
+      "required_input_family": [
+        "Daily OHLCV/base structure",
+        "Base support and close",
+        "Base resistance/support",
+        "Base resistance and completed close",
+        "Pullback/support",
+        "Base height/resistance",
+        "Structural support/stop"
+      ],
+      "consumers": [
+        "D37",
+        "D38",
+        "D40",
+        "D41",
+        "D42",
+        "D43",
+        "D44",
+        "D46"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/valuation_trade.py",
+        "symbol_or_heading": "base_pattern"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "pullback",
+      "upstream_evidence_dependencies": ["base_pattern"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "valuation_trade_geometry",
+      "required_input_family": [
+        "Base support and close",
+        "Pullback/support"
+      ],
+      "consumers": [
+        "D38",
+        "D42",
+        "D43"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/valuation_trade.py",
+        "symbol_or_heading": "pullback"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "rsi",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical",
+      "required_input_family": [
+        "Three technical indicators"
+      ],
+      "consumers": [
+        "D39"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/technical.py",
+        "symbol_or_heading": "TechnicalAnalysisEngine.rsi"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "adx",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical",
+      "required_input_family": [
+        "Three technical indicators"
+      ],
+      "consumers": [
+        "D39"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/technical.py",
+        "symbol_or_heading": "TechnicalAnalysisEngine.adx"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "atr",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "technical",
+      "required_input_family": [
+        "Three technical indicators"
+      ],
+      "consumers": [
+        "D39"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/technical.py",
+        "symbol_or_heading": "TechnicalAnalysisEngine.atr"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "entry_geometry",
+      "upstream_evidence_dependencies": ["base_pattern"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "valuation_trade_geometry",
+      "required_input_family": [
+        "Base resistance/support",
+        "Base resistance and completed close",
+        "Pullback/support",
+        "Entry, stop and first target"
+      ],
+      "consumers": [
+        "D40",
+        "D41",
+        "D42",
+        "D45"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/valuation_trade.py",
+        "symbol_or_heading": "aggressive_entry"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "stop_geometry",
+      "upstream_evidence_dependencies": ["base_pattern","pullback"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "valuation_trade_geometry",
+      "required_input_family": [
+        "Pullback/support",
+        "Entry, stop and first target",
+        "Structural support/stop"
+      ],
+      "consumers": [
+        "D43",
+        "D45",
+        "D46"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/valuation_trade.py",
+        "symbol_or_heading": "structural_stop"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "target_geometry",
+      "upstream_evidence_dependencies": ["base_pattern"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "valuation_trade_geometry",
+      "required_input_family": [
+        "Base height/resistance",
+        "Entry, stop and first target"
+      ],
+      "consumers": [
+        "D44",
+        "D45"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/valuation_trade.py",
+        "symbol_or_heading": "targets"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "risk_reward",
+      "upstream_evidence_dependencies": ["entry_geometry","stop_geometry","target_geometry"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "valuation_trade_geometry",
+      "required_input_family": [
+        "Entry, stop and first target"
+      ],
+      "consumers": [
+        "D45"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/valuation_trade.py",
+        "symbol_or_heading": "risk_reward"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "crowd_sentiment",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "crowd",
+      "required_input_family": [
+        "Typed crowd observations",
+        "Sentiment, confidence, divergence",
+        "Sentiment and aligned price",
+        "Rules 47/12/13/14"
+      ],
+      "consumers": [
+        "D47",
+        "D55",
+        "D56",
+        "D59"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/crowd/engine.py",
+        "symbol_or_heading": "sentiment"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "crowd_positioning",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "crowd",
+      "required_input_family": [
+        "Typed positioning observations"
+      ],
+      "consumers": [
+        "D48"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/crowd/engine.py",
+        "symbol_or_heading": "positioning"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "crowd_data_confidence",
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "crowd",
+      "required_input_family": [
+        "Sample/reliability/dedup",
+        "Sentiment, confidence, divergence",
+        "Rules 55/56/59/49",
+        "Rules 60/49"
+      ],
+      "consumers": [
+        "D49",
+        "D55",
+        "D60",
+        "D61"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/crowd/engine.py",
+        "symbol_or_heading": "confidence"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "trap_evidence",
+      "upstream_evidence_dependencies": ["liquidity_pools","liquidity_events"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "liquidity",
+      "required_input_family": [
+        "Pool map plus price/volume"
+      ],
+      "consumers": [
+        "D53",
+        "D54"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/liquidity.py",
+        "symbol_or_heading": "bull_trap"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "crowd_divergence",
+      "upstream_evidence_dependencies": ["crowd_sentiment"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "crowd",
+      "required_input_family": [
+        "Sentiment, confidence, divergence",
+        "Sentiment and aligned price",
+        "Rules 55/56/59/49"
+      ],
+      "consumers": [
+        "D55",
+        "D56",
+        "D60"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/crowd/engine.py",
+        "symbol_or_heading": "divergence"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "crowd_trap",
+      "upstream_evidence_dependencies": ["crowd_sentiment","crowd_data_confidence","crowd_divergence"],
+      "evidence_type": "QUALIFIED_EVIDENCE_SET",
+      "conceptual_owner": "crowd",
+      "required_input_family": [
+        "Sentiment, confidence, divergence",
+        "Rules 55/56/59/49"
+      ],
+      "consumers": [
+        "D55",
+        "D60"
+      ],
+      "deterministic": false,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/crowd/engine.py",
+        "symbol_or_heading": "trap_probability"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "post_news_reaction",
+      "evidence_type": "UNRESOLVED_CONCEPT",
+      "conceptual_owner": "unresolved",
+      "required_input_family": [
+        "Typed event, known-at and completed sessions"
+      ],
+      "consumers": [
+        "D57"
+      ],
+      "deterministic": false,
+      "authority_state": "CONFLICT_REVIEW_REQUIRED",
+      "unresolved_semantics": "Canonical event identity, known-at, polarity and completed-session join unresolved",
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/crowd/engine.py",
+        "symbol_or_heading": "post_news"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    },
+    {
+      "evidence_id": "volume_climax",
+      "upstream_evidence_dependencies": ["rvol"],
+      "evidence_type": "NORMALIZED_METRIC",
+      "conceptual_owner": "liquidity",
+      "required_input_family": [
+        "RVOL, range, close location"
+      ],
+      "consumers": [
+        "D58"
+      ],
+      "deterministic": true,
+      "authority_state": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "unresolved_semantics": null,
+      "source_provenance": {
+        "legacy_repository": "Hybrid-Stock-Intelligence",
+        "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+        "path": "app/analysis/liquidity.py",
+        "symbol_or_heading": "volume_climax"
+      },
+      "runtime_status": "NOT_IMPLEMENTED_IN_LITE"
+    }
+  ]
+}
