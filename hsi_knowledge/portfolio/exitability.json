@@ -1,0 +1,105 @@
+{
+  "id": "exitability",
+  "name": "Portfolio position exitability",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/LIQUIDITY_SMC.md",
+      "symbol_or_heading": "liquidity pool proxies, not broker liquidity",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "docs/ROTATION_MATRIX.md",
+      "symbol_or_heading": "liquidity and friction comparison",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "docs/PORTFOLIO_HEAT.md",
+      "symbol_or_heading": "position exposure context",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "No universal participation, exit-days or slippage threshold is approved.",
+    "Free-float coverage is source-dependent."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "exitability",
+    "scope": "Portfolio position exitability",
+    "legacy_lifecycle": "ACCEPTED_WITH_LIMITATIONS",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "position size and current price",
+      "average traded volume/value and free float where verified",
+      "stress, fees and slippage"
+    ],
+    "portfolio_dependencies": [
+      "portfolio_state",
+      "rotation"
+    ],
+    "diagnostic_dependencies": [
+      "D08",
+      "D11",
+      "D51",
+      "D52"
+    ],
+    "strategy_dependencies": [
+      "SECTOR_ROTATION_LEADER"
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_3_SURVEILLANCE",
+      "GATE_5_HEAT"
+    ],
+    "decision_states": [
+      "EXITABILITY_REVIEW",
+      "EXITABILITY_CONSTRAINED",
+      "EXITABILITY_UNKNOWN"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "Price liquidity pools and stop-cluster locations are technical structure proxies, not evidence that a real holding can be exited.",
+      "Exitability must consider actual position size relative to traded value/volume, free float if evidenced, expected days, market stress and friction/slippage.",
+      "Inability to exit safely may block a rotation or exit action even when thesis review favors change."
+    ],
+    "assertions": {
+      "liquidity_pool_equals_position_exitability": false,
+      "unobserved_broker_stops_are_facts": false,
+      "universal_exit_days_cap_exists": false
+    },
+    "limitations": [
+      "No universal participation, exit-days or slippage threshold is approved.",
+      "Free-float coverage is source-dependent."
+    ],
+    "unresolved_parameters": [
+      "Position-size-aware exit model",
+      "Stress and slippage calibration"
+    ]
+  }
+}

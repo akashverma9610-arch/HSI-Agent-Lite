@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hsi-agent-lite.local/schema/portfolio_policy.schema.json",
+  "title": "Knowledge-only portfolio policy details",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_id", "scope", "legacy_lifecycle", "lite_lifecycle", "required_evidence", "portfolio_dependencies", "diagnostic_dependencies", "strategy_dependencies", "gate_dependencies", "decision_states", "action_authority", "human_review_required", "principles", "assertions", "limitations", "unresolved_parameters"],
+  "properties": {
+    "policy_id": {"type": "string", "minLength": 1},
+    "scope": {"type": "string", "minLength": 1},
+    "legacy_lifecycle": {"enum": ["ACCEPTED_WITH_LIMITATIONS", "APPROVED_NOT_SELECTED_NOT_ACTIVE", "PROPOSED_NOT_ACTIVE"]},
+    "lite_lifecycle": {"const": "KNOWLEDGE_ONLY_REVIEW_REQUIRED"},
+    "required_evidence": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "portfolio_dependencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "diagnostic_dependencies": {"type": "array", "uniqueItems": true, "items": {"pattern": "^D(0[1-9]|[1-5][0-9]|6[01])$"}},
+    "strategy_dependencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "gate_dependencies": {"type": "array", "uniqueItems": true, "items": {"pattern": "^GATE_[1-6]_[A-Z_]+$"}},
+    "decision_states": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "action_authority": {"type": "object", "additionalProperties": false, "required": ["automatic_trade", "buy", "trim", "exit", "rotate", "broker_order", "gate_fail_override"], "properties": {"automatic_trade": {"const": false}, "buy": {"const": false}, "trim": {"const": false}, "exit": {"const": false}, "rotate": {"const": false}, "broker_order": {"const": false}, "gate_fail_override": {"const": false}}},
+    "human_review_required": {"const": true},
+    "principles": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "assertions": {"type": "object", "additionalProperties": {"type": ["boolean", "string"]}},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "unresolved_parameters": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  }
+}

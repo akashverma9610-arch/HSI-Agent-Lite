@@ -1,0 +1,77 @@
+{
+  "version": "0.1.0",
+  "kind": "MARKET_CONTEXT_CLOSURE_MAP",
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "knowledge_only": true,
+  "scope": "Six requested market-context residual areas; sufficiency is for future design knowledge, not operational runtime readiness.",
+  "entries": [
+    {
+      "domain": "market_regime",
+      "status": "ALREADY_COVERED",
+      "existing_lite_artifacts": [
+        "hsi_knowledge/diagnostics/catalog/D01_market_regime.json"
+      ],
+      "sufficient_for_future_runtime_design": true,
+      "residual_missing_knowledge": "No distinct residual; production threshold calibration and live source readiness remain future work.",
+      "new_extraction_required": false,
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "domain": "market_extremes_downside",
+      "status": "EXTRACTED_RESIDUAL",
+      "existing_lite_artifacts": [
+        "hsi_knowledge/portfolio/market_extremes_residual.json"
+      ],
+      "sufficient_for_future_runtime_design": true,
+      "residual_missing_knowledge": "Downside crisis/dislocation is independent of normal regime; production factors and thresholds unresolved.",
+      "new_extraction_required": true,
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "domain": "market_extremes_upside_euphoria",
+      "status": "EXTRACTED_RESIDUAL",
+      "existing_lite_artifacts": [
+        "hsi_knowledge/portfolio/market_extremes_residual.json"
+      ],
+      "sufficient_for_future_runtime_design": true,
+      "residual_missing_knowledge": "Upside excess/euphoria is not a top, SELL, trim or rotation rule; production calibration unresolved.",
+      "new_extraction_required": true,
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "domain": "sector_context",
+      "status": "ALREADY_COVERED",
+      "existing_lite_artifacts": [
+        "hsi_knowledge/diagnostics/catalog/D02_sector_health.json",
+        "hsi_knowledge/diagnostics/catalog/D03_sector_rotation_phase.json"
+      ],
+      "sufficient_for_future_runtime_design": true,
+      "residual_missing_knowledge": "Capital-flow labels remain price-relative-strength inferences, not observed institutional movement.",
+      "new_extraction_required": false,
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "domain": "relative_strength",
+      "status": "ALREADY_COVERED",
+      "existing_lite_artifacts": [
+        "hsi_knowledge/diagnostics/catalog/D06_relative_strength.json"
+      ],
+      "sufficient_for_future_runtime_design": true,
+      "residual_missing_knowledge": "Benchmark and peer coverage/timeframe still require governed inputs.",
+      "new_extraction_required": false,
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "domain": "macro_news",
+      "status": "ALREADY_COVERED",
+      "existing_lite_artifacts": [
+        "hsi_knowledge/governance/macro_news_governance.json"
+      ],
+      "sufficient_for_future_runtime_design": true,
+      "residual_missing_knowledge": "Primary authority, company transmission, freshness and coverage remain partial.",
+      "new_extraction_required": false,
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ]
+}

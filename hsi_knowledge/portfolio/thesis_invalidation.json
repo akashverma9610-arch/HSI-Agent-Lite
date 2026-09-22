@@ -1,0 +1,100 @@
+{
+  "id": "thesis_invalidation",
+  "name": "Strategy-aware thesis invalidation",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/THESIS_INVALIDATION.md",
+      "symbol_or_heading": "Rule 46 price-structure scope",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "docs/architecture/PORTFOLIO_SELL_SIDE_DECISION_POLICY_V1_APPROVAL.md",
+      "symbol_or_heading": "thesis-state evidence guards",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "No universal fundamental/catalyst/governance invalidation evaluator is approved."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "thesis_invalidation",
+    "scope": "Strategy-aware thesis invalidation",
+    "legacy_lifecycle": "ACCEPTED_WITH_LIMITATIONS",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "recorded structural support and close",
+      "fundamental and catalyst evidence",
+      "governance and strategy thesis evidence"
+    ],
+    "portfolio_dependencies": [
+      "holding_health"
+    ],
+    "diagnostic_dependencies": [
+      "D15",
+      "D23",
+      "D30",
+      "D32",
+      "D33",
+      "D46"
+    ],
+    "strategy_dependencies": [
+      "LONG_TERM_STRUCTURAL_COMPOUNDER",
+      "EVENT_CATALYST"
+    ],
+    "gate_dependencies": [
+      "GATE_4_TRADE_PLAN"
+    ],
+    "decision_states": [
+      "PRICE_STRUCTURE_INVALIDATION",
+      "FUNDAMENTAL_THESIS_INVALIDATION_REVIEW",
+      "CATALYST_INVALIDATION_REVIEW",
+      "GOVERNANCE_INVALIDATION_REVIEW",
+      "STRATEGY_SPECIFIC_INVALIDATION_REVIEW",
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "Rule 46 is only an evidence-supported close below recorded structural support.",
+      "Fundamental, catalyst, governance and strategy-specific failures require their own thesis and evidence contracts.",
+      "Task #007 geometry authority is distinct across tactical, positional and long-term families; one generic stop cannot erase all theses.",
+      "Invalidation is an analytical state pending governed human action review."
+    ],
+    "assertions": {
+      "price_stop_universal_thesis_invalidation": false,
+      "rule46_price_structure_only": true,
+      "missing_evidence_implies_invalidation": false
+    },
+    "limitations": [
+      "No universal fundamental/catalyst/governance invalidation evaluator is approved."
+    ],
+    "unresolved_parameters": [
+      "Strategy-specific invalidation contracts and evidence thresholds"
+    ]
+  }
+}

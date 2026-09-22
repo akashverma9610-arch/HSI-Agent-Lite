@@ -1,0 +1,99 @@
+{
+  "id": "holding_health",
+  "name": "Holding intelligence and thesis health",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "app/portfolio/holding_intelligence.py",
+      "symbol_or_heading": "read-only holding intelligence",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/PORTFOLIO_SELL_SIDE_DECISION_POLICY_V1_APPROVAL.md",
+      "symbol_or_heading": "thesis-state boundary",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "No universal holding-health score or sell threshold is approved."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "holding_health",
+    "scope": "Holding intelligence and thesis health",
+    "legacy_lifecycle": "ACCEPTED_WITH_LIMITATIONS",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "current PIT Shared Brain context",
+      "thesis and risk diagnostics",
+      "catalyst and liquidity context"
+    ],
+    "portfolio_dependencies": [
+      "portfolio_state"
+    ],
+    "diagnostic_dependencies": [
+      "D04",
+      "D15",
+      "D23",
+      "D30",
+      "D31",
+      "D32",
+      "D33",
+      "D46"
+    ],
+    "strategy_dependencies": [
+      "LONG_TERM_STRUCTURAL_COMPOUNDER",
+      "EVENT_CATALYST"
+    ],
+    "gate_dependencies": [],
+    "decision_states": [
+      "HEALTHY",
+      "REVIEW",
+      "DETERIORATING",
+      "THESIS_INVALIDATED",
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "Separate technical, fundamental, catalyst, governance, liquidity, and risk dimensions.",
+      "An exact-as-of, current and non-conflicted diagnostic is required before health interpretation.",
+      "Health is descriptive, not an exit or sell rule; P&L and paper outcomes are not thesis evidence.",
+      "A holding can fit one archetype and fail another; the holding's selected thesis governs."
+    ],
+    "assertions": {
+      "health_implies_sell": false,
+      "pnl_implies_health": false,
+      "strategy_specific_thesis_required": true
+    },
+    "limitations": [
+      "No universal holding-health score or sell threshold is approved."
+    ],
+    "unresolved_parameters": [
+      "Selected Lite thesis authority and stale-evidence policy"
+    ]
+  }
+}

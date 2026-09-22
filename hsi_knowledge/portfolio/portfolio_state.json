@@ -1,0 +1,94 @@
+{
+  "id": "portfolio_state",
+  "name": "Portfolio state and accounting",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/PORTFOLIO_MODEL.md",
+      "symbol_or_heading": "Immutable portfolio, cash, holdings, and snapshots",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "docs/PORTFOLIO_ACCOUNTING.md",
+      "symbol_or_heading": "weighted-average-cost-v1",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/portfolio/engine.py",
+      "symbol_or_heading": "point-in-time snapshot",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "No personal holdings, transactions, broker accounts, or values are migrated."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "portfolio_state",
+    "scope": "Portfolio state and accounting",
+    "legacy_lifecycle": "ACCEPTED_WITH_LIMITATIONS",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "ledger transactions with effective_at and known_at",
+      "cash state and reservations",
+      "as-of price provenance",
+      "portfolio snapshot"
+    ],
+    "portfolio_dependencies": [],
+    "diagnostic_dependencies": [],
+    "strategy_dependencies": [],
+    "gate_dependencies": [],
+    "decision_states": [
+      "ALL_CASH",
+      "PARTIALLY_INVESTED",
+      "FULLY_INVESTED",
+      "PARTIAL_DATA",
+      "INSUFFICIENT_DATA"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "Holdings, quantity, basis, realized and unrealized P&L derive from immutable ledger and eligible prices.",
+      "Buy basis includes gross consideration, fees and taxes; partial sale removes weighted-average basis and net proceeds establish realized P&L.",
+      "Splits and bonuses adjust quantity without changing aggregate basis; dividends are separate cash events.",
+      "Missing cash, price, or risk must remain unknown, not a manufactured zero."
+    ],
+    "assertions": {
+      "weighted_average_cost_v1": true,
+      "cash_unknown_may_be_zero": false,
+      "equity_unknown_if_cash_or_holding_price_missing": true,
+      "closed_holdings_remain_in_ledger": true,
+      "point_in_time_as_of_required": true
+    },
+    "limitations": [
+      "No personal holdings, transactions, broker accounts, or values are migrated."
+    ],
+    "unresolved_parameters": [
+      "Future Lite ledger and price provenance design"
+    ]
+  }
+}

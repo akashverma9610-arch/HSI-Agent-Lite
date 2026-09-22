@@ -1,0 +1,93 @@
+{
+  "id": "portfolio_heat",
+  "name": "Portfolio heat and concentration",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/PORTFOLIO_HEAT.md",
+      "symbol_or_heading": "Gate 5 heat methodology",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/portfolio/engine.py",
+      "symbol_or_heading": "snapshot risk coverage",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "No new concentration, correlation, cyclicality or sizing cap is inferred."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "portfolio_heat",
+    "scope": "Portfolio heat and concentration",
+    "legacy_lifecycle": "ACCEPTED_WITH_LIMITATIONS",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "portfolio equity",
+      "holding structural stop and price",
+      "sector and factor exposures"
+    ],
+    "portfolio_dependencies": [
+      "portfolio_state"
+    ],
+    "diagnostic_dependencies": [
+      "D31"
+    ],
+    "strategy_dependencies": [
+      "SECTOR_ROTATION_LEADER"
+    ],
+    "gate_dependencies": [
+      "GATE_5_HEAT"
+    ],
+    "decision_states": [
+      "HEAT_WITHIN_REVIEWED_LIMIT",
+      "HEAT_REVIEW",
+      "INSUFFICIENT_RISK_COVERAGE"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "Position heat is capital at risk to a persisted structural stop divided by portfolio equity; aggregate heat includes existing and proposed risk.",
+      "Allocation is distinct from risk heat; sector, factor, correlated and cyclical exposures require separate context.",
+      "Missing holding risk or equity makes total heat unavailable rather than understated.",
+      "Cash is a valid portfolio state and alternative."
+    ],
+    "assertions": {
+      "missing_risk_can_be_zero": false,
+      "allocation_equals_heat": false,
+      "cash_valid_position": true,
+      "gate_fail_override_allowed": false
+    },
+    "limitations": [
+      "No new concentration, correlation, cyclicality or sizing cap is inferred."
+    ],
+    "unresolved_parameters": [
+      "Reviewed factor/correlation methodology",
+      "Future Lite risk inputs and cap selection"
+    ]
+  }
+}

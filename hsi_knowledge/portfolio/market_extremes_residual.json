@@ -1,0 +1,104 @@
+{
+  "id": "market_extremes_residual",
+  "name": "Independent downside and upside market-extremes context",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/MARKET_EXTREMES_ENGINE.md",
+      "symbol_or_heading": "Two independent tails; policy and portfolio boundaries",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "docs/architecture/POST_V1_MARKET_EXTREMES_ASSURANCE_PROJECTION.md",
+      "symbol_or_heading": "not consumer-active assurance projection",
+      "authority": "PROPOSED_NOT_ACTIVE",
+      "source_role": "PROPOSAL"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "Thresholds and weights are test settings, not production-calibrated policy.",
+    "Post-v1 assurance projection is not consumer-active."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "market_extremes_residual",
+    "scope": "Independent downside and upside market-extremes context",
+    "legacy_lifecycle": "ACCEPTED_WITH_LIMITATIONS",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "point-in-time market, sector or stock factor evidence",
+      "breadth, valuation, participation and leadership coverage"
+    ],
+    "portfolio_dependencies": [
+      "holding_health",
+      "rotation"
+    ],
+    "diagnostic_dependencies": [
+      "D01",
+      "D02",
+      "D47"
+    ],
+    "strategy_dependencies": [
+      "SECTOR_ROTATION_LEADER"
+    ],
+    "gate_dependencies": [],
+    "decision_states": [
+      "DOWNSIDE_DISLOCATION",
+      "CRISIS",
+      "NORMAL",
+      "OPTIMISM",
+      "CROWDING",
+      "SPECULATION",
+      "EUPHORIA",
+      "DISTRIBUTION",
+      "BREAKDOWN",
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "Downside crisis/dislocation and upside excess are independent tails layered on, not replacements for, market regime.",
+      "Market, sector and stock assessments remain separate; euphoria is risk/cycle context, not a top or SELL.",
+      "Top confirmation requires separate structural breakdown and distribution evidence; missing critical factors cap confidence.",
+      "Cash/no new entry is valid; overlay cannot override thesis, score, gates or governed rotation."
+    ],
+    "assertions": {
+      "downside_upside_independent": true,
+      "extremes_replace_regime": false,
+      "euphoria_proves_top": false,
+      "crisis_requires_sell_all": false,
+      "extreme_state_authorizes_trade": false
+    },
+    "limitations": [
+      "Thresholds and weights are test settings, not production-calibrated policy.",
+      "Post-v1 assurance projection is not consumer-active."
+    ],
+    "unresolved_parameters": [
+      "Production calibration",
+      "Real-world factor coverage",
+      "Separate approval for runtime consumer"
+    ]
+  }
+}

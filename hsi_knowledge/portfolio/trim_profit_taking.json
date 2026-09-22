@@ -1,0 +1,104 @@
+{
+  "id": "trim_profit_taking",
+  "name": "Trim and profit-taking proposal status",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/architecture/PORTFOLIO_SELL_SIDE_DECISION_POLICY_V1_APPROVAL.md",
+      "symbol_or_heading": "TRIM_NOT_AUTHORIZED_V1",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "APPROVAL"
+    },
+    {
+      "path": "docs/architecture/POST_V1_PROFIT_HARVESTING_IMPLEMENTABILITY_CORRECTION.md",
+      "symbol_or_heading": "PROFIT_REVIEW_UNAVAILABLE",
+      "authority": "PROPOSED_NOT_ACTIVE",
+      "source_role": "AUDIT"
+    },
+    {
+      "path": "docs/architecture/POST_V1_SELL_PROFIT_ROTATION_POLICY_PROPOSAL.md",
+      "symbol_or_heading": "profit-harvesting proposal",
+      "authority": "PROPOSED_NOT_ACTIVE",
+      "source_role": "PROPOSAL"
+    }
+  ],
+  "authority_status": "PROPOSED_NOT_ACTIVE",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "Proposal parameter grids are not approved thresholds."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "trim_profit_taking",
+    "scope": "Trim and profit-taking proposal status",
+    "legacy_lifecycle": "PROPOSED_NOT_ACTIVE",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "current thesis and targets",
+      "tax and lot context if ever approved",
+      "euphoria context only"
+    ],
+    "portfolio_dependencies": [
+      "holding_health",
+      "sell_side_review"
+    ],
+    "diagnostic_dependencies": [
+      "D29",
+      "D45",
+      "D46"
+    ],
+    "strategy_dependencies": [
+      "LONG_TERM_STRUCTURAL_COMPOUNDER"
+    ],
+    "gate_dependencies": [
+      "GATE_4_TRADE_PLAN"
+    ],
+    "decision_states": [
+      "TRIM_NOT_AUTHORIZED_V1",
+      "PROFIT_REVIEW_UNAVAILABLE"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "No active or selected trim/profit-harvesting evaluator exists.",
+      "Target T1, extension or euphoria is context, never automatic trim authority.",
+      "Trigger, quantity, tax-aware parcel, and re-entry policies are unresolved."
+    ],
+    "assertions": {
+      "approved_active_legacy_trim_policy_exists": false,
+      "t1_alone_authorizes_trim": false,
+      "euphoria_alone_authorizes_trim": false,
+      "trim_quantity_policy_exists": false,
+      "tax_aware_trim_logic_exists": false,
+      "reentry_policy_exists": false
+    },
+    "limitations": [
+      "Proposal parameter grids are not approved thresholds."
+    ],
+    "unresolved_parameters": [
+      "Trim trigger",
+      "Trim quantity",
+      "Tax-aware lots",
+      "Re-entry and cooldown"
+    ]
+  }
+}

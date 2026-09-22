@@ -1,0 +1,112 @@
+{
+  "id": "sell_side_review",
+  "name": "Sell-side decision review",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/architecture/PORTFOLIO_SELL_SIDE_DECISION_POLICY_V1_APPROVAL.md",
+      "symbol_or_heading": "APPROVED NOT SELECTED NOT ACTIVE",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "APPROVAL"
+    },
+    {
+      "path": "app/portfolio/sell_side_policy.py",
+      "symbol_or_heading": "FrozenPortfolioSellSideDecisionPolicy",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "docs/architecture/POST_V1_SELL_PROFIT_ROTATION_POLICY_PROPOSAL.md",
+      "symbol_or_heading": "research shadow",
+      "authority": "PROPOSED_NOT_ACTIVE",
+      "source_role": "PROPOSAL"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "Approved legacy decision policy is not Lite action authorization.",
+    "Post-v1 sell/risk research shadows are non-consumer-active."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "sell_side_review",
+    "scope": "Sell-side decision review",
+    "legacy_lifecycle": "APPROVED_NOT_SELECTED_NOT_ACTIVE",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "current sufficient thesis evidence",
+      "conflict and staleness review",
+      "replacement and risk context"
+    ],
+    "portfolio_dependencies": [
+      "holding_health",
+      "rotation"
+    ],
+    "diagnostic_dependencies": [
+      "D31",
+      "D32",
+      "D33",
+      "D46"
+    ],
+    "strategy_dependencies": [
+      "EVENT_CATALYST",
+      "LONG_TERM_STRUCTURAL_COMPOUNDER"
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_5_HEAT"
+    ],
+    "decision_states": [
+      "THESIS_INTACT",
+      "THESIS_WEAKENING",
+      "THESIS_INVALIDATED",
+      "RISK_REVIEW",
+      "EXIT_REVIEW",
+      "SELL_NOT_AUTHORIZED",
+      "POLICY_UNAVAILABLE"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "The legacy v1 sell-side decision vocabulary includes HOLD, EXIT_TO_CASH, ROTATE, REVIEW_REQUIRED and NO_ACTION, but approval did not select or activate its action producer.",
+      "Missing, stale, conflicted, or non-comparable evidence requires review; profit/loss is not an action rule.",
+      "Invalidated thesis and any eligible replacement are governed separately; a review state cannot issue a SELL.",
+      "Capital inefficiency and forward paper outcomes remain descriptive."
+    ],
+    "assertions": {
+      "approved_legacy_policy_selected": false,
+      "approved_legacy_policy_active": false,
+      "holding_health_implies_sell": false,
+      "pnl_is_action_rule": false,
+      "review_is_broker_instruction": false
+    },
+    "limitations": [
+      "Approved legacy decision policy is not Lite action authorization.",
+      "Post-v1 sell/risk research shadows are non-consumer-active."
+    ],
+    "unresolved_parameters": [
+      "Lite sell-side selection and activation",
+      "Exit authority and sizing"
+    ]
+  }
+}

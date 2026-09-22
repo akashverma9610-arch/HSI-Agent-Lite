@@ -1,0 +1,125 @@
+{
+  "id": "rotation",
+  "name": "Governed capital rotation comparison",
+  "artifact_type": "portfolio_policy",
+  "version": "0.1.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/CAPITAL_ROTATION.md",
+      "symbol_or_heading": "every-rupee-competes and cash alternative",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "docs/ROTATION_MATRIX.md",
+      "symbol_or_heading": "comparable incumbent-candidate matrix",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "docs/ROTATION_EFFICIENCY.md",
+      "symbol_or_heading": "shared-horizon friction-adjusted comparison",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/rotation/engine.py",
+      "symbol_or_heading": "analytical engine",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "source_role": "IMPLEMENTATION"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "Legacy analytical ROTATE_CANDIDATE_PREFERRED is not an order or active Lite instruction.",
+    "Legacy Gate 1 successor horizon/parcel inputs remain separate source blockers."
+  ],
+  "conflicts": [],
+  "notes": "Generic legacy knowledge only; not Lite runtime or action authority.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "rotation",
+    "scope": "Governed capital rotation comparison",
+    "legacy_lifecycle": "ACCEPTED_WITH_LIMITATIONS",
+    "lite_lifecycle": "KNOWLEDGE_ONLY_REVIEW_REQUIRED",
+    "required_evidence": [
+      "comparable incumbent and candidate current evidence and forward economics",
+      "candidate strategy and evidence",
+      "cash, fees, tax, slippage and horizon"
+    ],
+    "portfolio_dependencies": [
+      "portfolio_state",
+      "holding_health",
+      "portfolio_heat",
+      "exitability"
+    ],
+    "diagnostic_dependencies": [
+      "D01",
+      "D02",
+      "D30",
+      "D31",
+      "D45",
+      "D46"
+    ],
+    "strategy_dependencies": [
+      "LONG_TERM_STRUCTURAL_COMPOUNDER",
+      "SECTOR_ROTATION_LEADER"
+    ],
+    "gate_dependencies": [
+      "GATE_1_ROTATION",
+      "GATE_2_VELOCITY",
+      "GATE_3_SURVEILLANCE",
+      "GATE_4_TRADE_PLAN",
+      "GATE_5_HEAT",
+      "GATE_6_EARNINGS"
+    ],
+    "decision_states": [
+      "KEEP_INCUMBENT",
+      "ROTATION_WORTH_REVIEW",
+      "CASH_PREFERRED",
+      "INSUFFICIENT_COMPARABLE_EVIDENCE"
+    ],
+    "action_authority": {
+      "automatic_trade": false,
+      "buy": false,
+      "trim": false,
+      "exit": false,
+      "rotate": false,
+      "broker_order": false,
+      "gate_fail_override": false
+    },
+    "human_review_required": true,
+    "principles": [
+      "Compare current-price forward incumbent risk/reward with candidate fresh-entry risk/reward on a shared horizon.",
+      "Require strategy fit, confidence, catalyst, valuation, timing, entry/stop/invalidation, liquidity, portfolio fit, opportunity cost and friction including fees and taxes.",
+      "The score gap is one input; a higher candidate score alone never authorizes replacement.",
+      "Unknown cash or incomplete comparable evidence blocks action; cash may be preferable when no governed candidate qualifies."
+    ],
+    "assertions": {
+      "higher_candidate_score_sufficient": false,
+      "comparable_incumbent_candidate_evidence_required": true,
+      "cash_alternative_allowed": true,
+      "missing_friction_can_be_ignored": false,
+      "gate_fail_override_allowed": false
+    },
+    "limitations": [
+      "Legacy analytical ROTATE_CANDIDATE_PREFERRED is not an order or active Lite instruction.",
+      "Legacy Gate 1 successor horizon/parcel inputs remain separate source blockers."
+    ],
+    "unresolved_parameters": [
+      "Comparable forward horizon",
+      "Fee/tax/slippage model selection",
+      "Candidate confirmation/cooldown",
+      "Cash settlement and funding"
+    ]
+  }
+}

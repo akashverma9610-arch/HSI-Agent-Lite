@@ -37,6 +37,7 @@
     {"if": {"properties": {"artifact_type": {"const": "diagnostic"}}}, "then": {"properties": {"details": {"$ref": "diagnostic.schema.json"}}}},
     {"if": {"properties": {"artifact_type": {"const": "strategy"}}}, "then": {"properties": {"details": {"$ref": "strategy.schema.json"}}}},
     {"if": {"properties": {"artifact_type": {"const": "gate"}}}, "then": {"properties": {"details": {"$ref": "gate.schema.json"}}}},
+    {"if": {"properties": {"artifact_type": {"const": "portfolio_policy"}}}, "then": {"properties": {"details": {"$ref": "portfolio_policy.schema.json"}}}},
     {"if": {"properties": {"artifact_type": {"enum": ["governance_policy", "portfolio_policy", "evidence_definition", "calculation_definition", "interpretation_guidance"]}}, "required": ["artifact_type"]}, "then": {"properties": {"status": {"not": {"enum": ["APPROVED_FOR_LITE", "ACTIVE"]}}}}},
     {"if": {"properties": {"artifact_type": {"enum": ["diagnostic", "gate", "strategy"]}, "status": {"const": "ACTIVE"}}, "required": ["artifact_type", "status"]}, "then": {"properties": {"details": {"properties": {"lifecycle": {"const": "ACTIVE"}}}}}},
     {"if": {"properties": {"artifact_type": {"enum": ["diagnostic", "gate", "strategy"]}, "status": {"const": "APPROVED_FOR_LITE"}}, "required": ["artifact_type", "status"]}, "then": {"properties": {"details": {"properties": {"lifecycle": {"const": "APPROVED_FOR_LITE"}}}}}},
