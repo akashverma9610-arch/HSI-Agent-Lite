@@ -1,0 +1,314 @@
+{
+  "id": "decision_score_v1",
+  "name": "Decision Score V1",
+  "artifact_type": "governance_policy",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/DECISION_SCORE.md",
+      "symbol_or_heading": "Decision Score",
+      "authority": "AUTHORITATIVE_ACCEPTED",
+      "source_role": "CONTRACT"
+    },
+    {
+      "path": "app/scoring/engine.py",
+      "symbol_or_heading": "COMPONENTS,build_scorecard",
+      "authority": "AUTHORITATIVE_ACCEPTED",
+      "source_role": "IMPLEMENTATION"
+    },
+    {
+      "path": "tests/unit/test_decision_score.py",
+      "symbol_or_heading": "score contract tests",
+      "authority": "AUTHORITATIVE_ACCEPTED",
+      "source_role": "TEST"
+    }
+  ],
+  "authority_status": "AUTHORITATIVE_ACCEPTED",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "accumulation_distribution",
+    "base_pattern",
+    "crowd_data_confidence",
+    "crowd_divergence",
+    "crowd_sentiment",
+    "crowd_trap",
+    "diagnostic_results",
+    "entry_geometry",
+    "financial_comparability",
+    "financial_growth_series",
+    "guidance_delivery",
+    "ichimoku",
+    "institutional_holdings",
+    "liquidity_events",
+    "liquidity_pools",
+    "margins",
+    "market_regime",
+    "market_structure",
+    "moving_average_structure",
+    "named_vwap_value_area",
+    "obv",
+    "order_book",
+    "post_news_reaction",
+    "pullback",
+    "quarterly_growth",
+    "relative_strength",
+    "risk_reward",
+    "rvol",
+    "sector_health",
+    "sector_rotation",
+    "stop_geometry",
+    "target_geometry",
+    "trap_evidence",
+    "trend_daily",
+    "trend_weekly",
+    "valuation",
+    "volume_climax",
+    "wyckoff_phase"
+  ],
+  "known_limitations": [
+    "Lite has no score calculation runtime or certified source readiness.",
+    "D35 and D57 are quarantined optional score inputs; no substitute, zero, or implicit eligibility.",
+    "Legacy explicit-state scoring requires registry/version, as-of and provenance admission; V2 shadow score cannot enter V1."
+  ],
+  "conflicts": [],
+  "notes": "Accepted legacy Core V1 contract, extracted as review-required Lite knowledge; not activated scoring.",
+  "deterministic_computation": false,
+  "details": {
+    "policy_id": "decision-score-v1",
+    "registry_version": "diagnostic-registry-v1",
+    "scale_min": 0,
+    "scale_max": 10,
+    "total_weight": "1.00",
+    "components": [
+      {
+        "component_id": "earnings_acceleration",
+        "name": "Earnings Acceleration",
+        "weight": "0.15",
+        "mandatory_diagnostics": [
+          "D24"
+        ],
+        "optional_diagnostics": [
+          "D25",
+          "D26",
+          "D16",
+          "D27",
+          "D28"
+        ],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "market_regime",
+        "name": "Market Regime",
+        "weight": "0.10",
+        "mandatory_diagnostics": [
+          "D01"
+        ],
+        "optional_diagnostics": [],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "sector_rotation",
+        "name": "Sector Rotation",
+        "weight": "0.10",
+        "mandatory_diagnostics": [
+          "D02"
+        ],
+        "optional_diagnostics": [
+          "D03"
+        ],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "smart_money_evidence",
+        "name": "Smart Money Evidence",
+        "weight": "0.10",
+        "mandatory_diagnostics": [
+          "D07"
+        ],
+        "optional_diagnostics": [
+          "D09",
+          "D50",
+          "D58",
+          "D22"
+        ],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "relative_strength",
+        "name": "Relative Strength",
+        "weight": "0.10",
+        "mandatory_diagnostics": [
+          "D06"
+        ],
+        "optional_diagnostics": [],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "price_structure",
+        "name": "Price Structure",
+        "weight": "0.10",
+        "mandatory_diagnostics": [
+          "D10"
+        ],
+        "optional_diagnostics": [
+          "D04",
+          "D05",
+          "D37",
+          "D38",
+          "D40",
+          "D41",
+          "D42",
+          "D46"
+        ],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "volume_obv_vwap",
+        "name": "Volume / OBV / VWAP",
+        "weight": "0.10",
+        "mandatory_diagnostics": [
+          "D11"
+        ],
+        "optional_diagnostics": [
+          "D35",
+          "D36",
+          "D58"
+        ],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "ichimoku_mtf",
+        "name": "Ichimoku & MTF",
+        "weight": "0.10",
+        "mandatory_diagnostics": [
+          "D12"
+        ],
+        "optional_diagnostics": [
+          "D13",
+          "D14",
+          "D59"
+        ],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "valuation_risk_reward",
+        "name": "Valuation & Risk/Reward",
+        "weight": "0.10",
+        "mandatory_diagnostics": [
+          "D29",
+          "D45"
+        ],
+        "optional_diagnostics": [
+          "D43",
+          "D44",
+          "D31"
+        ],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      },
+      {
+        "component_id": "liquidity_smc_traps",
+        "name": "Liquidity & SMC Traps",
+        "weight": "0.05",
+        "mandatory_diagnostics": [
+          "D08"
+        ],
+        "optional_diagnostics": [
+          "D51",
+          "D52",
+          "D53",
+          "D54",
+          "D55",
+          "D56",
+          "D57",
+          "D60",
+          "D61"
+        ],
+        "mandatory_status": "ALL_REQUIRED",
+        "contribution_semantics": "Arithmetic mean of eligible mandatory and available optional explicit diagnostic state scores on 0–10 scale, multiplied by fixed component weight.",
+        "missing_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+        "provenance": [
+          "app/scoring/engine.py#COMPONENTS",
+          "app/scoring/engine.py#build_scorecard"
+        ]
+      }
+    ],
+    "component_semantics": "Final score is sum of ten weighted contributions only when all components are not INELIGIBLE. Component explicit state score is mean of admitted mandatory and available optional states. Confidence and warning channels are separate; no confidence multiplier.",
+    "mandatory_missing_behavior": "COMPONENT_INELIGIBLE_SCORE_INCOMPLETE_FINAL_NULL",
+    "optional_missing_behavior": "COMPONENT_PARTIAL_NO_REWEIGHT",
+    "score_complete_rule": "ALL_COMPONENTS_NOT_INELIGIBLE",
+    "quarantined_dependencies": [
+      "D35",
+      "D57"
+    ],
+    "buy_sell_authority": false,
+    "execution_authority": false,
+    "gate_override_allowed": false,
+    "broker_order_authority": false,
+    "provenance": [
+      "docs/DECISION_SCORE.md#Decision Score",
+      "app/scoring/engine.py#COMPONENTS,build_scorecard",
+      "tests/unit/test_decision_score.py#test_missing_mandatory"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "legacy_policy_id": "six-gates-production-v1",
+  "legacy_policy_lifecycle": "SELECTED_ACTIVE_IN_LEGACY_V1",
+  "lite_lifecycle": "REVIEW_REQUIRED_KNOWLEDGE_ONLY",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "gate_count": 6,
+  "gates": [
+    {
+      "gate_id": "GATE_1_ROTATION",
+      "canonical_name": "Net Friction & Tax Hurdle",
+      "filename": "catalog/GATE_1_rotation.json",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "lite_lifecycle": "REVIEW_REQUIRED"
+    },
+    {
+      "gate_id": "GATE_2_VELOCITY",
+      "canonical_name": "Capital Velocity / Time Stop",
+      "filename": "catalog/GATE_2_velocity.json",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "lite_lifecycle": "REVIEW_REQUIRED"
+    },
+    {
+      "gate_id": "GATE_3_SURVEILLANCE",
+      "canonical_name": "Surveillance & Circuit Filter",
+      "filename": "catalog/GATE_3_surveillance.json",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "lite_lifecycle": "REVIEW_REQUIRED"
+    },
+    {
+      "gate_id": "GATE_4_TRADE_PLAN",
+      "canonical_name": "Tranche Scaling & De-Risking",
+      "filename": "catalog/GATE_4_trade_plan.json",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "lite_lifecycle": "REVIEW_REQUIRED"
+    },
+    {
+      "gate_id": "GATE_5_HEAT",
+      "canonical_name": "Portfolio Heat & Factor Cap",
+      "filename": "catalog/GATE_5_heat.json",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "lite_lifecycle": "REVIEW_REQUIRED"
+    },
+    {
+      "gate_id": "GATE_6_EARNINGS",
+      "canonical_name": "Five-Trading-Day Pre-Earnings Blackout",
+      "filename": "catalog/GATE_6_earnings.json",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+      "lite_lifecycle": "REVIEW_REQUIRED"
+    }
+  ]
+}

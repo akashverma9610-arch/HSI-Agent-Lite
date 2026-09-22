@@ -1,0 +1,75 @@
+{
+  "id": "GATE_3_SURVEILLANCE",
+  "name": "Surveillance & Circuit Filter",
+  "artifact_type": "gate",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/EXECUTION_GATES.md",
+      "symbol_or_heading": "Gate 3",
+      "source_role": "CONTRACT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/engine.py",
+      "symbol_or_heading": "_surveillance",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/production_policy.py",
+      "symbol_or_heading": "approved_v1_policy",
+      "source_role": "APPROVAL",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "Official source capture/identity, freshness, effective selection and PIT readiness not implemented in Lite; no absent-data clearance."
+  ],
+  "conflicts": [],
+  "notes": "Legacy six-gates-production-v1 is selected active V1; this Lite artifact is review-required knowledge only. No authoritative observation, future/stale observation (>4 trading sessions under selected V1 policy), incomplete ASM/GSM/circuit vector, or unresolved configuration => INSUFFICIENT_DATA.",
+  "deterministic_computation": false,
+  "details": {
+    "gate_id": "GATE_3_SURVEILLANCE",
+    "canonical_name": "Surveillance & Circuit Filter",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "purpose": "Block restricted instruments using fresh authoritative ASM/GSM/price-band status.",
+    "required_evidence": [],
+    "required_diagnostics": [],
+    "pass_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_3_SURVEILLANCE:PASS",
+      "description": "Fresh authoritative complete official observation: ASM stage < 2, GSM stage = 0, and circuit limit > 0.05."
+    },
+    "fail_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_3_SURVEILLANCE:FAIL",
+      "description": "ASM stage >= 2, GSM stage > 0, or circuit limit <= 0.05."
+    },
+    "unknown_behavior": "BLOCK",
+    "criticality": "CRITICAL",
+    "score_interaction": "Independent hard admissibility constraint; any score or LLM cannot override.",
+    "strategy_interaction": "No setup/strategy recommendation or order authority.",
+    "portfolio_context": "Instrument-level execution admissibility; no portfolio allocation.",
+    "known_limitations": [
+      "Official source capture/identity, freshness, effective selection and PIT readiness not implemented in Lite; no absent-data clearance."
+    ],
+    "broker_order_authority": false,
+    "score_or_llm_override_allowed": false,
+    "provenance": [
+      "docs/EXECUTION_GATES.md#Gate 3",
+      "app/gates/engine.py#_surveillance",
+      "app/gates/production_policy.py#approved_v1_policy"
+    ]
+  }
+}

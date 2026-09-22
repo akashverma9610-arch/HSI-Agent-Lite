@@ -1,0 +1,85 @@
+{
+  "id": "GATE_4_TRADE_PLAN",
+  "name": "Tranche Scaling & De-Risking",
+  "artifact_type": "gate",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/EXECUTION_GATES.md",
+      "symbol_or_heading": "Gate 4",
+      "source_role": "CONTRACT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/engine.py",
+      "symbol_or_heading": "_plan",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/production_policy.py",
+      "symbol_or_heading": "approved_v1_policy",
+      "source_role": "APPROVAL",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "entry_geometry",
+    "stop_geometry",
+    "target_geometry",
+    "risk_reward"
+  ],
+  "known_limitations": [
+    "Lite has no approved TradePlan producer or gate runtime."
+  ],
+  "conflicts": [],
+  "notes": "Legacy six-gates-production-v1 is selected active V1; this Lite artifact is review-required knowledge only. Unresolved tranche configuration => INSUFFICIENT_DATA; missing plan is FAIL in V1, not a permissive UNKNOWN.",
+  "deterministic_computation": false,
+  "details": {
+    "gate_id": "GATE_4_TRADE_PLAN",
+    "canonical_name": "Tranche Scaling & De-Risking",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "purpose": "Require an analytical plan compatible with selected V1 tranche and breakeven policy.",
+    "required_evidence": [
+      "entry_geometry",
+      "stop_geometry",
+      "target_geometry",
+      "risk_reward"
+    ],
+    "required_diagnostics": [],
+    "pass_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_4_TRADE_PLAN:PASS",
+      "description": "Trade plan has entry/structural stop/T1 and is compatible with 0.50 initial tranche, 0.50 T1 reduction, and documented breakeven conditions."
+    },
+    "fail_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_4_TRADE_PLAN:FAIL",
+      "description": "Missing/invalid entry-stop-T1 plan or plan conflicts with approved tranche/breakeven policy."
+    },
+    "unknown_behavior": "BLOCK",
+    "criticality": "CRITICAL",
+    "score_interaction": "Plan admissibility is independent of score; score/LLM cannot override FAIL.",
+    "strategy_interaction": "Consumes an independently governed setup/TradePlan; does not extract strategy entry/stop/target rules here.",
+    "portfolio_context": "Tranche semantics only; no actual sizing or portfolio mutation.",
+    "known_limitations": [
+      "Lite has no approved TradePlan producer or gate runtime."
+    ],
+    "broker_order_authority": false,
+    "score_or_llm_override_allowed": false,
+    "provenance": [
+      "docs/EXECUTION_GATES.md#Gate 4",
+      "app/gates/engine.py#_plan",
+      "app/gates/production_policy.py#approved_v1_policy"
+    ]
+  }
+}

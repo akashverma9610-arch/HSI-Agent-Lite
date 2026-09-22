@@ -1,0 +1,75 @@
+{
+  "id": "GATE_1_ROTATION",
+  "name": "Net Friction & Tax Hurdle",
+  "artifact_type": "gate",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/EXECUTION_GATES.md",
+      "symbol_or_heading": "Gate 1",
+      "source_role": "CONTRACT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/engine.py",
+      "symbol_or_heading": "_rotation",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/production_policy.py",
+      "symbol_or_heading": "approved_v1_policy",
+      "source_role": "APPROVAL",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "Lite has no scorecard or friction runtime; V1 selected policy values are historical contract, not current rate certification."
+  ],
+  "conflicts": [],
+  "notes": "Legacy six-gates-production-v1 is selected active V1; this Lite artifact is review-required knowledge only. Unresolved hurdle/friction config, missing candidate or incumbent score, or missing required economic/friction inputs => INSUFFICIENT_DATA and no eligibility.",
+  "deterministic_computation": false,
+  "details": {
+    "gate_id": "GATE_1_ROTATION",
+    "canonical_name": "Net Friction & Tax Hurdle",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "purpose": "Admit exact incumbent replacement only when score and net economic hurdles are met.",
+    "required_evidence": [],
+    "required_diagnostics": [],
+    "pass_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_1_ROTATION:PASS",
+      "description": "Outside ROTATE_IN: not applicable PASS only for this gate. ROTATE_IN: candidate raw score minus comparison holding score >= 1.00 and expected incremental return minus modeled switching friction > 0.00 under selected V1 policy."
+    },
+    "fail_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_1_ROTATION:FAIL",
+      "description": "ROTATE_IN score advantage < 1.00 or net economic benefit <= 0.00."
+    },
+    "unknown_behavior": "BLOCK",
+    "criticality": "CRITICAL",
+    "score_interaction": "Consumes candidate and incumbent canonical scorecards; comparison never modifies raw Decision Score. High score cannot override FAIL.",
+    "strategy_interaction": "ROTATE_IN context only; no strategy verdict or order.",
+    "portfolio_context": "Requires exact comparison holding/rotation context and modeled switching friction; V2 exact parcel economics are not V1.",
+    "known_limitations": [
+      "Lite has no scorecard or friction runtime; V1 selected policy values are historical contract, not current rate certification."
+    ],
+    "broker_order_authority": false,
+    "score_or_llm_override_allowed": false,
+    "provenance": [
+      "docs/EXECUTION_GATES.md#Gate 1",
+      "app/gates/engine.py#_rotation",
+      "app/gates/production_policy.py#approved_v1_policy"
+    ]
+  }
+}

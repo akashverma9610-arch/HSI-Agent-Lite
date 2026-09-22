@@ -1,13 +1,21 @@
 {
   "gate_id": "synthetic.gate.example",
+  "canonical_name": "Synthetic gate",
   "version": "0.1.0",
   "authority": "AUTHORITATIVE_ACCEPTED",
   "lifecycle": "REVIEW_REQUIRED",
+  "purpose": "Synthetic schema fixture",
   "required_evidence": ["synthetic.evidence.example"],
+  "required_diagnostics": [],
   "pass_condition": {"policy_reference": "synthetic.pass", "description": "Placeholder reviewed condition"},
   "fail_condition": {"policy_reference": "synthetic.fail", "description": "Placeholder reviewed condition"},
   "unknown_behavior": "BLOCK",
   "criticality": "CRITICAL",
+  "score_interaction": "No override",
+  "strategy_interaction": "No action",
+  "portfolio_context": "No portfolio effect",
+  "known_limitations": [],
+  "broker_order_authority": false,
   "score_or_llm_override_allowed": false,
   "provenance": ["synthetic/not-a-real-source.md#Synthetic example"]
 }

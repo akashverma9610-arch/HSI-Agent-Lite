@@ -45,9 +45,9 @@ def assert_invalid(profile: str, instance: dict) -> None:
 def test_all_schemas_parse_and_validate_as_schemas():
     assert {p.name for p in SCHEMAS.glob("*.schema.json")} == {
         "knowledge.schema.json", "evidence.schema.json", "diagnostic.schema.json",
-        "strategy.schema.json", "gate.schema.json",
+        "strategy.schema.json", "gate.schema.json", "score.schema.json",
     }
-    for name in ("knowledge", "evidence", "diagnostic", "strategy", "gate"):
+    for name in ("knowledge", "evidence", "diagnostic", "strategy", "gate", "score"):
         validator(name)
 
 

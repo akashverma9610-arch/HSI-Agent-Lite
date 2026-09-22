@@ -1,0 +1,75 @@
+{
+  "id": "GATE_6_EARNINGS",
+  "name": "Five-Trading-Day Pre-Earnings Blackout",
+  "artifact_type": "gate",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/EXECUTION_GATES.md",
+      "symbol_or_heading": "Gate 6",
+      "source_role": "CONTRACT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/engine.py",
+      "symbol_or_heading": "_blackout",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/production_policy.py",
+      "symbol_or_heading": "approved_v1_policy",
+      "source_role": "APPROVAL",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "Lite has no verified earnings-calendar source/known-at or gate runtime."
+  ],
+  "conflicts": [],
+  "notes": "Legacy six-gates-production-v1 is selected active V1; this Lite artifact is review-required knowledge only. Unresolved blackout config or missing/future-verified earnings schedule => INSUFFICIENT_DATA for new/add/rotation context.",
+  "deterministic_computation": false,
+  "details": {
+    "gate_id": "GATE_6_EARNINGS",
+    "canonical_name": "Five-Trading-Day Pre-Earnings Blackout",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "purpose": "Prevent fresh/add/rotation entry inside verified pre-earnings blackout while allowing existing-position management.",
+    "required_evidence": [],
+    "required_diagnostics": [],
+    "pass_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_6_EARNINGS:PASS",
+      "description": "Existing-position hold/reduce/exit/risk-management is not prohibited by this gate. For fresh/add/rotation, verified schedule is outside five trading sessions before earnings."
+    },
+    "fail_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_6_EARNINGS:FAIL",
+      "description": "For fresh/add/rotation, verified future earnings date is within <=5 exchange trading sessions."
+    },
+    "unknown_behavior": "BLOCK",
+    "criticality": "CRITICAL",
+    "score_interaction": "Independent event admissibility; high score or LLM cannot override FAIL.",
+    "strategy_interaction": "Does not force exits or create an entry strategy.",
+    "portfolio_context": "Existing risk management remains allowed by this gate alone.",
+    "known_limitations": [
+      "Lite has no verified earnings-calendar source/known-at or gate runtime."
+    ],
+    "broker_order_authority": false,
+    "score_or_llm_override_allowed": false,
+    "provenance": [
+      "docs/EXECUTION_GATES.md#Gate 6",
+      "app/gates/engine.py#_blackout",
+      "app/gates/production_policy.py#approved_v1_policy"
+    ]
+  }
+}

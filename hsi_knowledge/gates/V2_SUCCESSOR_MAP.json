@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0",
+  "successor_policy_id": "execution-gate-policy-v2-proposed / v2-proposal.4",
+  "parent_v1_policy_id": "six-gates-production-v1",
+  "governance_decision": "COMPOSITE_V2_4_GOVERNANCE_APPROVED_WITH_ACTIVATION_BLOCKERS",
+  "activation_status": "NOT_ACTIVE",
+  "lite_activation_status": "NOT_ACTIVE",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "source": "docs/architecture/EXECUTION_GATE_POLICY_V2_COMPOSITE_GOVERNANCE_APPROVAL_2.md",
+  "v1_gate_order": [
+    "GATE_1_ROTATION",
+    "GATE_2_VELOCITY",
+    "GATE_3_SURVEILLANCE",
+    "GATE_4_TRADE_PLAN",
+    "GATE_5_HEAT",
+    "GATE_6_EARNINGS"
+  ],
+  "changes": [
+    {
+      "gate_id": "GATE_1_ROTATION",
+      "semantics": "Paired exact-incumbent conditional INR scenarios; same capital/horizon/cost/PIT; quality hurdle stays >=1.00; net economic hurdle strictly >0 INR.",
+      "changed_dependencies": [
+        "candidate/incumbent scenario producer",
+        "selected parcel and tax lots",
+        "friction/tax/slippage producers",
+        "common horizon and funding reconciliation"
+      ],
+      "activation_blockers": [
+        "CV24B20-28 BLOCKING OPEN",
+        "CV24B12 calibration/compatibility",
+        "CV24B13 selection/registration",
+        "CV24B14 replay isolation"
+      ]
+    },
+    {
+      "gate_id": "GATE_3_SURVEILLANCE",
+      "semantics": "PIT-visible official complete ASM/GSM/PRICE_BAND vector; no missing-as-clearance.",
+      "changed_dependencies": [
+        "official source completeness",
+        "effective selection and conflict lifecycle"
+      ],
+      "activation_blockers": [
+        "CV24B01-08 source/selection/canary blockers"
+      ]
+    },
+    {
+      "gate_id": "GATE_6_EARNINGS",
+      "semantics": "Verified-event veto tri-state; event-risk horizon POLICY_UNSET, no inherited five-session default.",
+      "changed_dependencies": [
+        "verified event producer",
+        "calibrated event-risk horizon",
+        "no-veto metadata"
+      ],
+      "activation_blockers": [
+        "CV24B09-10 horizon/metadata",
+        "CV24B11 consumer compatibility"
+      ]
+    }
+  ],
+  "unchanged_v1_definitions": [
+    "GATE_2_VELOCITY",
+    "GATE_4_TRADE_PLAN",
+    "GATE_5_HEAT"
+  ],
+  "global_blockers": [
+    "V2.4 not registered, effective, selected or runtime-certified",
+    "PIT/replay and downstream compatibility unproven",
+    "Prospective source/producer/outcome calibration incomplete"
+  ],
+  "no_runtime_activation": true
+}

@@ -1,0 +1,233 @@
+{
+  "version": "1.0.0",
+  "policy_id": "decision-score-v1",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "runtime_status": "NOT_IMPLEMENTED_IN_LITE",
+  "components": [
+    {
+      "component_id": "earnings_acceleration",
+      "mandatory_diagnostics": [
+        "D24"
+      ],
+      "optional_diagnostics": [
+        "D25",
+        "D26",
+        "D16",
+        "D27",
+        "D28"
+      ],
+      "indirect_evidence_families": [
+        "financial_comparability",
+        "financial_growth_series",
+        "guidance_delivery",
+        "margins",
+        "order_book",
+        "quarterly_growth"
+      ],
+      "quarantine_impact": [],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "market_regime",
+      "mandatory_diagnostics": [
+        "D01"
+      ],
+      "optional_diagnostics": [],
+      "indirect_evidence_families": [
+        "market_regime"
+      ],
+      "quarantine_impact": [],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "sector_rotation",
+      "mandatory_diagnostics": [
+        "D02"
+      ],
+      "optional_diagnostics": [
+        "D03"
+      ],
+      "indirect_evidence_families": [
+        "sector_health",
+        "sector_rotation"
+      ],
+      "quarantine_impact": [],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "smart_money_evidence",
+      "mandatory_diagnostics": [
+        "D07"
+      ],
+      "optional_diagnostics": [
+        "D09",
+        "D50",
+        "D58",
+        "D22"
+      ],
+      "indirect_evidence_families": [
+        "accumulation_distribution",
+        "institutional_holdings",
+        "liquidity_events",
+        "liquidity_pools",
+        "rvol",
+        "volume_climax",
+        "wyckoff_phase"
+      ],
+      "quarantine_impact": [],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "relative_strength",
+      "mandatory_diagnostics": [
+        "D06"
+      ],
+      "optional_diagnostics": [],
+      "indirect_evidence_families": [
+        "relative_strength"
+      ],
+      "quarantine_impact": [],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "price_structure",
+      "mandatory_diagnostics": [
+        "D10"
+      ],
+      "optional_diagnostics": [
+        "D04",
+        "D05",
+        "D37",
+        "D38",
+        "D40",
+        "D41",
+        "D42",
+        "D46"
+      ],
+      "indirect_evidence_families": [
+        "base_pattern",
+        "entry_geometry",
+        "market_structure",
+        "moving_average_structure",
+        "pullback",
+        "stop_geometry",
+        "trend_daily",
+        "trend_weekly"
+      ],
+      "quarantine_impact": [],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "volume_obv_vwap",
+      "mandatory_diagnostics": [
+        "D11"
+      ],
+      "optional_diagnostics": [
+        "D35",
+        "D36",
+        "D58"
+      ],
+      "indirect_evidence_families": [
+        "named_vwap_value_area",
+        "obv",
+        "rvol",
+        "volume_climax"
+      ],
+      "quarantine_impact": [
+        {
+          "diagnostic_id": "D35",
+          "effect": "QUARANTINED_OPTIONAL_UNAVAILABLE_COMPONENT_PARTIAL_NO_SUBSTITUTE"
+        }
+      ],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "ichimoku_mtf",
+      "mandatory_diagnostics": [
+        "D12"
+      ],
+      "optional_diagnostics": [
+        "D13",
+        "D14",
+        "D59"
+      ],
+      "indirect_evidence_families": [
+        "crowd_sentiment",
+        "diagnostic_results",
+        "ichimoku"
+      ],
+      "quarantine_impact": [],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "valuation_risk_reward",
+      "mandatory_diagnostics": [
+        "D29",
+        "D45"
+      ],
+      "optional_diagnostics": [
+        "D43",
+        "D44",
+        "D31"
+      ],
+      "indirect_evidence_families": [
+        "base_pattern",
+        "diagnostic_results",
+        "entry_geometry",
+        "financial_comparability",
+        "pullback",
+        "risk_reward",
+        "stop_geometry",
+        "target_geometry",
+        "valuation"
+      ],
+      "quarantine_impact": [],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    },
+    {
+      "component_id": "liquidity_smc_traps",
+      "mandatory_diagnostics": [
+        "D08"
+      ],
+      "optional_diagnostics": [
+        "D51",
+        "D52",
+        "D53",
+        "D54",
+        "D55",
+        "D56",
+        "D57",
+        "D60",
+        "D61"
+      ],
+      "indirect_evidence_families": [
+        "crowd_data_confidence",
+        "crowd_divergence",
+        "crowd_sentiment",
+        "crowd_trap",
+        "diagnostic_results",
+        "liquidity_events",
+        "liquidity_pools",
+        "post_news_reaction",
+        "trap_evidence"
+      ],
+      "quarantine_impact": [
+        {
+          "diagnostic_id": "D57",
+          "effect": "QUARANTINED_OPTIONAL_UNAVAILABLE_COMPONENT_PARTIAL_NO_SUBSTITUTE"
+        }
+      ],
+      "missing_data_behavior": "Missing or inadmissible mandatory diagnostic => INELIGIBLE and null contribution; missing optional => PARTIAL with available eligible inputs only, no weight renormalization.",
+      "future_calculation_owner": "future_decision_score_engine_NOT_IMPLEMENTED"
+    }
+  ]
+}

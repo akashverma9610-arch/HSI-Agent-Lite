@@ -1,0 +1,79 @@
+{
+  "id": "GATE_2_VELOCITY",
+  "name": "Capital Velocity / Time Stop",
+  "artifact_type": "gate",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/EXECUTION_GATES.md",
+      "symbol_or_heading": "Gate 2",
+      "source_role": "CONTRACT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/engine.py",
+      "symbol_or_heading": "_velocity",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/production_policy.py",
+      "symbol_or_heading": "approved_v1_policy",
+      "source_role": "APPROVAL",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [
+    "atr"
+  ],
+  "known_limitations": [
+    "Lite has no holding-history/ATR gate runtime."
+  ],
+  "conflicts": [],
+  "notes": "Legacy six-gates-production-v1 is selected active V1; this Lite artifact is review-required knowledge only. Unresolved velocity config or missing holding entry date/ATR expansion => INSUFFICIENT_DATA.",
+  "deterministic_computation": false,
+  "details": {
+    "gate_id": "GATE_2_VELOCITY",
+    "canonical_name": "Capital Velocity / Time Stop",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "purpose": "Identify inactive existing holdings for rotation review.",
+    "required_evidence": [
+      "atr"
+    ],
+    "required_diagnostics": [],
+    "pass_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_2_VELOCITY:PASS",
+      "description": "Outside existing-holding management contexts: not applicable PASS for this gate. Otherwise fewer than 12 trading sessions elapsed or ATR expansion >= 1.0."
+    },
+    "fail_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_2_VELOCITY:FAIL",
+      "description": "Existing holding aged >= 12 trading sessions with ATR expansion < 1.0; separate rotation comparison adjustment -0.50 is recorded without altering raw score."
+    },
+    "unknown_behavior": "BLOCK",
+    "criticality": "CRITICAL",
+    "score_interaction": "Separate -0.50 comparison/rotation adjustment only; raw Decision Score remains unchanged and neither score nor LLM rescues FAIL.",
+    "strategy_interaction": "Does not create a sell or rotation strategy.",
+    "portfolio_context": "Requires existing holding history and exchange calendar.",
+    "known_limitations": [
+      "Lite has no holding-history/ATR gate runtime."
+    ],
+    "broker_order_authority": false,
+    "score_or_llm_override_allowed": false,
+    "provenance": [
+      "docs/EXECUTION_GATES.md#Gate 2",
+      "app/gates/engine.py#_velocity",
+      "app/gates/production_policy.py#approved_v1_policy"
+    ]
+  }
+}

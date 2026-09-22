@@ -1,0 +1,129 @@
+{
+  "version": "1.0.0",
+  "policy_id": "six-gates-production-v1",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "gate_count": 6,
+  "gates": [
+    {
+      "gate_id": "GATE_1_ROTATION",
+      "diagnostic_dependencies": [],
+      "evidence_family_dependencies": [],
+      "strategy_setup_dependencies": [],
+      "portfolio_dependencies": [
+        "Requires exact comparison holding/rotation context and modeled switching friction; V2 exact parcel economics are not V1."
+      ],
+      "external_policy_dependencies": [
+        "decision-score-v1",
+        "nse-cash-delivery-friction-model-v1",
+        "canonical scorecard provenance"
+      ],
+      "failure_criticality": "CRITICAL",
+      "unresolved_blockers": [
+        "Lite has no scorecard or friction runtime; V1 selected policy values are historical contract, not current rate certification."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE",
+      "direct_diagnostic_dependency_note": "Legacy V1 gate engine consumes typed GateInput, not Dxx directly; do not invent a Dxx prerequisite."
+    },
+    {
+      "gate_id": "GATE_2_VELOCITY",
+      "diagnostic_dependencies": [],
+      "evidence_family_dependencies": [
+        "atr"
+      ],
+      "strategy_setup_dependencies": [],
+      "portfolio_dependencies": [
+        "Requires existing holding history and exchange calendar."
+      ],
+      "external_policy_dependencies": [
+        "exchange trading calendar",
+        "selected V1 velocity configuration"
+      ],
+      "failure_criticality": "CRITICAL",
+      "unresolved_blockers": [
+        "Lite has no holding-history/ATR gate runtime."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE",
+      "direct_diagnostic_dependency_note": "Legacy V1 gate engine consumes typed GateInput, not Dxx directly; do not invent a Dxx prerequisite."
+    },
+    {
+      "gate_id": "GATE_3_SURVEILLANCE",
+      "diagnostic_dependencies": [],
+      "evidence_family_dependencies": [],
+      "strategy_setup_dependencies": [],
+      "portfolio_dependencies": [],
+      "external_policy_dependencies": [
+        "official-nse-surveillance-v1",
+        "selected V1 surveillance configuration",
+        "PIT/source-authority contract"
+      ],
+      "failure_criticality": "CRITICAL",
+      "unresolved_blockers": [
+        "Official source capture/identity, freshness, effective selection and PIT readiness not implemented in Lite; no absent-data clearance."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE",
+      "direct_diagnostic_dependency_note": "Legacy V1 gate engine consumes typed GateInput, not Dxx directly; do not invent a Dxx prerequisite."
+    },
+    {
+      "gate_id": "GATE_4_TRADE_PLAN",
+      "diagnostic_dependencies": [],
+      "evidence_family_dependencies": [
+        "entry_geometry",
+        "stop_geometry",
+        "target_geometry",
+        "risk_reward"
+      ],
+      "strategy_setup_dependencies": [
+        "six-gates-setup-dependency-v1",
+        "governed TradePlan"
+      ],
+      "portfolio_dependencies": [],
+      "external_policy_dependencies": [
+        "six-gates-setup-dependency-v1",
+        "selected V1 tranche configuration"
+      ],
+      "failure_criticality": "CRITICAL",
+      "unresolved_blockers": [
+        "Lite has no approved TradePlan producer or gate runtime."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE",
+      "direct_diagnostic_dependency_note": "Legacy V1 gate engine consumes typed GateInput, not Dxx directly; do not invent a Dxx prerequisite."
+    },
+    {
+      "gate_id": "GATE_5_HEAT",
+      "diagnostic_dependencies": [],
+      "evidence_family_dependencies": [],
+      "strategy_setup_dependencies": [],
+      "portfolio_dependencies": [
+        "Requires portfolio equity, existing/candidate risk amounts, candidate allocation and sector allocation from a compatible snapshot."
+      ],
+      "external_policy_dependencies": [
+        "portfolio-structural-risk-heat-v1",
+        "selected V1 heat/allocation configuration"
+      ],
+      "failure_criticality": "CRITICAL",
+      "unresolved_blockers": [
+        "Lite has no portfolio snapshot or heat methodology runtime."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE",
+      "direct_diagnostic_dependency_note": "Legacy V1 gate engine consumes typed GateInput, not Dxx directly; do not invent a Dxx prerequisite."
+    },
+    {
+      "gate_id": "GATE_6_EARNINGS",
+      "diagnostic_dependencies": [],
+      "evidence_family_dependencies": [],
+      "strategy_setup_dependencies": [],
+      "portfolio_dependencies": [],
+      "external_policy_dependencies": [
+        "official-nse-earnings-calendar-v1",
+        "exchange trading calendar",
+        "selected V1 blackout configuration"
+      ],
+      "failure_criticality": "CRITICAL",
+      "unresolved_blockers": [
+        "Lite has no verified earnings-calendar source/known-at or gate runtime."
+      ],
+      "future_runtime_status": "NOT_IMPLEMENTED_IN_LITE",
+      "direct_diagnostic_dependency_note": "Legacy V1 gate engine consumes typed GateInput, not Dxx directly; do not invent a Dxx prerequisite."
+    }
+  ]
+}

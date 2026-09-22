@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hsi-agent-lite.local/schema/score.schema.json",
+  "title": "Decision Score V1 details profile; validate with knowledge envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_id", "registry_version", "scale_min", "scale_max", "total_weight", "components", "component_semantics", "mandatory_missing_behavior", "optional_missing_behavior", "score_complete_rule", "quarantined_dependencies", "buy_sell_authority", "execution_authority", "gate_override_allowed", "broker_order_authority", "provenance"],
+  "properties": {
+    "policy_id": {"const": "decision-score-v1"},
+    "registry_version": {"const": "diagnostic-registry-v1"},
+    "scale_min": {"const": 0},
+    "scale_max": {"const": 10},
+    "total_weight": {"const": "1.00"},
+    "components": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"$ref": "#/$defs/component"}},
+    "component_semantics": {"type": "string", "minLength": 1},
+    "mandatory_missing_behavior": {"const": "COMPONENT_INELIGIBLE_SCORE_INCOMPLETE_FINAL_NULL"},
+    "optional_missing_behavior": {"const": "COMPONENT_PARTIAL_NO_REWEIGHT"},
+    "score_complete_rule": {"const": "ALL_COMPONENTS_NOT_INELIGIBLE"},
+    "quarantined_dependencies": {"type": "array", "items": {"enum": ["D35", "D57"]}, "uniqueItems": true},
+    "buy_sell_authority": {"const": false},
+    "execution_authority": {"const": false},
+    "gate_override_allowed": {"const": false},
+    "broker_order_authority": {"const": false},
+    "provenance": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "component": {
+      "type": "object", "additionalProperties": false,
+      "required": ["component_id", "name", "weight", "mandatory_diagnostics", "optional_diagnostics", "mandatory_status", "contribution_semantics", "missing_behavior", "provenance"],
+      "properties": {
+        "component_id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "weight": {"type": "string", "pattern": "^0\\.[0-9]{2}$"},
+        "mandatory_diagnostics": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^D(0[1-9]|[1-5][0-9]|6[01])$"}},
+        "optional_diagnostics": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^D(0[1-9]|[1-5][0-9]|6[01])$"}},
+        "mandatory_status": {"const": "ALL_REQUIRED"},
+        "contribution_semantics": {"type": "string", "minLength": 1},
+        "missing_behavior": {"type": "string", "minLength": 1},
+        "provenance": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "GATE_5_HEAT",
+  "name": "Portfolio Heat & Factor Cap",
+  "artifact_type": "gate",
+  "version": "1.0.0",
+  "status": "REVIEW_REQUIRED",
+  "effective_from": null,
+  "supersedes": [],
+  "legacy_repository": "Hybrid-Stock-Intelligence",
+  "legacy_commit": "f88b44d514fc9a2654040aa04e5350fc9e8660fe",
+  "legacy_sources": [
+    {
+      "path": "docs/EXECUTION_GATES.md",
+      "symbol_or_heading": "Gate 5",
+      "source_role": "CONTRACT",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/engine.py",
+      "symbol_or_heading": "_heat",
+      "source_role": "IMPLEMENTATION",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    },
+    {
+      "path": "app/gates/production_policy.py",
+      "symbol_or_heading": "approved_v1_policy",
+      "source_role": "APPROVAL",
+      "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS"
+    }
+  ],
+  "authority_status": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+  "extraction_status": "VERIFIED",
+  "review_status": "IN_REVIEW",
+  "calculation_owner": null,
+  "evidence_dependencies": [],
+  "known_limitations": [
+    "Lite has no portfolio snapshot or heat methodology runtime."
+  ],
+  "conflicts": [],
+  "notes": "Legacy six-gates-production-v1 is selected active V1; this Lite artifact is review-required knowledge only. Unresolved exact cap/methodology configuration, missing/invalid portfolio equity, or missing risk/allocation input => INSUFFICIENT_DATA.",
+  "deterministic_computation": false,
+  "details": {
+    "gate_id": "GATE_5_HEAT",
+    "canonical_name": "Portfolio Heat & Factor Cap",
+    "version": "1.0.0",
+    "authority": "LATEST_ACCEPTED_WITH_LIMITATIONS",
+    "lifecycle": "REVIEW_REQUIRED",
+    "purpose": "Protect projected portfolio heat, single-stock allocation and sector allocation.",
+    "required_evidence": [],
+    "required_diagnostics": [],
+    "pass_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_5_HEAT:PASS",
+      "description": "Projected heat <= 0.06, candidate stock allocation <= 0.25, and sector allocation <= 0.35 under portfolio-structural-risk-heat-v1."
+    },
+    "fail_condition": {
+      "policy_reference": "six-gates-production-v1:GATE_5_HEAT:FAIL",
+      "description": "Any of projected heat > 0.06, stock allocation > 0.25, or sector allocation > 0.35."
+    },
+    "unknown_behavior": "BLOCK",
+    "criticality": "CRITICAL",
+    "score_interaction": "Hard portfolio constraint independent of analytical score; no score/LLM override.",
+    "strategy_interaction": "Cannot size, allocate, or place an order.",
+    "portfolio_context": "Requires portfolio equity, existing/candidate risk amounts, candidate allocation and sector allocation from a compatible snapshot.",
+    "known_limitations": [
+      "Lite has no portfolio snapshot or heat methodology runtime."
+    ],
+    "broker_order_authority": false,
+    "score_or_llm_override_allowed": false,
+    "provenance": [
+      "docs/EXECUTION_GATES.md#Gate 5",
+      "app/gates/engine.py#_heat",
+      "app/gates/production_policy.py#approved_v1_policy"
+    ]
+  }
+}
